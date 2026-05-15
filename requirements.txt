@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+flask
+flask-cors
+pydantic
+requests
+langgraph
+langchain-core
+langchain-google-genai
+google-genai
