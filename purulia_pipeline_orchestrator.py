@@ -182,7 +182,7 @@ try:
 except Exception as e:
     print(f"[WARNING] Failed to initialize Gemma Agent: {e}")
 
-app = FastAPI(title="Purulia Transit OS - Master Orchestrator")
+app = FastAPI(title="Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus) - Master Orchestrator")
 
 # Enable CORS for the UI
 app.add_middleware(

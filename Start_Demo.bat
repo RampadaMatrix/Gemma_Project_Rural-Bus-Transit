@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 echo ===================================================
-echo Purulia Transit OS - Gemma Hackathon Local Demo
+echo Rural Bus Transit Intelligence (Purulia District ^& Nearby Region Focus) - Gemma Hackathon Local Demo
 echo ===================================================
 
 if not exist ".env" (

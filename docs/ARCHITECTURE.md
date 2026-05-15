@@ -1,4 +1,4 @@
-# Purulia Transit OS - System Architecture
+# Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus) - System Architecture
 
 This document provides a high-level overview of the backend, frontend, server architecture, and the primary packages utilized in the **Gemma Project: Rural Bus Transit** system.
 
