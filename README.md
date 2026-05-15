@@ -138,7 +138,28 @@ Main file: `Polyline_Drawing_Pipeline/Plotting_Polyline_Algo.py`
 
 This layer transforms staged bus records into route geometry. It validates movement continuity, applies Purulia-centric direction rules, resolves stop coordinates, reuses route geometry for repeated movement signatures, handles reverse-trip reuse, and writes both polyline output and HITL input artifacts.
 
+<<<<<<< HEAD
 ### RAPTOR Discovery Engine
+=======
+Important behaviors:
+
+- `--bus <REG_NO>` targeted solving,
+- route signature deduplication,
+- reverse geometry reuse for return trips,
+- coordinate cache use,
+- Google Routes API integration,
+- loop/outlier protections,
+- atomic writes,
+- and resumable output handling.
+
+### HITL Geometry Layer
+
+File: `HITL_Pipeline_new/Plotting_Polyline_HITL_Algo.py`
+
+This is the deterministic geometry recomputation path used after human edits. It uses HITL-provided coordinates as source of truth, preserves stop order, chunks Routes API calls, falls back to leg-level routing where needed, and avoids drawing misleading geometry when validation fails.
+
+### RAPTOR Discovery Engine (Completely OFFLINE)
+>>>>>>> 78e82c80e9441640b8630c8b89c2791fc9bc39a9
 
 Files:
 
