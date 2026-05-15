@@ -3,7 +3,7 @@ import os
 import sys
 import argparse
 
-def wipe_bus(reg_no, base_dir=r'd:\Gemma Project'):
+def wipe_bus(reg_no, base_dir=r'd:\Gemma_Project_Rural-Bus-Transit'):
     files_to_check = [
         os.path.join(base_dir, 'pipeline_state.json'),
         os.path.join(base_dir, 'GACC_Sessions.json'),

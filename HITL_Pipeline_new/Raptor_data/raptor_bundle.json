@@ -11,27 +11,27 @@
   },
   "manifest": {
     "stops": {
-      "path": "D:\\Gemma Project\\HITL_Pipeline_new\\Raptor_data\\final_raptor_stops.json",
+      "path": "D:\\Gemma_Project_Rural-Bus-Transit\\HITL_Pipeline_new\\Raptor_data\\final_raptor_stops.json",
       "sha256": "96ec9e836785aceb369cae9ae473f2ac1a8932940b5f5e334d7711a007b28754",
       "rows": 2372
     },
     "routes": {
-      "path": "D:\\Gemma Project\\HITL_Pipeline_new\\Raptor_data\\raptor_routes.json",
+      "path": "D:\\Gemma_Project_Rural-Bus-Transit\\HITL_Pipeline_new\\Raptor_data\\raptor_routes.json",
       "sha256": "3ec844e0db3dcb29ae577031355586084b74343eea4fcba0afc05d8d1bf2d524",
       "rows": 190
     },
     "trips": {
-      "path": "D:\\Gemma Project\\HITL_Pipeline_new\\Raptor_data\\raptor_trips.json",
+      "path": "D:\\Gemma_Project_Rural-Bus-Transit\\HITL_Pipeline_new\\Raptor_data\\raptor_trips.json",
       "sha256": "d4910ce02e557fbc26ba413107bcd280aed7c685af1b9261b5140162bea5a003",
       "rows": 296
     },
     "stop_times": {
-      "path": "D:\\Gemma Project\\HITL_Pipeline_new\\Raptor_data\\raptor_stop_times.json",
+      "path": "D:\\Gemma_Project_Rural-Bus-Transit\\HITL_Pipeline_new\\Raptor_data\\raptor_stop_times.json",
       "sha256": "b0e6b91b08e8ae96b44bba69c0083b400172f144b79195c68b5387f70355d6fa",
       "rows": 28009
     },
     "transfers": {
-      "path": "D:\\Gemma Project\\HITL_Pipeline_new\\Raptor_data\\raptor_transfers.json",
+      "path": "D:\\Gemma_Project_Rural-Bus-Transit\\HITL_Pipeline_new\\Raptor_data\\raptor_transfers.json",
       "sha256": "2251db71e89eea3cfc60908d8aba298268017bc2d13f99bca892c7467127f270",
       "rows": 4804
     }

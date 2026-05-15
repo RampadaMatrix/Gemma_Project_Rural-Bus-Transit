@@ -1,11 +1,11 @@
 {
   "metadata": {
     "generated_at": "2026-05-09T00:57:33",
-    "source_file": "D:\\Gemma Project\\HITL_Pipeline_new\\BD_Phase1_HITL_input.json",
+    "source_file": "D:\\Gemma_Project_Rural-Bus-Transit\\HITL_Pipeline_new\\BD_Phase1_HITL_input.json",
     "source": "HITL TT sync",
     "total_buses": 24,
     "analysis_engine": "hitl_embedded_kinematics_v1 + speed_physics_v1",
-    "analysis_embedded_at": "2026-05-15T12:59:43",
+    "analysis_embedded_at": "2026-05-15T23:49:55",
     "terminal_time_normalized_at": "2026-04-16T22:54:07",
     "terminal_time_rule": "origin_arrival_null_destination_departure_null"
   },
