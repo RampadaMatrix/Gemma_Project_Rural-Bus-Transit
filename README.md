@@ -1,4 +1,6 @@
-# Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus)
+# Rural Bus Transit Intelligence
+
+Purulia District & Nearby Region Focus
 
 AI-assisted rural bus intelligence for converting informal bus knowledge into validated, searchable, map-ready transit infrastructure.
 
@@ -10,11 +12,30 @@ AI-assisted rural bus intelligence for converting informal bus knowledge into va
 
 ## Executive Summary
 
-Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus) is a working prototype for rural transit digitization, validation, and discovery. It is designed around the reality that rural bus data is rarely born as clean GTFS. It often begins as a timetable photo, a handwritten board, a social media post, a route remembered by an operator, or a partially known stop sequence.
+Rural Bus Transit Intelligence is a working prototype for rural transit digitization, validation, and discovery. The first iteration is designed around Purulia district and its nearby inter-district/inter-state transport region, where rural mobility connects villages, markets, schools, hospitals, rail links, and daily social life.
 
 The system turns that messy input into a staged transport record, computes route geometry, presents it for human audit, secures the approved record, and exposes the result through route search, timetable inspection, map visualization, and RAPTOR-based journey planning.
 
 This is not a generic chatbot over JSON files. The project is a coordinated pipeline with state management, duplicate guards, atomic writes, validation stages, map recomputation, secured snapshots, proximity analysis, and routing data generation.
+
+## Regional Focus
+
+Purulia is the westernmost district of West Bengal: a predominantly rural plateau region connecting Bengal, Jharkhand, and Odisha. With more than 2,600 villages spread across forests, hills, and low-density settlements, public transportation plays a vital role in daily life.
+
+For many communities, buses are not only a transport option. They support access to:
+
+- education,
+- healthcare,
+- local markets,
+- railway connectivity,
+- family responsibilities,
+- and social relationships within a deeply community-oriented society.
+
+The district spans approximately 6,259 sq. km and recorded a population of about 2.93 million in the 2011 Census. Based on moderated demographic growth projections, Purulia's estimated population in 2026 is expected to reach approximately 3.2-3.4 million people.
+
+Despite likely operating nearly 1,000 active buses across government and private rural routes, the current structured transit database in this project contains around 115 mapped services. That gap is the core motivation for the system: rural transit exists, but its digital infrastructure is severely incomplete.
+
+The project begins with Purulia and nearby regions because the area is large enough to expose real routing complexity, rural enough to lack structured transit feeds, and socially dependent enough for discoverable mobility to matter.
 
 ## Problem
 
@@ -29,7 +50,7 @@ Large parts of rural India do not have structured public transport feeds. Bus kn
 
 The result is a digital equity problem: people can have buses, but no dependable way to search, audit, or route through them.
 
-Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus) explores how AI can support the missing infrastructure layer between informal transit knowledge and usable digital mobility systems.
+Rural Bus Transit Intelligence explores how AI can support the missing infrastructure layer between informal transit knowledge and usable digital mobility systems.
 
 ## Core Idea
 
