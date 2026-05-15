@@ -29,7 +29,8 @@ CORS(app)
 @app.before_request
 def verify_token():
     # Allow static files and health checks (if any)
-    if request.path in ["/route_verification_map.html", "/", "/api/config"] or request.path.startswith("/backgrounds/"):
+    static_extensions = (".html", ".css", ".js", ".png", ".jpg", ".jpeg", ".svg", ".gif", ".woff", ".woff2", ".ttf", ".ico")
+    if request.path in ["/", "/api/config"] or request.path.endswith(static_extensions) or request.path.startswith("/backgrounds/"):
         return
     if request.method == "OPTIONS":
         return
