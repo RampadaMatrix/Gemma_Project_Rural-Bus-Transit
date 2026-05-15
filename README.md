@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Rural Bus Transit Intelligence
 
 Purulia District & Nearby Region Focus
@@ -15,9 +14,9 @@ AI-assisted rural bus intelligence for converting informal bus knowledge into va
 
 Rural Bus Transit Intelligence is a working prototype for rural transit digitization, validation, and discovery. The first iteration is designed around Purulia district and its nearby inter-district/inter-state transport region, where rural mobility connects villages, markets, schools, hospitals, rail links, and daily social life.
 
-The system turns that messy input into a staged transport record, computes route geometry, presents it for human audit, secures the approved record, and exposes the result through route search, timetable inspection, map visualization, and RAPTOR-based journey planning.
+The system turns messy route knowledge into a staged transport record, computes route geometry, presents it for human audit, secures the approved result, and exposes the network through route search, timetable inspection, map visualization, and RAPTOR-based journey planning.
 
-This is not a generic chatbot over JSON files. The project is a coordinated pipeline with state management, duplicate guards, atomic writes, validation stages, map recomputation, secured snapshots, proximity analysis, and routing data generation.
+This is not a generic chatbot over transport files. The project is a coordinated pipeline with state management, duplicate guards, atomic writes, validation stages, map recomputation, secured snapshots, proximity analysis, and routing data generation.
 
 ## Regional Focus
 
@@ -113,135 +112,19 @@ flowchart TB
 
 File: `purulia_pipeline_orchestrator.py`
 
-This is the control plane of the project. It runs the main background loop and coordinates the AI agent, session history, server health, Stage-1 processing, solver dispatch, HITL completion checks, and discovery rebuilds.
-
-Key responsibilities:
-
-- loads `.env` and shared configuration,
-- starts and monitors the HITL Flask server,
-- exposes `/chat`, `/stream`, `/history`, `/reset_session`, and `/files`,
-- streams live pipeline activity through SSE,
-- tracks active sessions and in-flight turns,
-- validates Stage-1 bus records,
-- blocks duplicates before expensive processing,
-- dispatches route solving in background threads,
-- moves buses through `STAGE_1_PENDING`, `WAITING_FOR_HITL`, and secured states,
-- and triggers final discovery rebuilding after HITL approval.
-=======
-# Rural Transit Intelligence 
-
-AI-assisted rural bus intelligence for regions where transit data is fragmented, informal, and largely undiscoverable.
-
-## Overview
-
-Rural Transit Intelligence  is a hybrid AI + Human-in-the-Loop transit system built to turn messy rural bus information into searchable, structured, and operational transport data.
-
-The project focuses on a real gap in rural mobility systems:
-
-- Timetables often exist only as images, handwritten boards, social posts, or local memory.
-- There is usually no GTFS feed, no digital route graph, and no reliable journey planner.
-- Missing a bus can mean missing work, school, healthcare, or the only viable connection for the day.
-
-This system uses Gemma-powered extraction, staged validation, route geometry generation, and a RAPTOR-based journey engine to make rural bus networks discoverable.
-
-## Why This Matters
-
-Urban transit systems increasingly benefit from structured APIs, apps, and real-time routing. Rural systems often do not. That creates a digital access gap, not just a data gap.
-
-Rural Transit Intelligence  is designed to help close that gap by:
-
-- digitizing unstructured bus information,
-- validating it through human review,
-- converting it into route-ready transport data,
-- and exposing it through an interface that supports search, audit, and journey planning.
-
-## What The System Does
-
-### 1. AI timetable extraction
-
-The system can ingest noisy or messy bus timetable images and extract:
-
-- bus identity,
-- routes and stop sequences,
-- trip directions,
-- timetable structure,
-- and candidate staged records for downstream processing.
-
-### 2. Human-in-the-Loop validation
-
-AI extraction is not treated as the final source of truth.
-
-Every important record can pass through a review workflow where the operator can:
-
-- inspect route geometry,
-- correct timing and stop issues,
-- validate route logic,
-- and secure approved records into the trusted dataset.
-
-### 3. Route polyline generation
-
-The platform generates map-ready route geometry from staged transit records and prepares the route data for audit and discovery workflows.
-
-### 4. Transit discovery and journey planning
-
-Once records are secured, the system supports rural route lookup and journey planning through a RAPTOR-based routing layer.
-
-### 5. Operational AI orchestration
-
-Gemma is integrated into the broader pipeline through LangGraph-based orchestration rather than a standalone chatbot flow.
-
-## Core Architecture
-
-The project uses a dual-server architecture.
-
-### FastAPI Orchestrator
-
-File: `purulia_pipeline_orchestrator.py`
-
-Responsibilities:
-
-- runs the central orchestration loop,
-- manages pipeline state,
-- coordinates background processing,
-- exposes the main chat and event-stream APIs,
-- and supervises the HITL server lifecycle.
->>>>>>> 61f8210394b0efb92e0479b29778cee31c420e1c
+This is the control plane of the project. It runs the background loop and coordinates the AI agent, session history, server health, Stage-1 processing, solver dispatch, HITL completion checks, and discovery rebuilds.
 
 ### Flask HITL Server
 
 File: `HITL_Pipeline_new/hitl_server.py`
 
-<<<<<<< HEAD
-This is the spatial, UI, and review backend. It serves the main route verification interface and owns the endpoints used for audit, timetable correction, recomputation, secure locking, proximity lookup, and RAPTOR journey solving.
-
-Key responsibilities:
-
-- serves `route_verification_map.html`,
-- exposes cache, timetable, analysis, recompute, secure, and RAPTOR APIs,
-- maintains hot caches and background warmup state,
-- performs atomic JSON writes with rolling backups,
-- repairs and normalizes secured geometry,
-- supports PHITL and TTHITL commit workflows,
-- locks approved buses into the secured registry,
-- and exposes proximity-aware route discovery utilities.
+This is the spatial, UI, and review backend. It serves the route verification interface and owns the endpoints used for audit, timetable correction, recomputation, secure locking, proximity lookup, and RAPTOR journey solving.
 
 ### Gemma + LangGraph Agent
 
 Main file: `ZGemma_files/LangGraph/gemma_graph.py`
 
-The Gemma layer is a tool-using transit agent. It is not allowed to blindly write into the project. It works through dedicated tools that understand project aliases, file safety, duplicate checks, and stage-specific write behavior.
-
-Implemented capabilities:
-
-- image-to-structured timetable extraction,
-- intent routing for travel, file query, timetable edit, secure, and update workflows,
-- `@file` style aliases such as `@secure`, `@output`, `@tt`, `@input`, `@master`, and `@stage1`,
-- surgical large-file querying through `smart_grep` and `smart_registry_grep`,
-- controlled persistence through `save_to_file`,
-- duplicate and active-audit detection before Stage-1 enqueue,
-- hybrid intent handling when an uploaded image contains both travel intent and schedule data,
-- RAPTOR journey planning through `find_transit_route`,
-- and transit stop lookup through `list_transit_stops`.
+The Gemma layer is a tool-using transit agent. It works through project-aware tools that understand aliases, file safety, duplicate checks, and stage-specific write behavior.
 
 ### Identity Resolver
 
@@ -255,23 +138,6 @@ Main file: `Polyline_Drawing_Pipeline/Plotting_Polyline_Algo.py`
 
 This layer transforms staged bus records into route geometry. It validates movement continuity, applies Purulia-centric direction rules, resolves stop coordinates, reuses route geometry for repeated movement signatures, handles reverse-trip reuse, and writes both polyline output and HITL input artifacts.
 
-Important behaviors:
-
-- `--bus <REG_NO>` targeted solving,
-- route signature deduplication,
-- reverse geometry reuse for return trips,
-- coordinate cache use,
-- Google Routes API integration,
-- loop/outlier protections,
-- atomic writes,
-- and resumable output handling.
-
-### HITL Geometry Layer
-
-File: `HITL_Pipeline_new/Plotting_Polyline_HITL_Algo.py`
-
-This is the deterministic geometry recomputation path used after human edits. It uses HITL-provided coordinates as source of truth, preserves stop order, chunks Routes API calls, falls back to leg-level routing where needed, and avoids drawing misleading geometry when validation fails.
-
 ### RAPTOR Discovery Engine
 
 Files:
@@ -282,65 +148,29 @@ Files:
 
 The secured dataset is converted into a routing bundle that supports rural journey discovery. The build process extracts curated stops, indexes villages, creates virtual stops along corridors, materializes trips and stop times, generates transfer links, runs QA gates, and merges runtime artifacts into `raptor_bundle.json`.
 
-The solver supports:
-
-- direct routes,
-- one-transfer journeys,
-- walking access/egress legs,
-- route-aware nearby stop projection,
-- time-window filtering,
-- profile-style option enumeration,
-- duplicate journey pruning,
-- and compact responses for UI rendering.
-
 ## Working Pipeline
-
-The core operational flow is intentionally staged.
 
 ### Phase 1: Input and extraction
 
 The operator uploads or submits route/timetable information through the UI. If the input contains an image, Gemma extracts a structured bus record using the project schema.
 
-Output target:
+Primary queue target:
 
 ```text
 Polyline_Drawing_Pipeline/Stage_1_data.json
 ```
 
-Before a new bus is staged, the system checks:
-
-- secured records,
-- master records,
-- active Stage-1/HITL state,
-- registration-number variants,
-- bus-name similarity,
-- and route signature similarity.
+Before a new bus is staged, the system checks secured records, master records, active Stage-1/HITL state, registration-number variants, bus-name similarity, and route signature similarity.
 
 ### Phase 2: Stage-1 queue supervision
 
 The FastAPI orchestrator continuously watches `Stage_1_data.json`.
 
-For each valid new bus, it:
-
-- validates required schema,
-- blocks secured duplicates,
-- writes the active state into `pipeline_state.json`,
-- marks the bus as `STAGE_1_PENDING`,
-- and surgically pops processed entries from the queue.
+For each valid new bus, it validates schema, blocks secured duplicates, writes active state into `pipeline_state.json`, marks the bus as `STAGE_1_PENDING`, and surgically removes processed queue entries.
 
 ### Phase 3: Polyline solving
 
-The orchestrator dispatches `Plotting_Polyline_Algo.py --bus <REG_NO>` in the background.
-
-The solver computes:
-
-- stop coordinate resolution,
-- route nodes,
-- encoded polylines,
-- distance estimates,
-- validation metadata,
-- duplicate movement grouping,
-- and HITL-ready output.
+The orchestrator dispatches `Plotting_Polyline_Algo.py --bus <REG_NO>` in the background. The solver computes stop coordinate resolution, route nodes, encoded polylines, distance estimates, validation metadata, duplicate movement grouping, and HITL-ready output.
 
 On success, the bus moves to `WAITING_FOR_HITL`.
 
@@ -358,7 +188,7 @@ The HITL server supports:
 - surgical commit,
 - and secure locking.
 
-This is the trust boundary of the system: AI and automation can prepare data, but human validation decides what becomes authoritative.
+This is the trust boundary of the system: AI and automation prepare data, but human validation decides what becomes authoritative.
 
 ### Phase 5: Secured transit snapshot
 
@@ -374,8 +204,6 @@ The secure operation stores a normalized, locked snapshot and updates secure met
 
 After a bus becomes secured, the orchestrator detects completion and triggers discovery rebuilding through the RAPTOR data pipeline.
 
-This turns secured bus records into routing artifacts that can be searched by the UI and the Gemma agent.
-
 ## Data State Model
 
 | State / File | Purpose |
@@ -389,17 +217,6 @@ This turns secured bus records into routing artifacts that can be searched by th
 | `HITL_Pipeline_new/BD_Phase1_HITL_TT_output.json` | Timetable-corrected HITL output |
 | `HITL_Pipeline_new/BD_Phase1_HITL_Secured.json` | Locked, trusted transit records |
 | `HITL_Pipeline_new/Raptor_data/raptor_bundle.json` | Runtime journey-planning bundle |
-
-Important statuses:
-
-| Status | Meaning |
-| --- | --- |
-| `STAGE_1_PENDING` | A bus is queued for route solving |
-| `WAITING_FOR_HITL` | Route geometry is ready for operator review |
-| `PHITL` | Polyline HITL state exists |
-| `TTHITL` | Timetable HITL state exists |
-| `SECURE` | Bus has been approved and locked into the secured dataset |
-| `ERROR_STAGE_1` | Stage-1 solver failed and requires inspection |
 
 ## User Workflows
 
@@ -477,7 +294,7 @@ How can I go from Chipida to Ranibandh?
 
 ## Local Demo
 
-The repository includes launchers for Windows, Linux, and macOS.
+This repository includes launchers for Windows, Linux, and macOS.
 
 ### Requirements
 
@@ -607,22 +424,3 @@ Rural transit data is not clean enough for a single-pass AI system, and it is to
 - Secured records power discovery.
 
 The goal is not only to digitize bus data. The goal is to create an auditable path from informal local knowledge to usable public mobility infrastructure.
-=======
-Responsibilities:
-
-- serves the route verification UI,
-- provides spatial and audit endpoints,
-- runs route and cache workflows,
-- exposes RAPTOR journey planning endpoints,
-- and supports secure transit review operations.
-
-### Gemma + LangGraph Agent Layer
-
-Files:
-
-- `ZGemma_files/LangGraph/gemma_graph.py`
-- `ZGemma_files/LangGraph/identity_resolver.py`
-- `ZGemma_files/LangGraph/raptor_tools.py`
-
-Responsibilities:
->>>>>>> 61f8210394b0efb92e0479b29778cee31c420e1c

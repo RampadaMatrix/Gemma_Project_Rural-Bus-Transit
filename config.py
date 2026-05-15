@@ -23,7 +23,7 @@ STATE_FILE = BASE_DIR / "pipeline_state.json"
 
 # Security
 def get_api_token():
-    return os.getenv("API_AUTH_TOKEN", "purulia_transit_secret_2026")
+    return str(os.getenv("API_AUTH_TOKEN", "")).strip()
 
 def load_env():
     env_path = BASE_DIR / ".env"

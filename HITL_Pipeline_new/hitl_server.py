@@ -26,16 +26,23 @@ API_TOKEN = config.get_api_token()
 app = Flask(__name__, static_folder=str(BASE_DIR), static_url_path="")
 CORS(app)
 
+
+def _is_loopback_request() -> bool:
+    host = (request.remote_addr or "").strip()
+    return host in {"127.0.0.1", "::1", "localhost"}
+
+
 @app.before_request
 def verify_token():
+    if _is_loopback_request():
+        return
     # Allow static files and health checks (if any)
-    static_extensions = (".html", ".css", ".js", ".png", ".jpg", ".jpeg", ".svg", ".gif", ".woff", ".woff2", ".ttf", ".ico")
-    if request.path in ["/", "/api/config", "/test_image.json"] or request.path.endswith(static_extensions) or request.path.startswith("/backgrounds/"):
+    if request.path in ["/route_verification_map.html", "/"] or request.path.startswith("/Background/"):
         return
     if request.method == "OPTIONS":
         return
     token = request.headers.get("X-API-Token")
-    if token != API_TOKEN:
+    if not API_TOKEN or token != API_TOKEN:
         return jsonify({"status": "error", "message": "Unauthorized"}), 401
 
 from Plotting_Polyline_HITL_Algo import API_KEY, PuruliaTransitRouter
@@ -1861,6 +1868,12 @@ def serve_background(filename):
     background_dir = BASE_DIR.parent / "Background"
     return send_from_directory(str(background_dir), filename)
 
+
+
+@app.route("/ZGemma_files/Test_Dataset/<path:filename>")
+def serve_test_dataset(filename):
+    dataset_dir = PROJECT_ROOT / "ZGemma_files" / "Test_Dataset"
+    return send_from_directory(str(dataset_dir), filename)
 
 
 @app.route("/api/config", methods=["GET"])

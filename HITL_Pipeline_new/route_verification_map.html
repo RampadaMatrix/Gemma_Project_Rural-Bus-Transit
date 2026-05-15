@@ -10778,10 +10778,62 @@
     </div>
 
     <script>
+        const API_TOKEN_STORAGE_KEY = 'ruralTransitApiToken';
+
+        function isLoopbackBrowser() {
+            const host = String(window.location.hostname || "").trim().toLowerCase();
+            return host === "127.0.0.1" || host === "localhost" || host === "::1";
+        }
+
+        function getApiToken() {
+            if (isLoopbackBrowser()) return "";
+            let token = sessionStorage.getItem(API_TOKEN_STORAGE_KEY) || localStorage.getItem(API_TOKEN_STORAGE_KEY) || "";
+            if (!token) {
+                token = String(window.prompt("Enter the local API auth token from your .env file (API_AUTH_TOKEN):") || "").trim();
+                if (token) {
+                    sessionStorage.setItem(API_TOKEN_STORAGE_KEY, token);
+                    localStorage.setItem(API_TOKEN_STORAGE_KEY, token);
+                }
+            }
+            return token;
+        }
+
+        function withApiToken(headers = {}) {
+            const token = getApiToken();
+            return token ? { ...headers, 'X-API-Token': token } : { ...headers };
+        }
+
+        function buildAuthedUrl(url) {
+            const token = getApiToken();
+            const next = new URL(url, window.location.href);
+            if (token) next.searchParams.set('api_token', token);
+            return next.toString();
+        }
+
+        const nativeFetch = window.fetch.bind(window);
+        window.fetch = function (input, init = {}) {
+            const requestUrl = typeof input === 'string' ? input : (input && input.url) ? input.url : "";
+            let target;
+            try {
+                target = new URL(requestUrl || window.location.href, window.location.href);
+            } catch (_) {
+                target = null;
+            }
+            const isLocalApi = !!target && (
+                target.origin === window.location.origin ||
+                target.origin === "http://127.0.0.1:8000" ||
+                target.origin === "http://localhost:8000"
+            );
+            if (isLocalApi) {
+                init = { ...init, headers: withApiToken(init.headers || {}) };
+            }
+            return nativeFetch(input, init);
+        };
+
         function fetchJsonWithTimeout(url, opts = {}, timeoutMs = 20000) {
             const controller = new AbortController();
             const t = setTimeout(() => controller.abort(), timeoutMs);
-            const headers = { ...opts.headers, 'X-API-Token': 'purulia_transit_secret_2026' };
+            const headers = withApiToken(opts.headers || {});
             const merged = { ...opts, headers, signal: controller.signal };
             return fetch(url, merged)
                 .then(async (r) => {
@@ -16322,7 +16374,7 @@
         function initGemmaSSE() {
             if (sseConnection) return;
             // Connect directly to the orchestrator's SSE endpoint on port 8000
-            sseConnection = new EventSource(`http://127.0.0.1:8000/stream`);
+            sseConnection = new EventSource(buildAuthedUrl(`http://127.0.0.1:8000/stream`));
 
             sseConnection.onmessage = (event) => {
                 try {
@@ -17338,7 +17390,7 @@
             const input = document.getElementById('gpInput');
             if (type === 'extract') {
                 input.value = "Analyze image and extract data.";
-                document.getElementById('gpStagedName').textContent = "Screenshot 2026-05-03 232917.png";
+                document.getElementById('gpStagedName').textContent = "Screenshot 2026-05-03 012940.png";
 
                 // Show a placeholder immediately while loading
                 const svgPlaceholder = '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a"><rect x="10" y="10" width="80" height="80" fill="#1e293b" rx="8"/><circle cx="35" cy="35" r="12" fill="#334155"/><path d="M10 90 L50 50 L90 90" fill="#475569"/></svg>';
@@ -17346,16 +17398,25 @@
                 document.getElementById('gpStagedPreview').src = gemmaStagedImage;
                 document.getElementById('gpStagedWrap').style.display = 'flex';
 
-                // Fetch the actual requested test image in base64 format
-                fetch('/test_image.json')
-                    .then(r => r.json())
-                    .then(data => {
-                        if (data && data.image) {
-                            gemmaStagedImage = data.image;
+                // Load a bundled local test image directly from the repository.
+                fetch('/ZGemma_files/Test_Dataset/Screenshot%202026-05-03%20012940.png')
+                    .then(r => {
+                        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                        return r.blob();
+                    })
+                    .then(blob => new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    }))
+                    .then(dataUrl => {
+                        if (dataUrl) {
+                            gemmaStagedImage = dataUrl;
                             document.getElementById('gpStagedPreview').src = gemmaStagedImage;
                         }
                     })
-                    .catch(e => console.error("Failed to load test image", e));
+                    .catch(e => console.error("Failed to load bundled test image", e));
 
                 input.focus();
             } else if (type === 'route') {

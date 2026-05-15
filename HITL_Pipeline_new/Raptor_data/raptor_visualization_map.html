@@ -9,43 +9,71 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
     <script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>
+    <meta name="darkreader-lock">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
         rel="stylesheet">
 
     <style>
         :root {
-            /* Light Theme Tokens */
-            --bg-glass: rgba(255, 255, 255, 0.75);
-            --bg-blur: 15px;
-            --border-glass: rgba(255, 255, 255, 0.3);
-            --text-main: #1E272E;
-            --text-dim: #485460;
-            --accent-main: #FF4757;
-            --accent-snap: #2ED573;
-            --accent-vill: #747D8C;
-            --shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            /* Light Theme - Default */
+            --bg-glass: #ffffff;
+            --bg-blur: 0px;
+            --border-glass: #cbd5e1;
+            --text-main: #020617;
+            --text-dim: #475569;
+            --accent-main: #ef4444;
+            --accent-snap: #10b981;
+            --accent-vill: #64748b;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --font-head: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
             --map-invert: 0;
+            --input-bg: #f8fafc;
         }
 
+        /* Dark Theme Override */
         [data-theme="dark"] {
-            --bg-glass: rgba(15, 20, 25, 0.85);
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --text-main: #F1F2F6;
-            --text-dim: #A4B0BE;
-            --shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            --bg-glass: #0f172a;
+            --border-glass: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             --map-invert: 0.95;
+            --input-bg: #1e293b;
+        }
+
+        /* System Dark Preference - only applies if no manual theme is set */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg-glass: #0f172a;
+                --border-glass: #1e293b;
+                --text-main: #f8fafc;
+                --text-dim: #94a3b8;
+                --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+                --map-invert: 0.95;
+                --input-bg: #1e293b;
+            }
+        }
+
+        /* Explicit Light Override */
+        [data-theme="light"] {
+            --bg-glass: #ffffff;
+            --border-glass: #cbd5e1;
+            --text-main: #020617;
+            --text-dim: #475569;
+            --map-invert: 0;
+            --input-bg: #f8fafc;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: var(--font-body);
-            background: #f4f7f6;
+            background: var(--bg-glass);
+            color: var(--text-main);
             overflow: hidden;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         #map {
@@ -97,25 +125,46 @@
             white-space: nowrap;
         }
 
-        .theme-toggle, .back-btn {
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
+        .floating-controls h2 {
+            margin: 0;
+            font-size: 14px;
+            font-family: var(--font-head);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .floating-controls .theme-toggle,
+        .floating-controls .back-btn {
+            background: var(--input-bg);
             border: 1px solid var(--border-glass);
-            background: rgba(125, 125, 125, 0.1);
+            color: var(--text-main);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            margin-left: 8px;
+            cursor: pointer;
             transition: all 0.2s;
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
-        .theme-toggle:hover, .back-btn:hover {
-            background: rgba(125, 125, 125, 0.2);
-            transform: translateY(-1px);
+        .floating-controls .theme-toggle:hover,
+        .floating-controls .back-btn:hover {
+            background: var(--border-glass);
+            transform: scale(1.1);
         }
+
+        .floating-controls .back-btn {
+            margin-right: 12px;
+            padding: 0;
+        }
+
 
         body.embedded .back-btn {
             display: none;
@@ -132,7 +181,8 @@
         }
 
         .layer-toggle:hover {
-            background: rgba(125, 125, 125, 0.1);
+            background: var(--input-bg);
+            border-color: var(--border-glass);
         }
 
         .layer-toggle input {
@@ -151,13 +201,14 @@
         }
 
         .count-pill {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--input-bg);
             padding: 1px 6px;
             border-radius: 4px;
             font-size: 9px;
             font-family: 'Consolas', monospace;
             color: var(--text-dim);
             font-weight: 700;
+            border: 1px solid var(--border-glass);
         }
 
         .dot {
@@ -388,8 +439,8 @@
         .search-box {
             display: flex;
             align-items: center;
-            background: rgba(125,125,125,0.06);
-            border: 1px solid rgba(125,125,125,0.15);
+            background: var(--input-bg);
+            border: 1px solid var(--border-glass);
             border-radius: 12px;
             padding: 8px 12px;
             transition: all 0.3s ease;
@@ -402,8 +453,8 @@
         }
         
         .search-icon { font-size: 14px; color: var(--text-dim); margin-right: 10px; width: 16px; text-align: center; }
-        .search-clear { font-size: 14px; color: var(--text-dim); background: none; border: none; cursor: pointer; display: none; padding: 2px; }
-        .search-clear:hover { color: #FF4757; }
+        .search-clear { font-size: 14px; color: var(--text-main); background: none; border: none; cursor: pointer; display: none; padding: 2px; }
+        .search-clear:hover { color: var(--accent-main); }
         
         .search-input {
             flex: 1;
@@ -416,7 +467,7 @@
             padding: 6px 0;
         }
         
-        .search-input::placeholder { color: var(--text-dim); opacity: 0.7; }
+        .search-input::placeholder { color: var(--text-dim); opacity: 0.9; }
         
         /* Dropdown Results */
         .planner-dropdown {
@@ -445,10 +496,10 @@
             cursor: pointer;
             transition: background 0.15s;
         }
-        .dropdown-item:hover { background: rgba(125,125,125,0.08); }
+        .dropdown-item:hover { background: var(--input-bg); }
         .dropdown-title { font-size: 13px; font-weight: 700; color: var(--text-main); }
         .dropdown-meta { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
-        .dropdown-badge { font-size: 9px; background: rgba(125,125,125,0.15); padding: 2px 5px; border-radius: 4px; margin-left: 6px; }
+        .dropdown-badge { font-size: 9px; background: var(--border-glass); color: var(--text-dim); padding: 2px 5px; border-radius: 4px; margin-left: 6px; }
 
         .time-mode-grid {
             display: grid;
@@ -511,8 +562,8 @@
 
         .time-input {
             width: 100%;
-            border: 1px solid rgba(125,125,125,0.15);
-            background: rgba(125,125,125,0.06);
+            border: 1px solid var(--border-glass);
+            background: var(--input-bg);
             color: var(--text-main);
             border-radius: 12px;
             padding: 11px 12px;
@@ -531,8 +582,8 @@
             min-width: 102px;
             border-radius: 12px;
             padding: 11px 12px;
-            background: rgba(125,125,125,0.05);
-            border: 1px solid rgba(125,125,125,0.12);
+            background: var(--input-bg);
+            border: 1px solid var(--border-glass);
             font-size: 12px;
             font-weight: 700;
             color: var(--text-main);
@@ -549,8 +600,8 @@
 
         .time-preset {
             appearance: none;
-            border: 1px solid rgba(125,125,125,0.12);
-            background: rgba(125,125,125,0.05);
+            border: 1px solid var(--border-glass);
+            background: var(--input-bg);
             color: var(--text-main);
             border-radius: 999px;
             padding: 7px 10px;
@@ -607,7 +658,7 @@
             position: absolute;
             cursor: pointer;
             inset: 0;
-            background: rgba(125,125,125,0.22);
+            background: var(--border-glass);
             border-radius: 999px;
             transition: background 0.25s ease, box-shadow 0.25s ease;
         }
@@ -699,7 +750,7 @@
 
         .drawer-header {
             padding: 18px 24px 14px;
-            border-bottom: 1px solid rgba(125,125,125,0.12);
+            border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -716,8 +767,8 @@
 
         .drawer-close {
             appearance: none;
-            background: rgba(125,125,125,0.08);
-            border: 1px solid rgba(125,125,125,0.12);
+            background: var(--input-bg);
+            border: 1px solid var(--border-glass);
             width: 34px;
             height: 34px;
             border-radius: 10px;
@@ -727,7 +778,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s, transform 0.15s;
+            transition: all 0.2s;
         }
 
         .drawer-close:hover {
@@ -741,7 +792,7 @@
             padding: 18px 22px 24px;
             overflow-y: auto;
             overflow-x: hidden;
-            background: rgba(125,125,125,0.015);
+            background: var(--bg-glass);
         }
 
         .drawer-content::-webkit-scrollbar { width: 8px; }
@@ -775,8 +826,8 @@
             appearance: none;
             flex: 0 0 220px;
             border-radius: 16px;
-            border: 1px solid rgba(125,125,125,0.14);
-            background: rgba(125,125,125,0.04);
+            border: 1px solid var(--border-glass);
+            background: var(--input-bg);
             padding: 14px 15px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -827,7 +878,7 @@
 
         .journey-detail {
             background: var(--bg-glass);
-            border: 1px solid rgba(125,125,125,0.14);
+            border: 1px solid var(--border-glass);
             border-radius: 22px;
             padding: 22px;
             box-shadow: var(--shadow);
@@ -1125,8 +1176,8 @@
         }
 
         .arrival-only-card {
-            border: 1px solid rgba(125,125,125,0.14);
-            background: rgba(125,125,125,0.045);
+            border: 1px solid var(--border-glass);
+            background: var(--input-bg);
             border-radius: 14px;
             padding: 12px;
             box-sizing: border-box;
@@ -1221,21 +1272,15 @@
             align-items: center;
             justify-content: center;
             padding: 18px 22px;
-            border: 1px solid rgba(255,71,87,0.22);
+            border: 2px solid var(--accent-main);
             border-radius: 18px;
-            background: rgba(255,255,255,0.76);
-            box-shadow: 0 14px 34px rgba(15,23,42,0.08);
-            color: #FF4757;
+            background: var(--bg-glass);
+            box-shadow: var(--shadow);
+            color: var(--accent-main);
             text-align: center;
             font-weight: 700;
             line-height: 1.4;
             box-sizing: border-box;
-        }
-
-        [data-theme="dark"] .drawer-empty-state {
-            background: rgba(13,18,24,0.88);
-            border-color: rgba(255,71,87,0.28);
-            box-shadow: 0 14px 34px rgba(0,0,0,0.34);
         }
 
         .journey-route-card {
@@ -1243,37 +1288,18 @@
             flex: 0 0 auto;
             width: 100%;
             min-width: 0;
-            border: 1px solid rgba(125,125,125,0.16);
+            border: 1px solid var(--border-glass);
             border-radius: 20px;
-            background: rgba(255,255,255,0.88);
-            color: #071225;
-            box-shadow: 0 8px 28px rgba(15,23,42,0.08);
+            background: var(--bg-glass);
+            color: var(--text-main);
+            box-shadow: var(--shadow);
             padding: 20px 22px;
             display: flex;
             flex-direction: column;
             font-family: var(--font-body);
             text-align: left;
             cursor: pointer;
-            transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-        }
-
-        .journey-route-card:hover {
-            transform: translateY(-1px);
-            border-color: rgba(59,130,246,0.45);
-            box-shadow: 0 12px 32px rgba(59,130,246,0.12);
-        }
-
-        .journey-route-card.active {
-            border-color: rgba(59,130,246,0.72);
-            box-shadow: 0 0 0 2px rgba(59,130,246,0.18), 0 12px 32px rgba(59,130,246,0.12);
-            background: rgba(59,130,246,0.04);
-        }
-
-        [data-theme="dark"] .journey-route-card {
-            background: rgba(13,18,24,0.92);
-            color: var(--text-main);
-            border-color: rgba(255,255,255,0.12);
-            box-shadow: 0 20px 54px rgba(0,0,0,0.42);
+            transition: all 0.2s ease;
         }
 
         .journey-card-time {
@@ -1382,11 +1408,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            background: rgba(255,255,255,0.72);
-        }
-
-        [data-theme="dark"] .journey-bus-pill {
-            background: rgba(15,23,42,0.72);
+            background: var(--input-bg);
         }
 
         .journey-bus-pill.bus-blue { color: #3B82F6; }
@@ -1406,11 +1428,11 @@
 
         .journey-card-headsup {
             margin-top: auto;
-            border-left: 4px solid rgba(59,130,246,0.42);
-            background: rgba(148,163,184,0.10);
+            border-left: 4px solid var(--accent-main);
+            background: var(--input-bg);
             border-radius: 10px;
             padding: 10px 14px;
-            color: currentColor;
+            color: var(--text-main);
         }
 
         .journey-card-headsup p {
@@ -2409,10 +2431,30 @@
 
         // --- Theme Logic ---
         const themeBtn = document.getElementById('theme-btn');
-        let currentTheme = 'light';
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('raptor-theme', theme);
+        }
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('raptor-theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (systemPrefersDark.matches) {
+            setTheme('dark');
+        }
+
         themeBtn.addEventListener('click', () => {
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
+            const currentTheme = document.documentElement.getAttribute('data-theme') || (systemPrefersDark.matches ? 'dark' : 'light');
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+
+        systemPrefersDark.addEventListener('change', e => {
+            if (!localStorage.getItem('raptor-theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
         });
 
         var map = L.map('map', { zoomControl: false, preferCanvas: true }).setView([23.330910, 86.361153], 10);

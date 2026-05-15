@@ -7,7 +7,7 @@ import sys
 import shutil
 import threading
 from datetime import datetime
-from fastapi import FastAPI, HTTPException, Header, Depends
+from fastapi import FastAPI, HTTPException, Header, Depends, Query, Request
 
 from pydantic import BaseModel
 from typing import List, Optional, Annotated
@@ -23,10 +23,31 @@ import config
 config.load_env()
 API_TOKEN = config.get_api_token()
 
-def verify_token(x_api_token: Annotated[str | None, Header()] = None):
-    if x_api_token != API_TOKEN:
+def _is_loopback_host(host: str | None) -> bool:
+    return host in {"127.0.0.1", "localhost", "::1"}
+
+
+def verify_token(request: Request, x_api_token: Annotated[str | None, Header()] = None):
+    client_host = getattr(request.client, "host", None)
+    if _is_loopback_host(client_host):
+        return x_api_token
+    if not API_TOKEN or x_api_token != API_TOKEN:
         raise HTTPException(status_code=401, detail="Invalid or missing API Token")
     return x_api_token
+
+
+def verify_token_with_query(
+    request: Request,
+    x_api_token: Annotated[str | None, Header()] = None,
+    api_token: Annotated[str | None, Query()] = None,
+):
+    client_host = getattr(request.client, "host", None)
+    if _is_loopback_host(client_host):
+        return x_api_token or api_token
+    token = x_api_token or api_token
+    if not API_TOKEN or token != API_TOKEN:
+        raise HTTPException(status_code=401, detail="Invalid or missing API Token")
+    return token
 
 
 
@@ -182,7 +203,7 @@ try:
 except Exception as e:
     print(f"[WARNING] Failed to initialize Gemma Agent: {e}")
 
-app = FastAPI(title="Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus) - Master Orchestrator")
+app = FastAPI(title="Purulia Transit OS - Master Orchestrator")
 
 # Enable CORS for the UI
 app.add_middleware(
@@ -218,7 +239,7 @@ def _save_session_history(session_id: str, history: list):
 # --- ACTIVE SESSION LOCKING ---
 SESSIONS_IN_FLIGHT = set()
 
-@app.get("/history")
+@app.get("/history", dependencies=[Depends(verify_token)])
 async def get_history(sessionId: str):
     history = _load_session_history(sessionId)
     return {
@@ -226,7 +247,7 @@ async def get_history(sessionId: str):
         "isBusy": sessionId in SESSIONS_IN_FLIGHT
     }
 
-@app.post("/reset_session")
+@app.post("/reset_session", dependencies=[Depends(verify_token)])
 async def reset_session(sessionId: str):
     path = _get_session_path(sessionId)
     if os.path.exists(path):
@@ -333,7 +354,7 @@ def push_activity(session_id: Optional[str], turn_id: Optional[str], kind: str, 
         payload["phase"] = phase
     push_session_alert(session_id, turn_id, "AGENT_THOUGHT", f"{title}: {detail}".strip(": "), payload)
 
-@app.get("/stream")
+@app.get("/stream", dependencies=[Depends(verify_token_with_query)])
 async def sse_stream():
     """SSE Endpoint for pushing live alerts to the UI."""
     async def event_generator():
@@ -706,7 +727,7 @@ def ensure_hitl_server():
     log("           Waiting for server to initialize (this may take up to 90s)...")
 
 # --- FILE EXPLORER ENDPOINT ---
-@app.get("/files")
+@app.get("/files", dependencies=[Depends(verify_token)])
 async def list_files_endpoint():
     """Lists files in the project for the UI @mention feature."""
     file_list = [
@@ -828,7 +849,7 @@ def _build_trace_from_result(result: Dict[str, Any]) -> List[TraceStep]:
 
     return trace
 
-@app.post("/chat", response_model=ChatResponse)
+@app.post("/chat", response_model=ChatResponse, dependencies=[Depends(verify_token)])
 async def chat_endpoint(req: ChatRequest):
     if not gemma_graph:
         return ChatResponse(reply="Gemma Graph is offline: Check imports.", node="SYSTEM")

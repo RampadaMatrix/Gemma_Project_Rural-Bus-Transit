@@ -5,7 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
 echo "==================================================="
-echo "Rural Bus Transit Intelligence (Purulia District & Nearby Region Focus) - Gemma Hackathon Local Demo"
+echo "Rural Bus Transit Intelligence - Local Demo"
 echo "==================================================="
 
 if ! command -v python3 >/dev/null 2>&1; then
