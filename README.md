@@ -272,7 +272,7 @@ File: `HITL_Pipeline_new/Plotting_Polyline_HITL_Algo.py`
 
 This is the deterministic geometry recomputation path used after human edits. It uses HITL-provided coordinates as source of truth, preserves stop order, chunks Routes API calls, falls back to leg-level routing where needed, and avoids drawing misleading geometry when validation fails.
 
-### RAPTOR Discovery Engine
+### RAPTOR Discovery Engine (Completely OFFLINE)
 
 Files:
 
