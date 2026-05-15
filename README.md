@@ -1,317 +1,99 @@
-<div align="center">
+# Rural Transit Intelligence 
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║          GEMMA Rural Transit Intelligence                        ║
-║          AI-Powered Rural Bus Intelligence System            ║
-╚══════════════════════════════════════════════════════════════╝
-```
+AI-assisted rural bus intelligence for regions where transit data is fragmented, informal, and largely undiscoverable.
 
-[![Built with Gemma 4 31B](https://img.shields.io/badge/Gemma_4_31B-IT-FF6D3A?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev/gemma)
-[![LangGraph](https://img.shields.io/badge/LangGraph-Orchestration-1A5C8E?style=flat-square)](https://langchain-ai.github.io/langgraph/)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![RAPTOR](https://img.shields.io/badge/RAPTOR-Ready-0F6E56?style=flat-square)](https://github.com)
-[![HITL](https://img.shields.io/badge/Human--in--the--Loop-Validated-6B4FBB?style=flat-square)](https://github.com)
+## Overview
 
-</div>
+Rural Transit Intelligence  is a hybrid AI + Human-in-the-Loop transit system built to turn messy rural bus information into searchable, structured, and operational transport data.
 
----
+The project focuses on a real gap in rural mobility systems:
 
-<br/>
+- Timetables often exist only as images, handwritten boards, social posts, or local memory.
+- There is usually no GTFS feed, no digital route graph, and no reliable journey planner.
+- Missing a bus can mean missing work, school, healthcare, or the only viable connection for the day.
 
-## ◈ &nbsp;The Problem
+This system uses Gemma-powered extraction, staged validation, route geometry generation, and a RAPTOR-based journey engine to make rural bus networks discoverable.
 
-> *In large parts of rural India, bus information exists only in handwritten timetables, Facebook posts, WhatsApp messages, and local memory — never searchable, never structured, never digital.*
+## Why This Matters
 
-**Transit data is scattered across:**
+Urban transit systems increasingly benefit from structured APIs, apps, and real-time routing. Rural systems often do not. That creates a digital access gap, not just a data gap.
 
-| Source | Accessibility |
-|--------|--------------|
-| Handwritten timetables | 🔴 Offline only |
-| Facebook & WhatsApp | 🟡 Socially gated |
-| Roadside schedules | 🔴 Location-locked |
-| Verbal timings | 🔴 Ephemeral |
-| Local memory | 🔴 Non-transferable |
+Rural Transit Intelligence  is designed to help close that gap by:
 
-**Most regions have:**
-- No GTFS feeds
-- No searchable transit infrastructure
-- No route intelligence systems
-- No digital discoverability
+- digitizing unstructured bus information,
+- validating it through human review,
+- converting it into route-ready transport data,
+- and exposing it through an interface that supports search, audit, and journey planning.
 
-**Missing a bus means missing:**
+## What The System Does
 
-```
-work  ·  education  ·  healthcare  ·  daily connectivity
-```
+### 1. AI timetable extraction
 
-<br/>
+The system can ingest noisy or messy bus timetable images and extract:
 
----
+- bus identity,
+- routes and stop sequences,
+- trip directions,
+- timetable structure,
+- and candidate staged records for downstream processing.
 
-## ◉ &nbsp;Vision
+### 2. Human-in-the-Loop validation
 
-Gemma Rural Transit Intelligence  explores how AI can **structure, validate, and operationalize** rural transport systems that were never digitally organized.
+AI extraction is not treated as the final source of truth.
 
-```
-AI Extraction  ──▶  Route Intelligence  ──▶  HITL Validation  ──▶  Discoverable Mobility
-```
+Every important record can pass through a review workflow where the operator can:
 
-<br/>
+- inspect route geometry,
+- correct timing and stop issues,
+- validate route logic,
+- and secure approved records into the trusted dataset.
 
----
+### 3. Route polyline generation
 
-## ⬡ &nbsp;Core Architecture
+The platform generates map-ready route geometry from staged transit records and prepares the route data for audit and discovery workflows.
 
-<div align="center">
+### 4. Transit discovery and journey planning
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│   Gemma 4 31B IT   ◈   LangGraph   ◈   RAPTOR Engine       │
-│                                                             │
-│   ┌──────────┐   ┌──────────┐   ┌──────────┐              │
-│   │  Extract  │──▶│ Validate │──▶│  Route   │              │
-│   │  Schema  │   │  + HITL  │   │  Graph   │              │
-│   └──────────┘   └──────────┘   └──────────┘              │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+Once records are secured, the system supports rural route lookup and journey planning through a RAPTOR-based routing layer.
 
-</div>
+### 5. Operational AI orchestration
 
-**Stack:**
+Gemma is integrated into the broader pipeline through LangGraph-based orchestration rather than a standalone chatbot flow.
 
-| Component | Role |
-|-----------|------|
-| `Gemma 4 31B IT` | AI extraction, schema generation, messy data parsing |
-| `LangGraph` | Multi-stage orchestration, worker pipelines, state |
-| `Python` | Core runtime, utility scripts, transformations |
-| `RAPTOR` | Journey solving, transfer chains, route computation |
-| `HITL System` | Human correction layer, duplicate prevention |
+## Core Architecture
 
-<br/>
+The project uses a dual-server architecture.
 
----
+### FastAPI Orchestrator
 
-## ◈ &nbsp;Features
+File: `purulia_pipeline_orchestrator.py`
 
-### `01` — AI Timetable Extraction
+Responsibilities:
 
-Upload messy timetable screenshots or transport images. The system:
+- runs the central orchestration loop,
+- manages pipeline state,
+- coordinates background processing,
+- exposes the main chat and event-stream APIs,
+- and supervises the HITL server lifecycle.
 
-- ✦ Identifies routes and stop sequences
-- ✦ Extracts and structures raw timing data
-- ✦ Validates pipeline compatibility
-- ✦ Detects and flags anomalies
+### Flask HITL Server
 
-<br/>
+File: `HITL_Pipeline_new/hitl_server.py`
 
-### `02` — Rural Bus Discovery
+Responsibilities:
 
-Natural-language journey planning:
+- serves the route verification UI,
+- provides spatial and audit endpoints,
+- runs route and cache workflows,
+- exposes RAPTOR journey planning endpoints,
+- and supports secure transit review operations.
 
-```
-User ❯  "I want to go from Chipida to Ranibandh"
+### Gemma + LangGraph Agent Layer
 
-System ──▶  Identifies possible buses
-       ──▶  Computes transfer chains
-       ──▶  Estimates timing windows
-       ──▶  Visualizes route segments
-```
+Files:
 
-<br/>
+- `ZGemma_files/LangGraph/gemma_graph.py`
+- `ZGemma_files/LangGraph/identity_resolver.py`
+- `ZGemma_files/LangGraph/raptor_tools.py`
 
-### `03` — Secure Transit Pipeline
-
-```
-RAW  ──▶  VALIDATED  ──▶  SECURED  ──▶  DISCOVERABLE
- ↑              ↑               ↑
-[AI]          [HITL]       [Dedup + Safeguards]
-```
-
-Every record moves through staged gates before becoming queryable. Duplicate prevention and orchestration safeguards maintain consistency.
-
-**Example — secure data query:**
-```
-@secure give me details of WB33C6656
-
-→ retrieves secured route records
-→ summarizes bus metadata
-→ exposes operational route details
-```
-
-<br/>
-
-### `04` — Route Polyline Intelligence
-
-The platform automatically:
-
-- Generates route skeletons from stop sequences
-- Builds transit polylines for mapping
-- Prepares RAPTOR-ready routing structures
-- Organizes discoverable route networks
-
-<br/>
-
-### `05` — Human-in-the-Loop Validation
-
-```
-AI Extraction  +  Algorithmic Inference  +  Human Correction
-        └─────────────────┬──────────────────┘
-                          ▼
-              More reliable than fully autonomous,
-              hallucination-prone transit generation
-```
-
-<br/>
-
----
-
-## ◇ &nbsp;Project Structure
-
-```
-HITL_Pipeline_new/
-│   Human-in-the-loop validation system
-│
-Polyline_Drawing_Pipeline/
-│   Route plotting and polyline generation
-│
-ZGemma_files/
-│   LangGraph orchestration and AI workers
-│
-scripts/
-│   Utility scripts
-│
-purulia_pipeline_orchestrator.py
-    Main orchestration controller
-```
-
-<br/>
-
----
-
-## ◎ &nbsp;Interface Philosophy
-
-> *"A transit intelligence operations system — not a generic chatbot."*
-
-Design goals:
-- **Operational clarity** — no noise, only signal
-- **Infrastructure visibility** — the system's state is always exposed
-- **Atmospheric storytelling** — feels like a real transit command center
-- **Realistic transport aesthetics** — purpose-built, not generic
-
-<br/>
-
----
-
-## ⊹ &nbsp;Status
-
-### ✅ &nbsp;Implemented
-
-| Feature | Status |
-|---------|--------|
-| AI timetable extraction | `●  Live` |
-| Secure transit staging | `●  Live` |
-| Route discovery | `●  Live` |
-| HITL correction workflows | `●  Live` |
-| Polyline generation | `●  Live` |
-| Route visualization | `●  Live` |
-| RAPTOR-ready outputs | `●  Live` |
-| Operational command center UI | `●  Live` |
-
-### 🔄 &nbsp;In Progress
-
-| Feature | Status |
-|---------|--------|
-| Large-scale route scaling | `◐  Active` |
-| Routing optimization | `◐  Active` |
-| Expanded timetable ingestion | `◐  Active` |
-| Advanced transport intelligence | `◐  Active` |
-
-<br/>
-
----
-
-## ○ &nbsp;Offline-First Transit Intelligence
-
-One of the core goals: **reducing dependency on continuous internet access.**
-
-Once the transport graph is prepared, the system operates largely offline:
-
-```
-✦ bus discovery          ✦ route search
-✦ transfer analysis      ✦ RAPTOR journey solving
-✦ timetable lookup       ✦ route visualization
-✦ secured transit querying
-```
-
-**AI is only required during:**
-```
-timetable extraction  ·  messy data parsing
-```
-
-> This is especially critical for rural regions where internet connectivity is unstable, mobile data is limited, and digital infrastructure is inconsistent.
-
-<br/>
-
----
-
-## ◌ &nbsp;Future Possibilities
-
-```
-◦  Multilingual transit querying
-◦  Statewide rural transport graphs
-◦  AI-assisted GTFS generation
-◦  Offline rural route intelligence
-◦  Accessibility-focused transit systems
-◦  Live telemetry integration
-```
-
-<br/>
-
----
-
-## ⊞ &nbsp;Technical Highlights
-
-| Capability | Description |
-|-----------|-------------|
-| LangGraph orchestration | Multi-stage worker pipeline management |
-| AI schema generation | Structured extraction from unstructured sources |
-| Rural route intelligence | Graph-based discovery across sparse stop networks |
-| Dynamic transit discovery | Natural-language to route computation |
-| RAPTOR preparation | Journey-solving ready output format |
-| Duplicate prevention | Safeguards across ingestion stages |
-| HITL workflows | Human correction integrated into pipeline |
-
-<br/>
-
----
-
-## ⊗ &nbsp;Important Note
-
-> *This project models real-world rural transport uncertainty.*
-
-Many datasets are **incomplete, manually maintained, socially distributed, and partially undocumented.** Human validation is intentionally integrated — not as a workaround, but as a design principle.
-
-<br/>
-
----
-
-<div align="center">
-
-```
-╔══════════════════════════════════════════════════════════════╗
-║                                                              ║
-║   Transit intelligence should not be limited to             ║
-║   major cities.                                              ║
-║                                                              ║
-║   Small villages deserve discoverable mobility              ║
-║   infrastructure too.                                        ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
-```
-
-*Independent experimental project exploring AI-assisted rural mobility intelligence systems.*
-
-</div>
+Responsibilities:
