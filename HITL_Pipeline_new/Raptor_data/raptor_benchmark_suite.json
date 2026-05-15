@@ -1,0 +1,1599 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "id": "case_001_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.300928,
+      "dest_lng": 86.846504,
+      "departure_time_mins": 360,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_002_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.261555,
+      "dest_lng": 86.753091,
+      "departure_time_mins": 420,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_003_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.229146,
+      "dest_lng": 86.147731,
+      "departure_time_mins": 480,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_004_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.409973,
+      "dest_lng": 86.226328,
+      "departure_time_mins": 540,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_005_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.211453,
+      "dest_lng": 86.714792,
+      "departure_time_mins": 600,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_006_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.3361,
+      "dest_lng": 86.40792,
+      "departure_time_mins": 660,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_007_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.29383,
+      "dest_lng": 86.63106,
+      "departure_time_mins": 720,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_008_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.04332,
+      "dest_lng": 86.42505,
+      "departure_time_mins": 780,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_009_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.48309,
+      "dest_lng": 86.53843,
+      "departure_time_mins": 840,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_010_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.99121,
+      "dest_lng": 86.37606,
+      "departure_time_mins": 900,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_011_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.28586,
+      "dest_lng": 86.23158,
+      "departure_time_mins": 1020,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_012_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.19659,
+      "dest_lng": 86.29069,
+      "departure_time_mins": 1140,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_013_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.22881,
+      "dest_lng": 86.37568,
+      "departure_time_mins": 1260,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_014_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.41376,
+      "dest_lng": 86.1599,
+      "departure_time_mins": 360,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_015_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.40787,
+      "dest_lng": 86.31924,
+      "departure_time_mins": 420,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_016_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.88204,
+      "dest_lng": 86.30815,
+      "departure_time_mins": 480,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_017_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.01465,
+      "dest_lng": 86.279,
+      "departure_time_mins": 540,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_018_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.15841,
+      "dest_lng": 86.05661,
+      "departure_time_mins": 600,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_019_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.59063,
+      "dest_lng": 86.19313,
+      "departure_time_mins": 660,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_020_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.52382,
+      "dest_lng": 86.79334,
+      "departure_time_mins": 720,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_021_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.26789,
+      "dest_lng": 86.31591,
+      "departure_time_mins": 780,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_022_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.53099,
+      "dest_lng": 86.70292,
+      "departure_time_mins": 840,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_023_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.98627,
+      "dest_lng": 86.62779,
+      "departure_time_mins": 900,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_024_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.15342,
+      "dest_lng": 86.69818,
+      "departure_time_mins": 1020,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_025_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.4411,
+      "dest_lng": 86.67159,
+      "departure_time_mins": 1140,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_026_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.55698,
+      "dest_lng": 86.68144,
+      "departure_time_mins": 1260,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_027_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.08215,
+      "dest_lng": 86.71164,
+      "departure_time_mins": 360,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_028_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.8999,
+      "dest_lng": 86.52424,
+      "departure_time_mins": 420,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_029_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.59444,
+      "dest_lng": 86.74788,
+      "departure_time_mins": 480,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_030_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.5217,
+      "dest_lng": 86.84301,
+      "departure_time_mins": 540,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_031_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.59306,
+      "dest_lng": 86.77804,
+      "departure_time_mins": 600,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_032_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.1518,
+      "dest_lng": 86.55804,
+      "departure_time_mins": 660,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_033_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.06115,
+      "dest_lng": 86.36256,
+      "departure_time_mins": 720,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_034_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.08837,
+      "dest_lng": 86.36443,
+      "departure_time_mins": 780,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_035_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.24124,
+      "dest_lng": 86.7522,
+      "departure_time_mins": 840,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_036_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.05347,
+      "dest_lng": 86.31329,
+      "departure_time_mins": 900,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_037_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.95312,
+      "dest_lng": 86.84413,
+      "departure_time_mins": 1020,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_038_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.07093,
+      "dest_lng": 86.84636,
+      "departure_time_mins": 1140,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_039_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.33213,
+      "dest_lng": 86.89826,
+      "departure_time_mins": 1260,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_040_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.22582,
+      "dest_lng": 86.8951,
+      "departure_time_mins": 360,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_041_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.16761,
+      "dest_lng": 86.53454,
+      "departure_time_mins": 420,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_042_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.23988,
+      "dest_lng": 86.16501,
+      "departure_time_mins": 480,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_043_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.356,
+      "dest_lng": 86.89124,
+      "departure_time_mins": 540,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_044_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.53358,
+      "dest_lng": 86.3353,
+      "departure_time_mins": 600,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_045_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.8455,
+      "dest_lng": 86.72942,
+      "departure_time_mins": 660,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_046_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 22.92999,
+      "dest_lng": 86.80639,
+      "departure_time_mins": 720,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_047_transit",
+      "origin_lat": 23.409168,
+      "origin_lng": 86.578265,
+      "dest_lat": 23.20745,
+      "dest_lng": 86.87285,
+      "departure_time_mins": 780,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_048_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.261555,
+      "dest_lng": 86.753091,
+      "departure_time_mins": 840,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_049_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.229146,
+      "dest_lng": 86.147731,
+      "departure_time_mins": 900,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_050_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.409973,
+      "dest_lng": 86.226328,
+      "departure_time_mins": 1020,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_051_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.211453,
+      "dest_lng": 86.714792,
+      "departure_time_mins": 1140,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_052_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.29383,
+      "dest_lng": 86.63106,
+      "departure_time_mins": 1260,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_053_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.04332,
+      "dest_lng": 86.42505,
+      "departure_time_mins": 360,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_054_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.48309,
+      "dest_lng": 86.53843,
+      "departure_time_mins": 420,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_055_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 22.99121,
+      "dest_lng": 86.37606,
+      "departure_time_mins": 480,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_056_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.28586,
+      "dest_lng": 86.23158,
+      "departure_time_mins": 540,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_057_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.19659,
+      "dest_lng": 86.29069,
+      "departure_time_mins": 600,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_058_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 22.95702,
+      "dest_lng": 86.05659,
+      "departure_time_mins": 660,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_059_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 22.9299,
+      "dest_lng": 86.0655,
+      "departure_time_mins": 720,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_060_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.22881,
+      "dest_lng": 86.37568,
+      "departure_time_mins": 780,
+      "max_rounds": 3
+    },
+    {
+      "id": "case_061_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.41376,
+      "dest_lng": 86.1599,
+      "departure_time_mins": 840,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_062_transit",
+      "origin_lat": 23.301649,
+      "origin_lng": 86.357604,
+      "dest_lat": 23.36727,
+      "dest_lng": 85.86293,
+      "departure_time_mins": 900,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_063_short",
+      "origin_lat": 23.261555,
+      "origin_lng": 86.753091,
+      "dest_lat": 23.24124,
+      "dest_lng": 86.7522,
+      "departure_time_mins": 1020,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_064_short",
+      "origin_lat": 23.229146,
+      "origin_lng": 86.147731,
+      "dest_lat": 23.23988,
+      "dest_lng": 86.16501,
+      "departure_time_mins": 1140,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_065_short",
+      "origin_lat": 22.95702,
+      "origin_lng": 86.05659,
+      "dest_lat": 22.9299,
+      "dest_lng": 86.0655,
+      "departure_time_mins": 1260,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_066_short",
+      "origin_lat": 22.76386,
+      "origin_lng": 86.64926,
+      "dest_lat": 22.77657,
+      "dest_lng": 86.6923,
+      "departure_time_mins": 360,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_067_short",
+      "origin_lat": 23.53099,
+      "origin_lng": 86.70292,
+      "dest_lat": 23.55698,
+      "dest_lng": 86.68144,
+      "departure_time_mins": 420,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_068_short",
+      "origin_lat": 23.59444,
+      "origin_lng": 86.74788,
+      "dest_lat": 23.59306,
+      "dest_lng": 86.77804,
+      "departure_time_mins": 480,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_069_short",
+      "origin_lat": 23.1518,
+      "origin_lng": 86.55804,
+      "dest_lat": 23.16761,
+      "dest_lng": 86.53454,
+      "departure_time_mins": 540,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_070_short",
+      "origin_lat": 23.06115,
+      "origin_lng": 86.36256,
+      "dest_lat": 23.08837,
+      "dest_lng": 86.36443,
+      "departure_time_mins": 600,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_071_short",
+      "origin_lat": 22.95312,
+      "origin_lng": 86.84413,
+      "dest_lat": 22.92999,
+      "dest_lng": 86.80639,
+      "departure_time_mins": 660,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_072_short",
+      "origin_lat": 23.33213,
+      "origin_lng": 86.89826,
+      "dest_lat": 23.356,
+      "dest_lng": 86.89124,
+      "departure_time_mins": 720,
+      "max_rounds": 2
+    },
+    {
+      "id": "case_073_short",
+      "origin_lat": 23.22582,
+      "origin_lng": 86.8951,
+      "dest_lat": 23.20745,
+      "dest_lng": 86.87285,
+      "departure_time_mins": 780,
+      "max_rounds": 2
+    }
+  ],
+  "snapshot": {
+    "generated_at_utc": "2026-04-21T18:52:29.621584+05:30",
+    "data_dir": "D:\\Gemma Project\\HITL_Pipeline_new\\Raptor_data",
+    "case_count": 73,
+    "results": {
+      "case_001_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1970,
+        "best_duration_mins": 1610,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_002_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 724,
+        "best_duration_mins": 304,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_003_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2607,
+        "best_duration_mins": 2127,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_004_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1138,
+        "best_duration_mins": 598,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_005_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 749,
+        "best_duration_mins": 149,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_006_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1003,
+        "best_duration_mins": 343,
+        "best_transfers": 0,
+        "best_type": "DIRECT",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_007_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 748,
+        "best_duration_mins": 28,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_008_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_009_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 858,
+        "best_duration_mins": 18,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_010_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 6978,
+        "best_duration_mins": 6078,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_011_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_012_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_013_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_014_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 703,
+        "best_duration_mins": 343,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_015_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1123,
+        "best_duration_mins": 703,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_016_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 9896,
+        "best_duration_mins": 9416,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK",
+          "WALK"
+        ]
+      },
+      "case_017_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_018_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2572,
+        "best_duration_mins": 1972,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_019_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_020_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 3433,
+        "best_duration_mins": 2713,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_021_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1116,
+        "best_duration_mins": 336,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_022_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 3451,
+        "best_duration_mins": 2611,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_023_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_024_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 3243,
+        "best_duration_mins": 2223,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_025_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 1160,
+        "best_duration_mins": 20,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_026_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_027_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 627,
+        "best_duration_mins": 267,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_028_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2334,
+        "best_duration_mins": 1914,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_029_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 4856,
+        "best_duration_mins": 4376,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_030_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 3423,
+        "best_duration_mins": 2883,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_031_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2297,
+        "best_duration_mins": 1697,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_032_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2568,
+        "best_duration_mins": 1908,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_033_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 4085,
+        "best_duration_mins": 3365,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_034_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 4081,
+        "best_duration_mins": 3301,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_035_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1056,
+        "best_duration_mins": 216,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_036_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1788,
+        "best_duration_mins": 888,
+        "best_transfers": 2,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK",
+          "BUS"
+        ]
+      },
+      "case_037_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 9915,
+        "best_duration_mins": 8895,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_038_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 6183,
+        "best_duration_mins": 5043,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK",
+          "WALK"
+        ]
+      },
+      "case_039_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 4914,
+        "best_duration_mins": 3654,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_040_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 965,
+        "best_duration_mins": 605,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_041_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2560,
+        "best_duration_mins": 2140,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_042_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1993,
+        "best_duration_mins": 1513,
+        "best_transfers": 2,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_043_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 954,
+        "best_duration_mins": 414,
+        "best_transfers": 0,
+        "best_type": "DIRECT",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_044_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 742,
+        "best_duration_mins": 142,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_045_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_046_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 9925,
+        "best_duration_mins": 9205,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_047_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 5623,
+        "best_duration_mins": 4843,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_048_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 968,
+        "best_duration_mins": 128,
+        "best_transfers": 0,
+        "best_type": "DIRECT",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_049_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1997,
+        "best_duration_mins": 1097,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_050_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1138,
+        "best_duration_mins": 118,
+        "best_transfers": 0,
+        "best_type": "DIRECT",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_051_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1907,
+        "best_duration_mins": 767,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_052_transit": {
+        "status": "NO_ROUTE"
+      },
+      "case_053_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 955,
+        "best_duration_mins": 595,
+        "best_transfers": 0,
+        "best_type": "DIRECT",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_054_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 720,
+        "best_duration_mins": 300,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_055_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 637,
+        "best_duration_mins": 157,
+        "best_transfers": 0,
+        "best_type": "DIRECT",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_056_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 566,
+        "best_duration_mins": 26,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_057_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 627,
+        "best_duration_mins": 27,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_058_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2076,
+        "best_duration_mins": 1416,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_059_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 2086,
+        "best_duration_mins": 1366,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "WALK",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_060_transit": {
+        "status": "SUCCESS",
+        "option_count": 3,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 797,
+        "best_duration_mins": 17,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_061_transit": {
+        "status": "SUCCESS",
+        "option_count": 2,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 1003,
+        "best_duration_mins": 163,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_062_transit": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": false,
+        "best_arrival_mins": 3593,
+        "best_duration_mins": 2693,
+        "best_transfers": 1,
+        "best_type": "FASTEST",
+        "best_itinerary_types": [
+          "WALK",
+          "BUS",
+          "BUS",
+          "WALK"
+        ]
+      },
+      "case_063_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 1025,
+        "best_duration_mins": 5,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_064_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 1144,
+        "best_duration_mins": 4,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_065_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 1266,
+        "best_duration_mins": 6,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_066_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 369,
+        "best_duration_mins": 9,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_067_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 427,
+        "best_duration_mins": 7,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_068_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 486,
+        "best_duration_mins": 6,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_069_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 546,
+        "best_duration_mins": 6,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_070_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 606,
+        "best_duration_mins": 6,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_071_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 669,
+        "best_duration_mins": 9,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_072_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 725,
+        "best_duration_mins": 5,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      },
+      "case_073_short": {
+        "status": "SUCCESS",
+        "option_count": 1,
+        "has_direct_road_access": true,
+        "best_arrival_mins": 786,
+        "best_duration_mins": 6,
+        "best_transfers": 0,
+        "best_type": "DIRECT ROAD ACCESS",
+        "best_itinerary_types": [
+          "WALK"
+        ]
+      }
+    }
+  }
+}
+

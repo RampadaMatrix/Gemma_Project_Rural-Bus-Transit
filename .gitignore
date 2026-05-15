@@ -1,0 +1,41 @@
+# IDEs and Editors
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Local Secrets & Security
+ASecrets/
+secrets_config.py
+
+# Backups & Temp
+BackUP/
+*.bak
+*.tmp
+ATemporary/
+brain/
+
+# Application State & Logs
+*.log
+pipeline_state.json
+ZGemma_files/gemma_thoughts.log
+ZGemma_files/image_lineage.json
+ZGemma_files/master_bus_count.json
+ZGemma_files/Sessions/
