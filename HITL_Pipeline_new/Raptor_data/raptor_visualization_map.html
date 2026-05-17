@@ -1288,75 +1288,181 @@
             flex: 0 0 auto;
             width: 100%;
             min-width: 0;
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            background: var(--bg-glass);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            border-radius: 26px;
+            background: rgba(255,255,255,0.98);
             color: var(--text-main);
-            box-shadow: var(--shadow);
-            padding: 20px 22px;
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+            padding: 20px 22px 18px;
             display: flex;
             flex-direction: column;
+            gap: 0;
             font-family: var(--font-body);
             text-align: left;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            box-sizing: border-box;
+        }
+
+        .journey-route-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+        }
+
+        .journey-route-card.active {
+            border-color: rgba(59, 130, 246, 0.30);
+            box-shadow: 0 16px 34px rgba(59, 130, 246, 0.10);
+        }
+
+        .journey-card-topline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-align: center;
+        }
+
+        .journey-card-timewrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 0;
         }
 
         .journey-card-time {
             text-align: center;
             font-family: var(--font-head);
-            font-size: 28px;
+            font-size: 40px;
             line-height: 1;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 0;
+            color: #0f172a;
+            white-space: nowrap;
         }
 
-        .journey-card-label {
-            margin-top: 6px;
-            text-align: center;
-            font-size: 11px;
-            font-weight: 800;
+        .journey-card-total-label {
+            color: #475569;
+            font-size: 13px;
+            font-weight: 900;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--text-dim);
+        }
+
+        .journey-card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #e8f8f0;
+            color: #0f6b4d;
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .journey-card-departs {
+            flex-shrink: 0;
+            text-align: right;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .journey-card-departs strong {
+            color: #1f2937;
+            font-weight: 800;
         }
 
         .journey-card-rule {
-            margin: 14px 0 16px;
-            border-top: 1px dashed rgba(125,125,125,0.24);
+            margin: 18px 0 20px;
+            border-top: 1px dashed rgba(148, 163, 184, 0.42);
         }
 
         .journey-card-progress {
-            display: grid;
-            grid-template-columns: minmax(80px,0.75fr) minmax(120px,1fr) minmax(80px,0.75fr);
-            align-items: start;
-            gap: 8px;
-        }
-
-        .journey-card-progress.has-transfer {
-            grid-template-columns: minmax(60px,0.7fr) minmax(80px,1fr) minmax(60px,0.7fr) minmax(80px,1fr) minmax(60px,0.7fr);
-            overflow-x: hidden;
-        }
-
-        .journey-card-stop {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             min-width: 0;
         }
 
+        .journey-card-bus-row,
+        .journey-card-stop-row {
+            display: grid;
+            grid-template-columns: minmax(92px, 1fr) minmax(92px, 1fr) minmax(92px, 1fr);
+            gap: 12px;
+            align-items: end;
+            min-width: 0;
+        }
+
+        .journey-card-bus-row.no-transfer,
+        .journey-card-stop-row.no-transfer {
+            grid-template-columns: minmax(92px, 1fr) minmax(92px, 1fr);
+        }
+
+        .journey-card-bus-row {
+            grid-template-columns: 28px minmax(96px, 1fr) 28px minmax(96px, 1fr) 28px;
+            align-items: center;
+        }
+
+        .journey-card-bus-row.no-transfer {
+            grid-template-columns: 28px minmax(140px, 1fr) 28px;
+        }
+
+        .journey-card-bus-slot {
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .journey-card-bus-slot.segment-first {
+            grid-column: 1 / 3;
+            justify-content: center;
+        }
+
+        .journey-card-bus-slot.segment-second {
+            grid-column: 4 / 6;
+            justify-content: center;
+        }
+
+        .journey-card-bus-slot.segment-full {
+            grid-column: 1 / 4;
+            justify-content: center;
+        }
+
+        .journey-card-rail {
+            display: grid;
+            grid-template-columns: 28px minmax(52px, 1fr) 28px minmax(52px, 1fr) 28px;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .journey-card-rail.no-transfer {
+            grid-template-columns: 28px minmax(52px, 1fr) 28px;
+        }
+
         .journey-stop-node {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             border: 4px solid currentColor;
             background: transparent;
             box-sizing: border-box;
-            margin-bottom: 8px;
+            margin: 0;
+            flex-shrink: 0;
+            justify-self: center;
+            z-index: 1;
         }
 
         .journey-stop-node.origin { color: #3B82F6; }
         .journey-stop-node.transfer {
             color: #F59E0B;
             background: currentColor;
-            box-shadow: inset 0 0 0 6px rgba(255,255,255,0.86);
+            box-shadow: inset 0 0 0 7px rgba(255,255,255,0.92);
         }
         .journey-stop-node.destination {
             color: #10B981;
@@ -1364,82 +1470,195 @@
         }
 
         [data-theme="dark"] .journey-stop-node.transfer {
-            box-shadow: inset 0 0 0 6px rgba(13,18,24,0.92);
+            box-shadow: inset 0 0 0 7px rgba(13,18,24,0.92);
+        }
+
+        .journey-rail-segment {
+            height: 5px;
+            border-radius: 999px;
+            min-width: 0;
+        }
+
+        .journey-rail-segment.bus-blue {
+            background: #1A73E8;
+        }
+
+        .journey-rail-segment.bus-green {
+            background: #10B981;
+        }
+
+        .journey-card-stop {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .journey-card-stop-origin {
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        .journey-card-stop-transfer {
+            text-align: center;
+            align-items: center;
+        }
+
+        .journey-card-stop-destination {
+            text-align: right;
+            align-items: flex-end;
         }
 
         .journey-stop-time {
             font-family: var(--font-head);
-            font-weight: 800;
-            font-size: 17px;
+            font-weight: 900;
+            font-size: clamp(20px, 2.2vw, 28px);
             line-height: 1.05;
-            color: currentColor;
+            color: #0f172a;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
 
         .journey-stop-caption {
-            margin-top: 4px;
-            font-size: 11px;
+            margin-top: 6px;
+            font-size: clamp(14px, 1.55vw, 20px);
             line-height: 1.3;
-            color: var(--text-dim);
+            font-weight: 750;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #475569;
+            white-space: normal;
         }
 
         .journey-stop-place {
-            margin-top: 3px;
-            font-size: 13px;
-            line-height: 1.25;
-            font-weight: 800;
-            color: currentColor;
-            word-break: break-word;
-        }
-
-        .journey-card-connector {
-            padding-top: 8px;
-            min-width: 0;
+            margin-top: 4px;
+            font-size: clamp(15px, 1.75vw, 21px);
+            line-height: 1.18;
+            font-weight: 900;
+            color: #0f172a;
+            word-break: normal;
+            overflow-wrap: anywhere;
+            overflow: visible;
+            text-overflow: clip;
+            white-space: normal;
         }
 
         .journey-bus-pill {
             width: fit-content;
             max-width: 100%;
             border: 2px solid currentColor;
-            border-radius: 10px;
-            padding: 5px 10px;
-            font-size: 11px;
-            font-weight: 800;
+            border-radius: 999px;
+            padding: 7px 16px;
+            font-size: clamp(12px, 1.28vw, 17px);
+            font-weight: 900;
             line-height: 1.2;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            overflow-wrap: anywhere;
+            background: #eef6ff;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .journey-bus-pill.bus-blue {
+            color: #1A73E8;
+            background: #e8f2ff;
+            border-color: #a8cff7;
+        }
+
+        .journey-bus-pill.bus-green {
+            color: #10B981;
+            background: #e7f8f0;
+            border-color: #a9e5d3;
+        }
+
+        .journey-card-timetable {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: rgba(241, 245, 249, 0.82);
+            border: 1px solid rgba(203, 213, 225, 0.9);
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .journey-tt-row {
+            display: grid;
+            grid-template-columns: 78px minmax(0, 1fr) 78px;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .journey-tt-time {
+            font-size: 13px;
+            font-weight: 900;
+            color: #0f172a;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+
+        .journey-tt-time.end {
+            text-align: right;
+        }
+
+        .journey-tt-main {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .journey-tt-title {
+            min-width: 0;
+            color: #1e293b;
+            font-size: 12px;
+            font-weight: 850;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            background: var(--input-bg);
         }
 
-        .journey-bus-pill.bus-blue { color: #3B82F6; }
-        .journey-bus-pill.bus-green { color: #10B981; }
+        .journey-tt-sub {
+            min-width: 0;
+            color: #64748b;
+            font-size: 10.5px;
+            line-height: 1.35;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-        .journey-ride-line {
-            height: 5px;
-            width: calc(100% - 20px);
-            min-width: 50px;
-            margin: 7px auto 0 10px;
+        .journey-tt-mode {
+            display: inline-flex;
+            width: 22px;
+            height: 22px;
+            align-items: center;
+            justify-content: center;
             border-radius: 999px;
-            background: currentColor;
+            margin-right: 6px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            font-size: 12px;
+            vertical-align: -4px;
         }
-
-        .journey-card-connector.bus-blue { color: #3B82F6; }
-        .journey-card-connector.bus-green { color: #10B981; }
 
         .journey-card-headsup {
-            margin-top: auto;
-            border-left: 4px solid var(--accent-main);
-            background: var(--input-bg);
-            border-radius: 10px;
-            padding: 10px 14px;
-            color: var(--text-main);
+            margin-top: 22px;
+            border: 2px solid #d3e6ff;
+            background: #f3f7fd;
+            border-radius: 18px;
+            box-shadow: inset 6px 0 0 #1A73E8;
+            padding: 18px 20px 18px 32px;
+            color: #0f172a;
         }
 
         .journey-card-headsup p {
-            margin: 0 0 6px;
-            font-size: 12px;
-            line-height: 1.42;
-            color: currentColor;
+            margin: 0 0 12px;
+            font-size: clamp(16px, 1.65vw, 21px);
+            line-height: 1.45;
+            color: #475569;
         }
 
         .journey-card-headsup p:last-child {
@@ -1489,7 +1708,18 @@
             }
 
             .journey-route-card {
-                padding: 16px;
+                padding: 18px 16px;
+                border-radius: 20px;
+            }
+
+            .journey-card-topline {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .journey-card-timewrap {
+                flex-wrap: wrap;
             }
 
             .journey-card-time {
@@ -1498,16 +1728,57 @@
 
             .journey-card-progress,
             .journey-card-progress.has-transfer {
-                grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 10px;
             }
 
-            .journey-card-connector {
+            .journey-card-bus-row,
+            .journey-card-stop-row,
+            .journey-card-bus-row.no-transfer,
+            .journey-card-stop-row.no-transfer {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 10px;
+            }
+
+            .journey-card-bus-slot {
+                grid-column: auto;
+                justify-content: flex-start;
+            }
+
+            .journey-card-rail {
                 display: none;
             }
 
+            .journey-card-stop,
+            .journey-card-stop-origin,
+            .journey-card-stop-transfer,
+            .journey-card-stop-destination {
+                text-align: left;
+                align-items: flex-start;
+                padding-left: 14px;
+                border-left: 4px solid rgba(59, 130, 246, 0.32);
+            }
+
+            .journey-card-stop-transfer {
+                border-left-color: rgba(245, 158, 11, 0.42);
+            }
+
+            .journey-card-stop-destination {
+                border-left-color: rgba(16, 185, 129, 0.42);
+            }
+
+            .journey-stop-place {
+                font-size: 16px;
+                white-space: normal;
+            }
+
+            .journey-card-departs {
+                text-align: left;
+            }
+
             .journey-card-headsup {
-                margin-top: 10px;
+                margin-top: 14px;
+                padding: 14px 14px 14px 24px;
+                border-radius: 14px;
             }
         }
         /* ===== JOURNEY-CSS-END ===== */
@@ -2013,13 +2284,14 @@
         }
 
         function parseClockLabel(label) {
-            const match = /^\s*(\d{1,2}):(\d{2})\s*(AM|PM)\s*$/i.exec(String(label || ''));
+            const match = /^\s*(\d{1,2}):(\d{2})\s*(AM|PM)(?:\s*\(\+(\d+)d\))?\s*$/i.exec(String(label || ''));
             if (!match) return null;
             let hour = Number(match[1]) % 12;
             const mins = Number(match[2]);
             const meridiem = match[3].toUpperCase();
             if (meridiem === 'PM') hour += 12;
-            return (hour * 60) + mins;
+            const dayOffset = Number(match[4] || 0) * 1440;
+            return dayOffset + (hour * 60) + mins;
         }
 
         function summarizeConstraint(opt) {
@@ -2204,24 +2476,64 @@
         }
 
         function routeStopHtml(kind, time, caption, place) {
+            const placeHtml = place ? `<div class="journey-stop-place" title="${escapeHtml(place)}">${escapeHtml(place)}</div>` : '';
             return `
-                <div class="journey-card-stop">
-                    <div class="journey-stop-node ${kind}"></div>
+                <div class="journey-card-stop journey-card-stop-${kind}">
                     <div class="journey-stop-time">${escapeHtml(time || '—')}</div>
                     <div class="journey-stop-caption">${escapeHtml(caption)}</div>
-                    <div class="journey-stop-place">${escapeHtml(place || '—')}</div>
+                    ${placeHtml}
                 </div>
             `;
         }
 
-        function routeConnectorHtml(bus, tone) {
-            const label = bus ? `Catch ${cleanBusName(bus.bus_name)} bus` : 'Walk route';
+        function routeBusPillHtml(bus, tone, segment = '') {
+            const label = bus ? cleanBusName(bus.bus_name) : 'Walk route';
             return `
-                <div class="journey-card-connector ${tone}">
+                <div class="journey-card-bus-slot ${tone} ${segment}">
                     <div class="journey-bus-pill ${tone}">${escapeHtml(label)}</div>
-                    <div class="journey-ride-line"></div>
                 </div>
             `;
+        }
+
+        function stepStartTime(step, fallback = '—') {
+            if (!step) return fallback;
+            if (step.type === 'BUS') return step.dep || step.departure_time || fallback;
+            return step.dep || step.departure_time || fallback;
+        }
+
+        function stepEndTime(step, fallback = '—') {
+            if (!step) return fallback;
+            return step.arr || step.arrival_time || fallback;
+        }
+
+        function routeTimetableHtml(opt) {
+            const itinerary = Array.isArray(opt.itinerary) ? opt.itinerary : [];
+            if (!itinerary.length) return '';
+            const rows = itinerary.map((step, idx) => {
+                const isBus = step.type === 'BUS';
+                const icon = isBus ? '🚌' : '🚶';
+                const start = stepStartTime(step, idx === 0 ? opt.departure_time : '—');
+                const end = stepEndTime(step, idx === itinerary.length - 1 ? opt.arrival_time : '—');
+                const duration = Number(step.duration_mins || 0);
+                const durationLabel = Number.isFinite(duration) && duration > 0 ? `${Math.round(duration)} min` : '';
+                const title = isBus
+                    ? `${cleanBusName(step.bus_name)}`
+                    : `Walk ${step.dist_km ? formatDistanceHuman(step.dist_km) : ''}`.trim();
+                const fromName = step.from_stop || step.from || 'Origin';
+                const toName = step.to_stop || step.to || 'Destination';
+                const sub = `${fromName} → ${toName}${durationLabel ? ` · ${durationLabel}` : ''}`;
+                return `
+                    <div class="journey-tt-row">
+                        <div class="journey-tt-time">${escapeHtml(start || '—')}</div>
+                        <div class="journey-tt-main">
+                            <div class="journey-tt-title"><span class="journey-tt-mode">${icon}</span>${escapeHtml(title || step.type || 'Step')}</div>
+                            <div class="journey-tt-sub" title="${escapeHtml(sub)}">${escapeHtml(sub)}</div>
+                        </div>
+                        <div class="journey-tt-time end">${escapeHtml(end || '—')}</div>
+                    </div>
+                `;
+            }).join('');
+            return `<div class="journey-card-timetable">${rows}</div>`;
         }
 
         function routeCardHtml(opt, index) {
@@ -2235,19 +2547,56 @@
             const notes = buildHeadsUpNotes(opt);
             const hasTransfer = !!secondBus;
             const ariaLabel = `Route ${index + 1}, ${formatDurationLabel(opt.duration_mins)}, arrives ${opt.arrival_time || 'unknown time'}`;
+            const badgeHtml = index === 0 ? '<div class="journey-card-badge">⚡ fastest</div>' : '';
+            const progressHtml = hasTransfer
+                ? `
+                    <div class="journey-card-progress has-transfer">
+                        <div class="journey-card-bus-row">
+                            ${routeBusPillHtml(firstBus, 'bus-blue', 'segment-first')}
+                            ${routeBusPillHtml(secondBus, 'bus-green', 'segment-second')}
+                        </div>
+                        <div class="journey-card-rail">
+                            <div class="journey-stop-node origin"></div>
+                            <div class="journey-rail-segment bus-blue"></div>
+                            <div class="journey-stop-node transfer"></div>
+                            <div class="journey-rail-segment bus-green"></div>
+                            <div class="journey-stop-node destination"></div>
+                        </div>
+                        <div class="journey-card-stop-row">
+                            ${routeStopHtml('origin', opt.departure_time, 'Start at', startPlace)}
+                            ${routeStopHtml('transfer', firstBus.arr || opt.departure_time, 'Change at', transferPlace)}
+                            ${routeStopHtml('destination', opt.arrival_time, 'Your stop is', endPlace)}
+                        </div>
+                    </div>
+                `
+                : `
+                    <div class="journey-card-progress">
+                        <div class="journey-card-bus-row no-transfer">
+                            ${routeBusPillHtml(firstBus, 'bus-blue', 'segment-full')}
+                        </div>
+                        <div class="journey-card-rail no-transfer">
+                            <div class="journey-stop-node origin"></div>
+                            <div class="journey-rail-segment bus-blue"></div>
+                            <div class="journey-stop-node destination"></div>
+                        </div>
+                        <div class="journey-card-stop-row no-transfer">
+                            ${routeStopHtml('origin', opt.departure_time, 'Start at', startPlace)}
+                            ${routeStopHtml('destination', opt.arrival_time, 'Your stop is', endPlace)}
+                        </div>
+                    </div>
+                `;
 
             return `
                 <button class="journey-route-card ${index === 0 ? 'active' : ''}" type="button" data-route-index="${index}" aria-label="${escapeHtml(ariaLabel)}">
-                    <div class="journey-card-time">${escapeHtml(formatDurationLabel(opt.duration_mins))}</div>
-                    <div class="journey-card-label">Total Journey Time</div>
-                    <div class="journey-card-rule"></div>
-                    <div class="journey-card-progress ${hasTransfer ? 'has-transfer' : ''}">
-                        ${routeStopHtml('origin', opt.departure_time, 'Start at', startPlace)}
-                        ${routeConnectorHtml(firstBus, 'bus-blue')}
-                        ${hasTransfer ? routeStopHtml('transfer', firstBus.arr || opt.departure_time, 'Get down to change at', transferPlace) : ''}
-                        ${hasTransfer ? routeConnectorHtml(secondBus, 'bus-green') : ''}
-                        ${routeStopHtml('destination', opt.arrival_time, 'Your stop is', endPlace)}
+                    <div class="journey-card-topline">
+                        <div class="journey-card-timewrap">
+                            <div class="journey-card-time">${escapeHtml(formatDurationLabel(opt.duration_mins))}</div>
+                            <div class="journey-card-total-label">Total journey time</div>
+                            ${badgeHtml}
+                        </div>
                     </div>
+                    <div class="journey-card-rule"></div>
+                    ${progressHtml}
                     <div class="journey-card-headsup">
                         ${notes.map((note, noteIndex) => `<p>${noteIndex === 0 ? '<strong>Heads up:</strong> ' : ''}${escapeHtml(note)}</p>`).join('')}
                     </div>

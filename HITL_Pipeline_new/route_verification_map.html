@@ -857,6 +857,27 @@
             border-bottom: 1px solid var(--border);
         }
 
+        .fleet-startup-notice {
+            display: none;
+            margin: 12px 14px 0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(96, 165, 250, 0.28);
+            background: #eff6ff;
+            color: #1e3a5f;
+            font-size: 11.5px;
+            line-height: 1.45;
+        }
+
+        .fleet-startup-notice strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #1d4ed8;
+        }
+
         .health-stat {
             display: flex;
             flex-direction: column;
@@ -2274,6 +2295,164 @@
 
         .cq-search input:focus {
             border-color: var(--blue);
+        }
+
+        .pipeline-feed {
+            margin: 10px 12px 0;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pipeline-feed.is-collapsed {
+            gap: 0;
+        }
+
+        .pipeline-feed-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .pipeline-feed-head-main {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .pipeline-feed-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 1px solid var(--border-mid);
+            background: var(--bg-base);
+            color: var(--text-2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+            flex-shrink: 0;
+        }
+
+        .pipeline-feed-toggle:hover {
+            background: rgba(37, 99, 235, 0.06);
+            border-color: rgba(37, 99, 235, 0.22);
+            color: var(--blue);
+        }
+
+        .pipeline-feed-toggle svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.18s ease;
+        }
+
+        .pipeline-feed.is-collapsed .pipeline-feed-toggle svg {
+            transform: rotate(-90deg);
+        }
+
+        .pipeline-feed-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-2);
+        }
+
+        .pipeline-feed-sub {
+            font-size: 10px;
+            color: var(--text-3);
+        }
+
+        .pipeline-feed-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 180px;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .pipeline-feed-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pipeline-feed.is-collapsed .pipeline-feed-body {
+            display: none;
+        }
+
+        .pipeline-feed-empty {
+            font-size: 11px;
+            color: var(--text-3);
+            line-height: 1.45;
+            padding: 4px 2px;
+        }
+
+        .pipeline-feed-item {
+            padding: 9px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-mid);
+            background: var(--bg-base);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .pipeline-feed-item.pending {
+            border-color: rgba(59, 130, 246, 0.28);
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        .pipeline-feed-item.success {
+            border-color: rgba(52, 196, 124, 0.28);
+            background: rgba(52, 196, 124, 0.08);
+        }
+
+        .pipeline-feed-item.error {
+            border-color: rgba(245, 80, 74, 0.32);
+            background: rgba(245, 80, 74, 0.08);
+        }
+
+        .pipeline-feed-kicker {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        .pipeline-feed-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .pipeline-feed-name {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--text-1);
+        }
+
+        .pipeline-feed-time {
+            flex-shrink: 0;
+            font-size: 9.5px;
+            color: var(--text-3);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .pipeline-feed-detail {
+            font-size: 10.5px;
+            line-height: 1.45;
+            color: var(--text-2);
         }
 
         /* --- High-Density Row Design --- */
@@ -4403,7 +4582,7 @@
             right: 20px;
             width: 440px;
             height: 650px;
-            background: linear-gradient(180deg, rgba(12, 18, 38, 0.75), rgba(6, 10, 26, 0.85)), url('backgrounds/Gemma-Panel-Background-Dark.png');
+            background: linear-gradient(180deg, rgba(12, 18, 38, 0.75), rgba(6, 10, 26, 0.85)), url('backgrounds/People_Bus_backgorund_by_Sagar Sing_via_Purulia-Bus-Update_FB.jpg.jpg');
             background-size: cover;
             background-position: center;
             border: 1px solid rgba(118, 136, 255, 0.15);
@@ -6964,7 +7143,7 @@
             background:
                 radial-gradient(circle at 16% 12%, rgba(99, 102, 241, 0.09), transparent 30%),
                 radial-gradient(circle at 87% 27%, rgba(249, 115, 22, 0.06), transparent 27%),
-                url('backgrounds/BG_Image_Transportation_Struggle_Light_2.png') no-repeat center center;
+                url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg') no-repeat center center;
             background-size: cover;
             box-shadow: 0 22px 54px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
         }
@@ -7144,7 +7323,7 @@
             min-width: 760px;
             min-height: 520px;
             border-radius: 18px;
-            background: #060a1a url('backgrounds/Gemma-Panel-Background-Dark.png') no-repeat center center;
+            background: #060a1a url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg') no-repeat center center;
             background-size: cover;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -7882,7 +8061,7 @@
             background:
                 radial-gradient(circle at 16% 12%, rgba(99, 102, 241, 0.09), transparent 30%),
                 radial-gradient(circle at 87% 27%, rgba(249, 115, 22, 0.06), transparent 27%),
-                url('backgrounds/BG_Image_Transportation_Struggle_Light_2.png') no-repeat center center;
+                url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg') no-repeat center center;
             background-size: cover;
             border-color: rgba(71, 85, 105, 0.18);
             box-shadow:
@@ -10148,6 +10327,333 @@
         body.light #gemma-panel .gp-turn-cell.gp-cell-reply {
             color: #0f172a !important;
         }
+
+        /* ══ GEMMA PANEL HIERARCHY REFRESH ══ */
+        #gemma-panel {
+            position: fixed;
+            isolation: isolate;
+            background:
+                linear-gradient(180deg, rgba(7, 11, 24, 0.16), rgba(7, 11, 24, 0.48)),
+                url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            box-shadow: 0 26px 60px rgba(2, 6, 23, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+        }
+
+        #gemma-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background:
+                linear-gradient(180deg, rgba(8, 15, 30, 0.20) 0%, rgba(8, 15, 30, 0.38) 16%, rgba(8, 15, 30, 0.66) 52%, rgba(8, 15, 30, 0.86) 100%);
+            pointer-events: none;
+        }
+
+        #gemma-panel>*,
+        #gemma-panel .gp-main-area>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        #gemma-panel .gp-main-area {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.02) 0%, rgba(15, 23, 42, 0.08) 100%);
+        }
+
+        #gemma-panel .gp-header {
+            padding: 14px 18px;
+            background: #eaf1f7;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        #gemma-panel .gp-brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
+            box-shadow: none;
+        }
+
+        #gemma-panel .gp-title {
+            color: #334155;
+            font-size: 15.5px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 0;
+            text-transform: none;
+            text-shadow: none;
+        }
+
+        #gemma-panel .gp-status-line {
+            gap: 8px;
+            width: fit-content;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+        }
+
+        #gemma-panel .gp-status-text {
+            color: rgba(51, 65, 85, 0.92);
+            font-size: 10.5px;
+            letter-spacing: 0.04em;
+            font-weight: 700;
+        }
+
+        #gemma-panel .gp-header-actions {
+            opacity: 1;
+            gap: 6px;
+        }
+
+        #gemma-panel .gp-hdr-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            color: #2563eb;
+            background: #ffffff;
+            border: 1px solid #bfdbfe;
+        }
+
+        #gemma-panel .gp-hdr-btn:hover {
+            background: #eff6ff;
+            color: #1d4ed8;
+            transform: none;
+        }
+
+        #gemma-panel .gp-body {
+            padding: 18px 18px 14px;
+            gap: 14px !important;
+        }
+
+        #gemma-panel .gp-msg.agent .gp-msg-content,
+        #gemma-panel .gp-thought-box {
+            background: #f8fafc !important;
+            border: 1px solid #dbe5ef !important;
+            color: #0f172a !important;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+        }
+
+        #gemma-panel .gp-msg.agent .gp-msg-content {
+            border-radius: 22px !important;
+        }
+
+        #gemma-panel .gp-msg.agent .gp-msg-content *,
+        #gemma-panel .gp-thought-content,
+        #gemma-panel .gp-thought-content * {
+            color: inherit;
+        }
+
+        #gemma-panel .gp-thought-label {
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 1;
+        }
+
+        #gemma-panel .gp-thought-content {
+            color: #475569 !important;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        #gemma-panel .gp-node-badge {
+            background: rgba(59, 130, 246, 0.10);
+            border-color: rgba(59, 130, 246, 0.18);
+            color: #1d4ed8;
+        }
+
+        #gemma-panel .gp-msg-meta {
+            color: rgba(71, 85, 105, 0.82);
+        }
+
+        #gemma-panel .gp-msg.user {
+            background: #eff6ff !important;
+            border: 1px solid #bfdbfe !important;
+            box-shadow: 0 12px 26px rgba(30, 64, 175, 0.10);
+        }
+
+        #gemma-panel .gp-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding: 12px;
+            border-radius: 20px;
+            background: #f8fafc;
+            border: 1px solid #dbe5ef;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+        }
+
+        #gemma-panel .gp-offline-discovery-callout {
+            flex: 1 0 100%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            background: #eef6ff !important;
+            border: 1px solid #c7ddff !important;
+            box-shadow: none;
+            user-select: none;
+        }
+
+        #gemma-panel .gp-offline-discovery-callout span {
+            color: #1e3a5f;
+            font-size: 12.5px;
+            font-weight: 700;
+        }
+
+        #gemma-panel .gp-offline-discovery-link {
+            min-height: 34px;
+            padding: 7px 14px;
+            background: #eff6ff !important;
+            border: 1px solid #bfdbfe !important;
+            color: #2563eb !important;
+            box-shadow: none;
+            font-weight: 800;
+        }
+
+        #gemma-panel .gp-offline-discovery-link:hover {
+            background: #dbeafe !important;
+            border-color: #93c5fd !important;
+            color: #1d4ed8 !important;
+        }
+
+        #gemma-panel .gp-quick-action-btn {
+            background: #ffffff !important;
+            color: #2563eb !important;
+            border: 1px solid #bfdbfe !important;
+            box-shadow: none;
+            font-weight: 700 !important;
+            min-height: 44px;
+            user-select: none;
+        }
+
+        #gemma-panel .gp-quick-action-btn:hover {
+            background: #eff6ff !important;
+            color: #1d4ed8 !important;
+            border-color: #93c5fd !important;
+            transform: none;
+        }
+
+        #gemma-panel .gp-quick-action-btn .icon {
+            color: inherit;
+        }
+
+        #gemma-panel .gp-staged-wrap {
+            padding-left: 0;
+            margin-bottom: 10px !important;
+        }
+
+        #gemma-panel .gp-staged-badge {
+            padding: 6px 10px 6px 6px !important;
+            border-radius: 16px !important;
+            background: #ffffff !important;
+            border: 1px solid #dbe5ef !important;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        #gemma-panel .gp-input-area {
+            padding: 14px 18px 18px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.00), rgba(15, 23, 42, 0.12) 18%, rgba(15, 23, 42, 0.36) 100%);
+        }
+
+        #gemma-panel .gp-input-box,
+        body.theme-light #gemma-panel .gp-input-box.ai-style-change-1,
+        body.light #gemma-panel .gp-input-box.ai-style-change-1 {
+            padding: 10px 12px;
+            border-radius: 22px !important;
+            background: #ffffff !important;
+            border: 1px solid #bfdbfe !important;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.10) !important;
+            transform: none !important;
+        }
+
+        #gemma-panel .gp-input-box:focus-within,
+        body.theme-light #gemma-panel .gp-input-box.ai-style-change-1:focus-within,
+        body.light #gemma-panel .gp-input-box.ai-style-change-1:focus-within {
+            background: #ffffff !important;
+            border-color: #60a5fa !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14), 0 12px 24px rgba(37, 99, 235, 0.10) !important;
+        }
+
+        #gemma-panel .gp-text-input,
+        body.theme-light #gemma-panel .gp-input-box.ai-style-change-1 .gp-text-input,
+        body.light #gemma-panel .gp-input-box.ai-style-change-1 .gp-text-input {
+            background: #ffffff !important;
+            border: 0 !important;
+            border-radius: 14px !important;
+            color: #334155 !important;
+            font-size: 15px;
+            font-weight: 500 !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            transform: none !important;
+        }
+
+        #gemma-panel .gp-text-input::placeholder,
+        body.theme-light #gemma-panel .gp-input-box.ai-style-change-1 .gp-text-input::placeholder,
+        body.light #gemma-panel .gp-input-box.ai-style-change-1 .gp-text-input::placeholder {
+            color: #64748b !important;
+            font-weight: 500 !important;
+            letter-spacing: 0 !important;
+            text-shadow: none !important;
+        }
+
+        #gemma-panel .gp-upload-btn,
+        body.theme-light #gemma-panel .gp-input-box.ai-style-change-1 .gp-upload-btn,
+        body.light #gemma-panel .gp-input-box.ai-style-change-1 .gp-upload-btn {
+            width: 42px !important;
+            height: 42px !important;
+            border-radius: 50% !important;
+            background: #ffffff !important;
+            border: 1px solid #bfdbfe !important;
+            color: #2563eb !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        #gemma-panel .gp-upload-btn:hover {
+            background: #eff6ff !important;
+            border-color: #93c5fd !important;
+            color: #1d4ed8 !important;
+        }
+
+        #gemma-panel .gp-send-btn,
+        #gemma-panel .gp-input-box .gp-send-btn,
+        body.theme-light #gemma-panel .gp-input-box.ai-style-change-1 .gp-send-btn,
+        body.light #gemma-panel .gp-input-box.ai-style-change-1 .gp-send-btn {
+            width: 46px !important;
+            height: 46px !important;
+            min-height: 46px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            background: #ffffff !important;
+            border: 1px solid #bfdbfe !important;
+            color: #2563eb !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        #gemma-panel .gp-send-btn:hover:not(:disabled) {
+            filter: none;
+            transform: none !important;
+            background: #eff6ff !important;
+            color: #1d4ed8 !important;
+            box-shadow: none !important;
+        }
+
+        #gemma-panel .gp-upload-btn svg,
+        #gemma-panel .gp-send-btn svg {
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+        #gemma-panel .gp-suggestions {
+            background: #0f172a;
+            border: 1px solid #334155;
+        }
     </style>
 
     <!-- Bus Guide Icon Definitions -->
@@ -10327,6 +10833,11 @@
                 </div>
             </div>
 
+            <div class="fleet-startup-notice" id="fleetStartupNotice">
+                <strong>Startup notice</strong>
+                First-time startup can take around 5 minutes to load bus data. If the registry stays empty, please refresh.
+            </div>
+
             <div class="filter-tray">
                 <div class="filter-chip active" onclick="setBusFilter('all')">All Units</div>
                 <div class="filter-chip" onclick="setBusFilter('flagged')"><span
@@ -10490,7 +11001,7 @@
                         <!-- Quick Actions -->
                         <div id="gpQuickActions" class="gp-quick-actions">
                             <div class="gp-offline-discovery-callout">
-                                <span>For offline bus descovery explore</span>
+                                <span>Contribute as user or bus owner</span>
                                 <button type="button" class="gp-offline-discovery-link"
                                     onclick="openOfflineBusDiscovery()">OFFLINE BUS DISCOVERY</button>
                             </div>
@@ -10551,9 +11062,8 @@
                             </label>
 
                             <textarea class="gp-text-input" id="gpInput" rows="1"
-                                placeholder="Where to go or upload an image to extract data..."
-                                oninput="gemmaHandleInput(event)" onkeydown="handleGemmaKeyDown(event)"
-                                spellcheck="false"></textarea>
+                                placeholder="Upload an image to extract data..." oninput="gemmaHandleInput(event)"
+                                onkeydown="handleGemmaKeyDown(event)" spellcheck="false"></textarea>
 
                             <button class="gp-send-btn" id="gpSendBtn" onclick="gemmaSend()" title="Send Message">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
@@ -10660,6 +11170,27 @@
                 <button id="modePhitlBtn" class="mode-btn active" onclick="setEditorMode('phitl')">PHITL
                     Editor</button>
                 <button id="modeTthitlBtn" class="mode-btn" onclick="setEditorMode('tthitl')">TTHITL Editor</button>
+            </div>
+
+            <div class="pipeline-feed" id="pipelineFeedPanel">
+                <div class="pipeline-feed-head">
+                    <div class="pipeline-feed-head-main">
+                        <div class="pipeline-feed-title">Pipeline Feed</div>
+                        <div class="pipeline-feed-sub">Controlled backend milestones</div>
+                    </div>
+                    <button class="pipeline-feed-toggle" id="pipelineFeedToggle" type="button" aria-expanded="true" aria-controls="pipelineFeedBody" title="Collapse pipeline feed">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3.5 6.5 8 11l4.5-4.5"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="pipeline-feed-body" id="pipelineFeedBody">
+                    <div class="pipeline-feed-list" id="pipelineFeedList">
+                        <div class="pipeline-feed-empty" id="pipelineFeedEmpty">
+                            Waiting for extraction, HITL, and discovery milestones.
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="cq-body" class="commit-queue-body" style="flex: 1; overflow-y: auto;">
@@ -11027,6 +11558,9 @@
         let currentRouteSource = 'input';
         let verifiedRoutes = [];
         let secureVerifiedRoutes = [];
+        let currentCacheBuiltAt = '';
+        let currentServerStartedAt = '';
+        let registryAutoRefreshPoll = null;
         let secureRouteCatalog = [];
         let routesSkeletonMode = false;
         let routesSkeletonPolylines = [];
@@ -11045,6 +11579,14 @@
         let currentDiscoveryTarget = null;
         let discoveryRefreshTimer = null;
         const DISCOVERY_REFRESH_MS = 30000;
+        let identifiedVillagesCache = null;
+        let discoveryRevealRoutePolylines = [];
+        let discoveryRevealVillageMarkers = [];
+        let discoveryRevealCorridorCircles = [];
+        let discoveryRevealActiveReg = '';
+        let discoveryRevealStatusControl = null;
+        let discoveryRevealRetryTimer = null;
+        let discoveryRevealRetryCount = 0;
 
         let journeyPlannerOrigin = null;
         let journeyPlannerDest = null;
@@ -11470,11 +12012,15 @@
                 : (typeof node.confidence === 'number' ? node.confidence : 100);
             const arr = kRow?.arrival_time ?? node.arrival_time ?? '';
             const dep = kRow?.departure_time ?? node.departure_time ?? '';
+            const rawAvgSpeed = getStopRawAverageSpeedFromAnalysis(analysis, node.name);
             const timeParts = [];
             if (dep) timeParts.push(`Dep: ${escapeHtml(dep)}`);
             if (arr) timeParts.push(`Arr: ${escapeHtml(arr)}`);
             const timeHtml = timeParts.length > 0
                 ? `<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border-mid);font-size:11px;color:var(--text-2);">${timeParts.join(' · ')}</div>`
+                : '';
+            const speedHtml = rawAvgSpeed > 0
+                ? `<div style="margin-top:8px;font-size:11px;color:var(--text-2);">Raw avg speed at stop: <strong style="color:var(--blue);">${formatSpeedKmph(rawAvgSpeed)}</strong></div>`
                 : '';
             const wpHtml = (kRow?.is_waypoint || node.isWaypoint)
                 ? `<div style="font-size:10px;color:var(--blue);margin-top:6px;">Waypoint (geometry-only)</div>`
@@ -11499,6 +12045,7 @@
                     </div>
                     <div style="margin-top:8px; font-size:13px; color:var(--green);">Conf: ${escapeHtml(conf)}%</div>
                     ${wpHtml}
+                    ${speedHtml}
                     <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px 18px;">
                         <div>
                             <div style="font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:.6px;">From Origin</div>
@@ -11719,6 +12266,34 @@
                 }
             }
             return 0;
+        }
+
+        function formatSpeedKmph(value) {
+            const speed = Number(value);
+            if (!Number.isFinite(speed) || speed <= 0) return '--';
+            return `${Number(speed.toFixed(1))} km/h`;
+        }
+
+        function getBusDisplayAverageSpeed(bus) {
+            const firstTrip = Array.isArray(bus?.trips) && bus.trips.length > 0 ? bus.trips[0] : null;
+            const avg = Number(firstTrip?.average_speed_kmph || 0);
+            return Number.isFinite(avg) && avg > 0 ? avg : 0;
+        }
+
+        function getStopRawAverageSpeedFromAnalysis(analysis, stopName) {
+            if (!analysis || !Array.isArray(analysis.segments) || !stopName) return 0;
+            const target = String(stopName).trim().toLowerCase();
+            const related = analysis.segments.filter(seg => {
+                const from = String(seg?.from || '').trim().toLowerCase();
+                const to = String(seg?.to || '').trim().toLowerCase();
+                return from === target || to === target;
+            });
+            if (!related.length) return 0;
+            const speeds = related
+                .map(seg => Number(seg?.speed_kmph || 0))
+                .filter(v => Number.isFinite(v) && v > 0);
+            if (!speeds.length) return 0;
+            return speeds.reduce((acc, v) => acc + v, 0) / speeds.length;
         }
 
         function renderTTAnalysisPanel() {
@@ -12452,6 +13027,9 @@
         async function refreshCache() {
             try {
                 const cache = await fetchJsonRetry('/get_cache', {}, 30000, 1);
+                reconcilePipelineFeedServerSession(cache.server_started_at || '');
+                currentCacheBuiltAt = cache.cache_built_at || currentCacheBuiltAt || '';
+                currentServerStartedAt = cache.server_started_at || currentServerStartedAt || '';
                 hitlStatusMap = cache.hitl_status || {};
                 ttHitlIds = new Set(cache.tt_hitl_ids || []);
                 polylineHitlIds = new Set(cache.polyline_hitl_ids || []);
@@ -12462,6 +13040,7 @@
                 // --- CRITICAL SYNC: Update verifiedRoutes and re-process to refresh anomaly markers/counts ---
                 if (cache.verified_routes && Array.isArray(cache.verified_routes)) {
                     verifiedRoutes = cache.verified_routes;
+                    secureVerifiedRoutes = Array.isArray(cache.secure_verified_routes) ? cache.secure_verified_routes : secureVerifiedRoutes;
 
                     // Cleanup existing visuals to prevent marker duplication on refresh
                     activeMarkers.forEach(m => { if (m.marker) m.marker.setMap(null); });
@@ -12473,6 +13052,7 @@
                     processRoutes(verifiedRoutes);
                 }
 
+                updateFleetStartupNotice(cache.warmup_status || null, verifiedRoutes.length);
                 renderBusList(busData);
                 renderEditorMode();
                 console.log("Registry Status Refreshed");
@@ -12481,6 +13061,38 @@
             }
         }
         window.refreshCache = refreshCache;
+
+        function updateFleetStartupNotice(status = null, busCountOverride = null) {
+            const notice = document.getElementById('fleetStartupNotice');
+            if (!notice) return;
+            const busCount = Number.isFinite(busCountOverride) ? busCountOverride : Object.keys(busData || {}).length;
+            notice.style.display = busCount === 0 ? 'block' : 'none';
+        }
+
+        updateFleetStartupNotice(null, 0);
+
+        async function checkRegistryCacheFreshness() {
+            try {
+                const cache = await fetchJsonRetry('/get_cache', {}, 30000, 1);
+                const nextBuiltAt = cache.cache_built_at || '';
+                const nextRoutes = Array.isArray(cache.verified_routes) ? cache.verified_routes : [];
+                const currentBusCount = Object.keys(busData || {}).length;
+                updateFleetStartupNotice(cache.warmup_status || null, currentBusCount);
+                const shouldRefresh =
+                    (nextRoutes.length > 0 && currentBusCount === 0) ||
+                    (!!nextBuiltAt && nextBuiltAt !== currentCacheBuiltAt);
+                if (shouldRefresh) {
+                    await refreshCache();
+                }
+            } catch (e) {
+                console.warn("Registry cache poll failed", e);
+            }
+        }
+
+        function startRegistryAutoRefresh() {
+            if (registryAutoRefreshPoll) return;
+            registryAutoRefreshPoll = setInterval(checkRegistryCacheFreshness, 5000);
+        }
 
         async function initMap() {
             dbg("initMap.start");
@@ -12578,6 +13190,8 @@
                 currentRouteSource = (cache.route_source === 'output') ? 'output' : 'input';
                 verifiedRoutes = Array.isArray(cache.verified_routes) ? cache.verified_routes : [];
                 secureVerifiedRoutes = Array.isArray(cache.secure_verified_routes) ? cache.secure_verified_routes : [];
+                currentCacheBuiltAt = cache.cache_built_at || '';
+                updateFleetStartupNotice(cache.warmup_status || null, verifiedRoutes.length);
                 console.log("HITL Layer Loaded:", hitlBuses.size, "units found.");
             } catch (e) {
                 console.log("Cache fetch failed", e);
@@ -12602,6 +13216,7 @@
             syncSurgeryModeLock();
             renderEditorMode();
             initRoutesDrawerResizer();
+            startRegistryAutoRefresh();
         }
 
         function renderZones(center) {
@@ -13055,6 +13670,7 @@
             const flaggedEl = document.getElementById('flaggedBusesVal');
             if (totalEl) totalEl.textContent = total;
             if (flaggedEl) flaggedEl.textContent = flagged;
+            updateFleetStartupNotice(null, total);
 
             // Apply registry filter
             let filtered = busArray;
@@ -13080,6 +13696,15 @@
                 return a.name.localeCompare(b.name);
             });
 
+            if (filtered.length === 0) {
+                const message = total === 0
+                    ? 'First-time startup can take around 5 minutes to load bus data. If the registry stays empty, please refresh.'
+                    : 'No buses match the current filter.';
+                container.innerHTML = `<div style="padding:18px 16px;color:var(--text-3);font-size:11px;line-height:1.5;">${message}</div>`;
+                dbg("renderBusList.end", { rendered: 0, empty: true });
+                return;
+            }
+
             filtered.forEach(bus => {
                 dbg("renderBusList.filtered", { count: filtered.length });
                 busData[bus.name] = bus;
@@ -13090,6 +13715,25 @@
 
         function handleSearch() {
             renderBusList(busData);
+            maybeTriggerDiscoveryRevealFromSearch();
+        }
+
+        function maybeTriggerDiscoveryRevealFromSearch() {
+            const input = document.getElementById('searchInput');
+            const query = String(input?.value || '').trim().toUpperCase();
+            if (query.length < 5 || !busData || typeof busData !== 'object') return;
+            const buses = Object.values(busData);
+            const matched = buses.find(bus => {
+                const reg = String(bus?.reg_no || '').trim().toUpperCase();
+                const name = String(bus?.name || '').trim().toUpperCase();
+                return (reg && reg === query) || (name && name === query);
+            });
+            if (!matched) return;
+            if (getBusStatus(matched.name, matched.reg_no) !== 'SECURE') return;
+            const reg = String(matched.reg_no || '').trim().toUpperCase();
+            if (reg && discoveryRevealActiveReg !== reg) {
+                scheduleDiscoveryReadyReveal(reg, { delayMs: 300 });
+            }
         }
 
         function getAllTripStopNames(bus) {
@@ -13256,6 +13900,412 @@
             const px = ax + (t * dx);
             const py = ay + (t * dy);
             return Math.sqrt((px * px) + (py * py));
+        }
+
+        function estimatePointDistanceMeters(a, b) {
+            if (!a || !b) return Infinity;
+            const midLat = ((Number(a.lat) || 0) + (Number(b.lat) || 0)) / 2;
+            const latToM = 111320.0;
+            const lngToM = 111320.0 * Math.cos((midLat * Math.PI) / 180);
+            const dx = (Number(b.lng) - Number(a.lng)) * lngToM;
+            const dy = (Number(b.lat) - Number(a.lat)) * latToM;
+            return Math.sqrt((dx * dx) + (dy * dy));
+        }
+
+        function interpolateRoutePoint(a, b, t) {
+            return {
+                lat: Number(a.lat) + ((Number(b.lat) - Number(a.lat)) * t),
+                lng: Number(a.lng) + ((Number(b.lng) - Number(a.lng)) * t)
+            };
+        }
+
+        function sampleRoutePathForCorridor(path, spacingMeters = 2400) {
+            if (!Array.isArray(path) || path.length < 2) return [];
+            const samples = [path[0]];
+            for (let i = 0; i < path.length - 1; i++) {
+                const a = path[i];
+                const b = path[i + 1];
+                const dist = estimatePointDistanceMeters(a, b);
+                if (!Number.isFinite(dist) || dist <= 0) continue;
+                const steps = Math.max(1, Math.floor(dist / spacingMeters));
+                for (let s = 1; s <= steps; s++) {
+                    samples.push(interpolateRoutePoint(a, b, s / steps));
+                }
+            }
+            return samples;
+        }
+
+        function drawDiscoveryCorridorBuffer(routes, radiusMeters = 5000) {
+            if (!map || !google?.maps?.Circle || !Array.isArray(routes)) return;
+            const seen = new Set();
+            routes.forEach(route => {
+                sampleRoutePathForCorridor(route.decoded_path, 2300).forEach(pt => {
+                    if (!Number.isFinite(pt.lat) || !Number.isFinite(pt.lng)) return;
+                    const key = `${pt.lat.toFixed(3)}|${pt.lng.toFixed(3)}`;
+                    if (seen.has(key)) return;
+                    seen.add(key);
+                    const circle = new google.maps.Circle({
+                        map,
+                        center: { lat: pt.lat, lng: pt.lng },
+                        radius: radiusMeters,
+                        strokeColor: '#22c55e',
+                        strokeOpacity: 0.24,
+                        strokeWeight: 1,
+                        fillColor: '#22c55e',
+                        fillOpacity: 0.075,
+                        clickable: false,
+                        zIndex: 202
+                    });
+                    discoveryRevealCorridorCircles.push(circle);
+                });
+            });
+        }
+
+        function extendBoundsByRadius(bounds, point, radiusMeters = 5000) {
+            if (!bounds || !point || !Number.isFinite(point.lat) || !Number.isFinite(point.lng)) return;
+            const latOffset = radiusMeters / 111320.0;
+            const lngOffset = radiusMeters / (111320.0 * Math.cos((point.lat * Math.PI) / 180));
+            bounds.extend(new google.maps.LatLng(point.lat + latOffset, point.lng + lngOffset));
+            bounds.extend(new google.maps.LatLng(point.lat - latOffset, point.lng - lngOffset));
+        }
+
+        function clearDiscoveryReadyReveal() {
+            if (Array.isArray(discoveryRevealCorridorCircles)) {
+                discoveryRevealCorridorCircles.forEach(circle => circle && circle.setMap && circle.setMap(null));
+            }
+            if (Array.isArray(discoveryRevealRoutePolylines)) {
+                discoveryRevealRoutePolylines.forEach(poly => poly && poly.setMap && poly.setMap(null));
+            }
+            if (Array.isArray(discoveryRevealVillageMarkers)) {
+                discoveryRevealVillageMarkers.forEach(marker => marker && marker.setMap && marker.setMap(null));
+            }
+            discoveryRevealCorridorCircles = [];
+            discoveryRevealRoutePolylines = [];
+            discoveryRevealVillageMarkers = [];
+            discoveryRevealActiveReg = '';
+            if (discoveryRevealStatusControl) {
+                discoveryRevealStatusControl.remove();
+                discoveryRevealStatusControl = null;
+            }
+            try {
+                localStorage.removeItem(getDiscoveryRevealStorageKey());
+            } catch (_) {}
+            closeRaptorVillageCard();
+        }
+
+        function getDiscoveryRevealStorageKey() {
+            return 'puruliaDiscoveryReadyRevealReg';
+        }
+
+        function extractRegNoFromText(text = '') {
+            const raw = String(text || '').toUpperCase();
+            const bracketMatch = raw.match(/\[([A-Z]{1,3}[0-9]{1,3}[A-Z]{0,3}[0-9-]{3,8})\]/);
+            if (bracketMatch) return bracketMatch[1].trim();
+            const directMatch = raw.match(/\b(WB[0-9A-Z-]{5,12})\b/);
+            return directMatch ? directMatch[1].trim() : '';
+        }
+
+        function rememberDiscoveryReadyReg(regNo) {
+            const reg = String(regNo || '').trim().toUpperCase();
+            if (!reg) return;
+            try {
+                localStorage.setItem(getDiscoveryRevealStorageKey(), reg);
+            } catch (_) {}
+        }
+
+        function showDiscoveryRevealStatus(regNo, villageCount, radiusKm = 5) {
+            if (!map || !google?.maps?.ControlPosition) return;
+            if (!discoveryRevealStatusControl) {
+                discoveryRevealStatusControl = document.createElement('div');
+                discoveryRevealStatusControl.style.cssText = [
+                    'margin:14px 0 0',
+                    'padding:10px 14px',
+                    'border-radius:12px',
+                    'background:#ffffff',
+                    'border:1px solid #bfdbfe',
+                    'box-shadow:0 10px 30px rgba(15,23,42,.18)',
+                    'font-family:Sora,system-ui,sans-serif',
+                    'color:#0f172a',
+                    'min-width:260px',
+                    'max-width:min(460px,calc(100vw - 48px))',
+                    'pointer-events:auto'
+                ].join(';');
+                map.controls[google.maps.ControlPosition.TOP_CENTER].push(discoveryRevealStatusControl);
+            }
+            discoveryRevealStatusControl.innerHTML = `
+                <div style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#2563eb;margin-bottom:3px;">Discovery corridor</div>
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;">
+                    <strong style="font-size:13px;line-height:1.3;">${regNo} ready for discovery</strong>
+                    <span style="font-size:18px;font-weight:900;color:#ca8a04;">${Number(villageCount || 0).toLocaleString('en-IN')}</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px;">
+                    <div style="font-size:11px;color:#475569;line-height:1.45;">Villages plotted within ${radiusKm} km of the secured route.</div>
+                    <button type="button" onclick="clearDiscoveryReadyReveal()" title="Clear discovery overlay" style="border:1px solid #cbd5e1;background:#f8fafc;color:#334155;border-radius:9px;padding:5px 8px;font-size:11px;font-weight:800;cursor:pointer;">Clear</button>
+                </div>
+            `;
+        }
+
+        async function ensureIdentifiedVillagesLoaded() {
+            if (Array.isArray(identifiedVillagesCache)) return identifiedVillagesCache;
+            let villages = [];
+            try {
+                const payload = await fetchJsonWithTimeout('/api/discovery/villages_identified', {}, 30000);
+                villages = Array.isArray(payload?.villages) ? payload.villages : [];
+            } catch (err) {
+                console.warn('Dedicated village discovery endpoint unavailable; using RAPTOR metadata fallback.', err);
+                const fallback = await fetchJsonWithTimeout(`/api/raptor/metadata?ts=${Date.now()}`, {}, 30000);
+                villages = Array.isArray(fallback?.results)
+                    ? fallback.results.filter(item => item?.type === 'VILLAGE')
+                    : [];
+            }
+            identifiedVillagesCache = villages
+                .map(v => ({
+                    ...v,
+                    lat: Number(v.lat),
+                    lon: Number(v.lon ?? v.lng),
+                    nearby_villages: v.nearby_villages || v.nearby || [],
+                    nearest_corridor: v.nearest_corridor || v.corridor || {},
+                    nearest_stop: v.nearest_stop || v.stop || {}
+                }))
+                .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lon));
+            return identifiedVillagesCache;
+        }
+
+        function getSecureRoutesForRegNo(regNo) {
+            const target = String(regNo || '').trim().toUpperCase();
+            if (!target) return [];
+            const candidates = Array.isArray(secureVerifiedRoutes) ? secureVerifiedRoutes : [];
+            return candidates.filter(route => String(route?.reg_no || '').trim().toUpperCase() === target);
+        }
+
+        function getRenderedDiscoveryRoutesForRegNo(regNo) {
+            const target = String(regNo || '').trim().toUpperCase();
+            if (!target || !busData || typeof busData !== 'object') return [];
+            const renderedRoutes = [];
+            Object.values(busData).forEach(bus => {
+                if (String(bus?.reg_no || '').trim().toUpperCase() !== target) return;
+                (bus.trips || []).forEach(trip => {
+                    let decodedPath = [];
+                    const mvcPath = trip?.poly?.getPath ? trip.poly.getPath() : null;
+                    if (mvcPath?.getArray) {
+                        decodedPath = mvcPath.getArray()
+                            .map(pt => ({ lat: pt.lat(), lng: pt.lng() }))
+                            .filter(pt => Number.isFinite(pt.lat) && Number.isFinite(pt.lng));
+                    }
+                    if (decodedPath.length < 2) {
+                        decodedPath = (trip.markers || [])
+                            .filter(m => Number.isFinite(Number(m?.lat)) && Number.isFinite(Number(m?.lng)))
+                            .map(m => ({ lat: Number(m.lat), lng: Number(m.lng) }));
+                    }
+                    if (decodedPath.length >= 2) {
+                        renderedRoutes.push({
+                            bus_name: bus.name,
+                            reg_no: bus.reg_no,
+                            origin: trip.origin || '',
+                            destination: trip.destination || '',
+                            corridor_signature: trip.corridor_signature || '',
+                            decoded_path: decodedPath
+                        });
+                    }
+                });
+            });
+            return renderedRoutes;
+        }
+
+        function getMinimumRouteDistanceMeters(lat, lng, path) {
+            if (!Array.isArray(path) || path.length < 2) return Infinity;
+            let min = Infinity;
+            for (let i = 0; i < path.length - 1; i++) {
+                const seg = estimatePointSegmentDistanceMeters(lat, lng, path[i], path[i + 1]);
+                if (seg < min) min = seg;
+            }
+            return min;
+        }
+
+        function getVillagesWithinRouteRadius(villages, routes, radiusMeters = 5000) {
+            const qualified = [];
+            const seen = new Set();
+            villages.forEach(village => {
+                let minDistance = Infinity;
+                let nearestRoute = null;
+                routes.forEach(route => {
+                    const path = Array.isArray(route?.decoded_path) ? route.decoded_path : [];
+                    const dist = getMinimumRouteDistanceMeters(village.lat, village.lon, path);
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        nearestRoute = route;
+                    }
+                });
+                if (!Number.isFinite(minDistance) || minDistance > radiusMeters) return;
+                const key = `${String(village.name || '').trim().toLowerCase()}|${String(village.block || '').trim().toLowerCase()}`;
+                if (seen.has(key)) return;
+                seen.add(key);
+                qualified.push({
+                    ...village,
+                    distance_to_route_m: minDistance,
+                    nearest_route: nearestRoute || null
+                });
+            });
+            qualified.sort((a, b) => a.distance_to_route_m - b.distance_to_route_m);
+            return qualified;
+        }
+
+        function openRaptorVillageCard(village) {
+            const overlay = document.getElementById('raptorVillageOverlay');
+            if (!overlay || !village) return;
+            const nearby = Array.isArray(village.nearby_villages) ? village.nearby_villages : [];
+            const nearestStop = village.nearest_stop || {};
+            const nearestCorridor = village.nearest_corridor || {};
+            const blockText = [village.block, 'Purulia', 'West Bengal'].filter(Boolean).join(', ');
+            const distanceKm = Number(village.distance_to_route_m || 0) / 1000;
+            document.getElementById('raptorVillageName').textContent = village.name || 'Village';
+            document.getElementById('raptorVillageBlock').textContent = blockText || 'Purulia, West Bengal';
+            document.getElementById('raptorVillagePop').textContent = Number(village.population_2011 || 0) > 0 ? Number(village.population_2011).toLocaleString('en-IN') : '--';
+            document.getElementById('raptorVillageStop').textContent = nearestStop.stop_name || '--';
+            document.getElementById('raptorVillageStopKm').textContent = Number.isFinite(distanceKm) && distanceKm > 0 ? `${distanceKm.toFixed(2)} km` : '--';
+            document.getElementById('raptorVillageCorridor').textContent = nearestCorridor.corridor_signature || village.nearest_route?.corridor_signature || '--';
+            document.getElementById('raptorVillageNeighbors').textContent = nearby.length
+                ? nearby.slice(0, 5).map(n => `${n.name} (${Number(n.dist_km || 0).toFixed(1)} km ${n.direction || ''})`).join(' • ')
+                : '--';
+            document.getElementById('raptorVillageCoords').textContent = `Lat ${Number(village.lat).toFixed(5)}, Lon ${Number(village.lon).toFixed(5)}`;
+            overlay.classList.add('active');
+        }
+
+        function closeRaptorVillageCard() {
+            document.getElementById('raptorVillageOverlay')?.classList.remove('active');
+        }
+
+        async function revealDiscoveryVillagesForReg(regNo) {
+            const target = String(regNo || '').trim().toUpperCase();
+            if (!target || !map || !google?.maps?.Marker) return;
+            if (raptorMode && typeof setRaptorMode === 'function') {
+                setRaptorMode(false);
+            }
+
+            await refreshCache();
+            let routes = getSecureRoutesForRegNo(target)
+                .map(route => ({ ...route, decoded_path: decodeSecureRoutePath(route) }))
+                .filter(route => Array.isArray(route.decoded_path) && route.decoded_path.length >= 2);
+            if (!routes.length) {
+                routes = getRenderedDiscoveryRoutesForRegNo(target);
+            }
+            if (!routes.length) {
+                showToast(`${target} is ready for discovery, but no secure route geometry is available yet.`, 'info');
+                return;
+            }
+
+            const villages = await ensureIdentifiedVillagesLoaded();
+            const nearbyVillages = getVillagesWithinRouteRadius(villages, routes, 5000);
+
+            clearDiscoveryReadyReveal();
+            discoveryRevealActiveReg = target;
+            drawDiscoveryCorridorBuffer(routes, 5000);
+
+            routes.forEach((route, index) => {
+                const halo = new google.maps.Polyline({
+                    map,
+                    path: route.decoded_path,
+                    strokeColor: '#22c55e',
+                    strokeOpacity: 0.34,
+                    strokeWeight: 24,
+                    clickable: false,
+                    zIndex: 206
+                });
+                const core = new google.maps.Polyline({
+                    map,
+                    path: route.decoded_path,
+                    strokeColor: '#4a8ef5',
+                    strokeOpacity: 0.95,
+                    strokeWeight: index === 0 ? 6 : 4,
+                    clickable: false,
+                    zIndex: 228
+                });
+                discoveryRevealRoutePolylines.push(halo, core);
+            });
+
+            nearbyVillages.forEach(village => {
+                const marker = new google.maps.Marker({
+                    map,
+                    position: { lat: village.lat, lng: village.lon },
+                    title: `${village.name || 'Village'} - ${(Number(village.distance_to_route_m || 0) / 1000).toFixed(2)} km`,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 6.5,
+                        fillColor: '#fde047',
+                        fillOpacity: 0.95,
+                        strokeColor: '#0f172a',
+                        strokeWeight: 1.8
+                    },
+                    optimized: false,
+                    zIndex: 9999
+                });
+                marker.addListener('click', () => openRaptorVillageCard(village));
+                discoveryRevealVillageMarkers.push(marker);
+            });
+
+            const bounds = new google.maps.LatLngBounds();
+            routes.forEach(route => route.decoded_path.forEach(pt => bounds.extend(new google.maps.LatLng(pt.lat, pt.lng))));
+            nearbyVillages.forEach(village => bounds.extend(new google.maps.LatLng(village.lat, village.lon)));
+            routes.forEach(route => {
+                const path = Array.isArray(route.decoded_path) ? route.decoded_path : [];
+                if (path.length > 0) {
+                    extendBoundsByRadius(bounds, path[0], 5000);
+                    extendBoundsByRadius(bounds, path[path.length - 1], 5000);
+                }
+            });
+            if (!bounds.isEmpty()) {
+                map.fitBounds(bounds, 64);
+            }
+
+            rememberDiscoveryReadyReg(target);
+            showDiscoveryRevealStatus(target, nearbyVillages.length, 5);
+            showToast(`${target} ready for discovery - ${nearbyVillages.length} villages found within 5 km of the route.`, 'success');
+        }
+
+        function scheduleDiscoveryReadyReveal(regNo, options = {}) {
+            const target = String(regNo || '').trim().toUpperCase();
+            if (!target) return;
+            rememberDiscoveryReadyReg(target);
+
+            if (discoveryRevealRetryTimer) {
+                clearTimeout(discoveryRevealRetryTimer);
+                discoveryRevealRetryTimer = null;
+            }
+
+            const maxRetries = Number.isFinite(options.maxRetries) ? options.maxRetries : 18;
+            const attempt = async () => {
+                if (!map || !google?.maps?.Marker || !Array.isArray(secureVerifiedRoutes)) {
+                    discoveryRevealRetryCount += 1;
+                    if (discoveryRevealRetryCount <= maxRetries) {
+                        discoveryRevealRetryTimer = setTimeout(attempt, 700);
+                    }
+                    return;
+                }
+
+                try {
+                    await revealDiscoveryVillagesForReg(target);
+                    discoveryRevealRetryCount = 0;
+                } catch (err) {
+                    discoveryRevealRetryCount += 1;
+                    console.warn('Discovery reveal retry failed', err);
+                    if (discoveryRevealRetryCount <= maxRetries) {
+                        discoveryRevealRetryTimer = setTimeout(attempt, 900);
+                    }
+                }
+            };
+
+            discoveryRevealRetryCount = 0;
+            discoveryRevealRetryTimer = setTimeout(attempt, options.delayMs ?? 250);
+        }
+
+        async function maybeTriggerDiscoveryReadyReveal(data = {}) {
+            const phase = normalizePipelinePhase(data);
+            if (phase !== 'discovery_ready') return;
+            const message = String(data.message || '').trim();
+            const activity = data?.payload?.activity || {};
+            const reg = String(activity.reg_no || activity.regNo || data?.payload?.reg_no || extractRegNoFromText(message) || '').trim().toUpperCase();
+            if (!reg) return;
+            scheduleDiscoveryReadyReveal(reg);
         }
 
         function drawNearestRoutePreview(lat, lng) {
@@ -13847,6 +14897,7 @@
             };
 
             const summary = buildRouteSummary(bus);
+            const displayAvgSpeed = getBusDisplayAverageSpeed(bus);
             const isSequenceActive = lastSelectedTrip && lastSelectedTrip.bus_name === bus.name;
             const status = hitlStatusMap[bus.name] || 'INPUT';
             const statusBadge = (status === 'SECURE') ? '<span class="badge-hitl-status badge-secure">SECURE</span>' :
@@ -14066,6 +15117,7 @@
                         <span class="bus-stat-inline">${summary.stopCount} stops</span>
                         <span class="route-dot"></span>
                         <span class="bus-stat-inline">${summary.tripCount} trips</span>
+                        ${displayAvgSpeed > 0 ? `<span class="route-dot"></span><span class="bus-stat-inline">${formatSpeedKmph(displayAvgSpeed)} avg</span>` : ''}
                     </span>
                 </div>
                 <div class="bus-card-states">
@@ -16093,6 +17145,123 @@
         }
 
         const gemmaPendingReplyUpdates = new Map();
+        let gemmaWasBackendBusy = false;
+
+        function gemmaHistoryEntryKey(entry = {}) {
+            return [
+                entry.role || '',
+                entry.turnId || '',
+                entry.phase || '',
+                entry.timestamp || '',
+                entry.text || '',
+                entry.nodeBadge || entry.node || ''
+            ].join('||');
+        }
+
+        async function reconcileGemmaHistoryFromBackend(options = {}) {
+            const sessionId = getGemmaSessionId();
+            if (!sessionId) return { history: [], appended: 0 };
+
+            const body = document.getElementById('gpBody');
+            const res = await fetch(`http://127.0.0.1:8000/history?sessionId=${sessionId}`);
+            if (!res.ok) throw new Error(`History sync failed (${res.status})`);
+
+            const data = await res.json();
+            const history = Array.isArray(data.history) ? data.history : [];
+            const localHistory = JSON.parse(localStorage.getItem(getGemmaHistoryKey()) || '[]');
+            const seen = new Set(localHistory.map(gemmaHistoryEntryKey));
+
+            let appended = 0;
+            history.forEach(m => {
+                if (options.updateExisting !== false && m.role === 'agent' && m.turnId) {
+                    const existingTurn = getGemmaTurnById(m.turnId);
+                    const replyContent = getGemmaReplyContentElement(existingTurn);
+                    const backendText = String(m.text || '');
+                    const currentText = replyContent?.dataset?.sourceText || '';
+                    if (existingTurn && replyContent && backendText) {
+                        const metaTime = m.timestamp ? new Date(m.timestamp) : new Date();
+                        const now = metaTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        if (backendText !== currentText) {
+                            setGemmaCell(existingTurn, 'reply', gemmaRenderAgentContent(backendText), `<span>${now}</span>`, false);
+                            const updatedContent = getGemmaReplyContentElement(existingTurn);
+                            if (updatedContent) updatedContent.dataset.sourceText = backendText;
+                            applyGemmaTurnState(existingTurn, 'agent', 'reply');
+                            expandGemmaTurn(existingTurn, 'reply');
+                            if (window.Prism) Prism.highlightAllUnder(existingTurn);
+                        }
+                        const existingLocal = localHistory.find(entry => entry.role === 'agent' && entry.turnId === m.turnId);
+                        if (existingLocal) {
+                            existingLocal.text = backendText;
+                            existingLocal.nodeBadge = m.nodeBadge || m.node;
+                            existingLocal.thought = m.thought;
+                            existingLocal.phase = m.phase;
+                            existingLocal.timestamp = m.timestamp;
+                        } else {
+                            localHistory.push({
+                                role: m.role,
+                                text: backendText,
+                                nodeBadge: m.nodeBadge || m.node,
+                                thought: m.thought,
+                                turnId: m.turnId,
+                                phase: m.phase,
+                                timestamp: m.timestamp
+                            });
+                        }
+                        seen.add(gemmaHistoryEntryKey(m));
+                        return;
+                    }
+                }
+                const key = gemmaHistoryEntryKey(m);
+                if (seen.has(key)) return;
+                if (body && !body.querySelector('.gp-turn')) body.innerHTML = '';
+                gemmaAppendMsg(
+                    m.role,
+                    m.text,
+                    m.nodeBadge || m.node,
+                    m.thought,
+                    false,
+                    options.animate !== false,
+                    { turnId: m.turnId, phase: m.phase, timestamp: m.timestamp }
+                );
+                seen.add(key);
+                localHistory.push({
+                    role: m.role,
+                    text: m.text,
+                    nodeBadge: m.nodeBadge || m.node,
+                    thought: m.thought,
+                    turnId: m.turnId,
+                    phase: m.phase || '',
+                    timestamp: m.timestamp || new Date().toISOString()
+                });
+                appended += 1;
+            });
+
+            localStorage.setItem(getGemmaHistoryKey(), JSON.stringify(localHistory));
+            return { history, appended, isBusy: !!data.isBusy };
+        }
+
+        async function handleGemmaBackgroundCompletion(turnId = '') {
+            try {
+                const sync = await reconcileGemmaHistoryFromBackend({ animate: true });
+                if (typeof refreshCache === 'function') {
+                    await refreshCache();
+                }
+                const latest = Array.isArray(sync.history) && sync.history.length ? sync.history[sync.history.length - 1] : null;
+                if (latest?.phase === 'validation_complete') {
+                    showToast('Bus staged and registry refreshed.', 'success');
+                } else if (latest?.phase === 'duplicate_blocked') {
+                    showToast('Duplicate verification finished.', 'info');
+                } else if (latest?.phase === 'audit_active') {
+                    showToast('This bus is already active in HITL audit.', 'info');
+                } else if (sync.appended > 0) {
+                    showToast('Background pipeline update received.', 'success');
+                }
+            } catch (err) {
+                console.warn('Gemma completion sync failed', err);
+            } finally {
+                setBackendBusyUI(false, { turnId });
+            }
+        }
 
         (function initGemmaPanel() {
             const panel = document.getElementById('gemma-panel');
@@ -16106,15 +17275,10 @@
             const sessionId = getGemmaSessionId();
 
             // Load history from Backend (Source of Truth)
-            fetch(`http://127.0.0.1:8000/history?sessionId=${sessionId}`)
-                .then(r => r.json())
+            reconcileGemmaHistoryFromBackend({ animate: false })
                 .then(data => {
                     const history = data.history || [];
-                    if (history.length > 0) {
-                        body.innerHTML = ''; // Clear welcome
-                        history.forEach(m => gemmaAppendMsg(m.role, m.text, m.nodeBadge || m.node, m.thought, false, false, { turnId: m.turnId, phase: m.phase, timestamp: m.timestamp }));
-                        localStorage.setItem(getGemmaHistoryKey(), JSON.stringify(history));
-                    } else {
+                    if (history.length === 0) {
                         const localHistory = JSON.parse(localStorage.getItem(getGemmaHistoryKey()) || '[]');
                         if (localHistory.length > 0) {
                             body.innerHTML = '';
@@ -16124,6 +17288,7 @@
 
                     // RESTORE PROCESSING STATE if backend is busy
                     if (data.isBusy) {
+                        gemmaWasBackendBusy = true;
                         setGemmaProcessingUI(true);
                         document.getElementById('gpStatusText').textContent = 'Resuming session...';
                         const activeTurn = getGemmaTurnById(getGemmaActiveTurnId()) || getLatestGemmaTurn({ needsReply: true }) || getLatestGemmaTurn() || createGemmaTurn(getGemmaActiveTurnId() || createGemmaTurnId());
@@ -16356,14 +17521,8 @@
             if (!panel) return;
             panel.style.display = 'flex';
             panel.classList.remove('minimized');
-            // Reset to default position
             if (!panel.classList.contains('fullscreen')) {
-                panel.style.width = 'auto';
-                panel.style.height = 'auto';
-                panel.style.left = 'clamp(132px, 15vw, 330px)';
-                panel.style.right = 'clamp(132px, 15vw, 330px)';
-                panel.style.top = 'calc(var(--toolbar-h) + clamp(18px, 2.3vh, 34px))';
-                panel.style.bottom = 'calc(var(--status-h) + clamp(18px, 3vh, 44px))';
+                clearGemmaPanelPlacement(panel);
             }
             syncGemmaBackdrop();
         }
@@ -16371,6 +17530,270 @@
         // ── AGENTIC COMMAND CENTER LOGIC ──
         // SSE Initialization (Phase 0)
         let sseConnection = null;
+        const pipelineFeedSeen = new Set();
+
+        function getPipelineFeedCollapsedStorageKey() {
+            return 'puruliaPipelineFeedCollapsed';
+        }
+
+        function applyPipelineFeedCollapsedState(collapsed) {
+            const panel = document.getElementById('pipelineFeedPanel');
+            const toggle = document.getElementById('pipelineFeedToggle');
+            if (!panel || !toggle) return;
+            panel.classList.toggle('is-collapsed', !!collapsed);
+            toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            toggle.setAttribute('title', collapsed ? 'Expand pipeline feed' : 'Collapse pipeline feed');
+        }
+
+        function restorePipelineFeedCollapsedState() {
+            let collapsed = false;
+            try {
+                collapsed = localStorage.getItem(getPipelineFeedCollapsedStorageKey()) === '1';
+            } catch (_) {
+                collapsed = false;
+            }
+            applyPipelineFeedCollapsedState(collapsed);
+        }
+
+        function initPipelineFeedToggle() {
+            const toggle = document.getElementById('pipelineFeedToggle');
+            if (!toggle || toggle.dataset.bound === '1') return;
+            toggle.dataset.bound = '1';
+            toggle.addEventListener('click', () => {
+                const panel = document.getElementById('pipelineFeedPanel');
+                if (!panel) return;
+                const collapsed = !panel.classList.contains('is-collapsed');
+                applyPipelineFeedCollapsedState(collapsed);
+                try {
+                    localStorage.setItem(getPipelineFeedCollapsedStorageKey(), collapsed ? '1' : '0');
+                } catch (_) {}
+            });
+        }
+
+        function getPipelineFeedStorageKey() {
+            return 'puruliaPipelineFeed';
+        }
+
+        function getPipelineFeedServerSessionStorageKey() {
+            return 'puruliaPipelineFeedServerStartedAt';
+        }
+
+        function resetPipelineFeedUi() {
+            const list = document.getElementById('pipelineFeedList');
+            if (list) {
+                list.innerHTML = `
+                    <div class="pipeline-feed-empty" id="pipelineFeedEmpty">
+                        No backend milestones yet. The feed updates when validation, PHITL sync, and discovery rebuild events arrive.
+                    </div>
+                `;
+            }
+            pipelineFeedSeen.clear();
+        }
+
+        function clearPipelineFeedSnapshotForServerRestart() {
+            try {
+                localStorage.removeItem(getPipelineFeedStorageKey());
+                localStorage.removeItem(getDiscoveryRevealStorageKey());
+            } catch (_) {}
+            resetPipelineFeedUi();
+            clearDiscoveryReadyReveal();
+        }
+
+        function reconcilePipelineFeedServerSession(serverStartedAt) {
+            const sessionId = String(serverStartedAt || '').trim();
+            if (!sessionId) return false;
+            currentServerStartedAt = sessionId;
+            let previous = '';
+            try {
+                previous = localStorage.getItem(getPipelineFeedServerSessionStorageKey()) || '';
+                if (previous && previous !== sessionId) {
+                    clearPipelineFeedSnapshotForServerRestart();
+                }
+                localStorage.setItem(getPipelineFeedServerSessionStorageKey(), sessionId);
+            } catch (_) {}
+            return !!previous && previous !== sessionId;
+        }
+
+        async function syncPipelineFeedServerSessionBeforeRestore() {
+            try {
+                const cache = await fetchJsonRetry('/get_cache', {}, 30000, 1);
+                return reconcilePipelineFeedServerSession(cache.server_started_at || '');
+            } catch (err) {
+                console.warn('Pipeline feed server-session check failed', err);
+                return false;
+            }
+        }
+
+        function savePipelineFeedSnapshot() {
+            const list = document.getElementById('pipelineFeedList');
+            if (!list) return;
+            const items = Array.from(list.querySelectorAll('.pipeline-feed-item')).map(node => ({
+                status: Array.from(node.classList).find(c => c === 'pending' || c === 'success' || c === 'error') || 'pending',
+                kicker: node.querySelector('.pipeline-feed-kicker')?.textContent || '',
+                name: node.querySelector('.pipeline-feed-name')?.textContent || '',
+                time: node.querySelector('.pipeline-feed-time')?.textContent || '',
+                detail: node.querySelector('.pipeline-feed-detail')?.textContent || ''
+            }));
+            localStorage.setItem(getPipelineFeedStorageKey(), JSON.stringify(items));
+        }
+
+        function restorePipelineFeedSnapshot() {
+            const list = document.getElementById('pipelineFeedList');
+            const empty = document.getElementById('pipelineFeedEmpty');
+            if (!list) return;
+            let items = [];
+            try {
+                items = JSON.parse(localStorage.getItem(getPipelineFeedStorageKey()) || '[]');
+            } catch (_) {
+                items = [];
+            }
+            if (!Array.isArray(items) || items.length === 0) return;
+            if (empty) empty.style.display = 'none';
+            items.forEach(item => {
+                const row = document.createElement('div');
+                row.className = `pipeline-feed-item ${item.status || 'pending'}`;
+                row.innerHTML = `
+                    <div class="pipeline-feed-kicker">${item.kicker || ''}</div>
+                    <div class="pipeline-feed-row">
+                        <div class="pipeline-feed-name">${item.name || ''}</div>
+                        <div class="pipeline-feed-time">${item.time || ''}</div>
+                    </div>
+                    <div class="pipeline-feed-detail">${item.detail || ''}</div>
+                `;
+                list.appendChild(row);
+            });
+            const latestReady = items.find(item =>
+                /discovery/i.test(String(item.kicker || '')) &&
+                /ready for discovery/i.test(String(item.name || ''))
+            );
+            const reg = latestReady ? extractRegNoFromText(latestReady.name) : '';
+            if (reg) scheduleDiscoveryReadyReveal(reg, { delayMs: 900, maxRetries: 24 });
+        }
+
+        function restoreDiscoveryReadyRevealFromStorage() {
+            let reg = '';
+            try {
+                reg = localStorage.getItem(getDiscoveryRevealStorageKey()) || '';
+            } catch (_) {
+                reg = '';
+            }
+            reg = String(reg || '').trim().toUpperCase();
+            if (reg) scheduleDiscoveryReadyReveal(reg, { delayMs: 1200, maxRetries: 24 });
+        }
+
+        function normalizePipelinePhase(data = {}) {
+            return data?.payload?.phase || data?.payload?.activity?.phase || '';
+        }
+
+        function getPipelineFeedEvent(data = {}) {
+            const phase = normalizePipelinePhase(data);
+            const message = String(data.message || '').trim();
+            const activity = data?.payload?.activity || {};
+            const regMatch = message.match(/\[([A-Z0-9-]+)\]/);
+            const reg = regMatch ? regMatch[1] : '';
+
+            if (phase === 'stage1_solver') {
+                return {
+                    key: `${phase}|${reg || message}`,
+                    kicker: 'Stage 1',
+                    name: reg ? `${reg} queued for solver` : 'Stage 1 solver queued',
+                    detail: 'Polyline construction started and is being prepared for human audit.',
+                    status: 'pending'
+                };
+            }
+
+            if (phase === 'ready_for_audit') {
+                return {
+                    key: `${phase}|${reg || message}`,
+                    kicker: 'Human audit',
+                    name: reg ? `${reg} ready for HITL review` : 'Bus ready for HITL review',
+                    detail: 'The route has been staged and is waiting for the user to verify and secure it.',
+                    status: 'success'
+                };
+            }
+
+            if (phase === 'phitl_synced') {
+                return {
+                    key: `${phase}|${reg || message}`,
+                    kicker: 'PHITL sync',
+                    name: reg ? `${reg} secured by user` : 'Bus secured by user',
+                    detail: 'Human verification is complete. Discovery rebuild has started.',
+                    status: 'success'
+                };
+            }
+
+            if (phase === 'discovery_rebuild') {
+                return {
+                    key: `${phase}|${reg || message}`,
+                    kicker: 'Discovery',
+                    name: reg ? `${reg} rebuilding discovery bundles` : 'Discovery rebuild running',
+                    detail: activity.detail || 'Searchable network bundles are being regenerated for discovery.',
+                    status: 'pending'
+                };
+            }
+
+            if (phase === 'discovery_ready') {
+                return {
+                    key: `${phase}|${reg || message}`,
+                    kicker: 'Discovery',
+                    name: reg ? `${reg} ready for discovery` : 'Bus ready for discovery',
+                    detail: 'The rebuild is complete and this bus is now available in the searchable network.',
+                    status: 'success'
+                };
+            }
+
+            if (phase === 'validation_complete' && /Pipeline Update:/i.test(message)) {
+                return {
+                    key: `${phase}|${message}`,
+                    kicker: 'Validation',
+                    name: 'Validator accepted extracted bus data',
+                    detail: 'The extracted schedule passed duplicate and registration checks.',
+                    status: 'success'
+                };
+            }
+
+            if (phase === 'duplicate_blocked') {
+                return {
+                    key: `${phase}|${message}`,
+                    kicker: 'Validation',
+                    name: 'Duplicate detected',
+                    detail: 'The bus already exists in the registry, so no new staging was created.',
+                    status: 'error'
+                };
+            }
+
+            return null;
+        }
+
+        function appendPipelineFeedEvent(data = {}) {
+            const item = getPipelineFeedEvent(data);
+            if (!item || pipelineFeedSeen.has(item.key)) return;
+            pipelineFeedSeen.add(item.key);
+
+            const list = document.getElementById('pipelineFeedList');
+            const empty = document.getElementById('pipelineFeedEmpty');
+            if (!list) return;
+            if (empty) empty.style.display = 'none';
+
+            const row = document.createElement('div');
+            row.className = `pipeline-feed-item ${item.status || 'pending'}`;
+            const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            row.innerHTML = `
+                <div class="pipeline-feed-kicker">${item.kicker}</div>
+                <div class="pipeline-feed-row">
+                    <div class="pipeline-feed-name">${item.name}</div>
+                    <div class="pipeline-feed-time">${now}</div>
+                </div>
+                <div class="pipeline-feed-detail">${item.detail}</div>
+            `;
+            list.prepend(row);
+
+            while (list.children.length > 8) {
+                list.removeChild(list.lastElementChild);
+            }
+            savePipelineFeedSnapshot();
+        }
+
         function initGemmaSSE() {
             if (sseConnection) return;
             // Connect directly to the orchestrator's SSE endpoint on port 8000
@@ -16389,11 +17812,15 @@
                     };
                     if (data.type === "SYSTEM_ALERT") {
                         gemmaAppendMsg('system', data.message, 'SYSTEM_ALERT', '', true, true, eventMeta);
+                        appendPipelineFeedEvent(data);
+                        maybeTriggerDiscoveryReadyReveal(data);
                     } else if (data.type === "AGENT_THOUGHT") {
                         // Realtime Process Streaming (Phase 1 Visibility)
                         updateGemmaStreamingThought(data.message, eventMeta);
+                        appendPipelineFeedEvent(data);
                     } else if (data.type === "AGENT_ACTION") {
                         gemmaAppendMsg('agent', data.message, 'GUARDIAN_SUCCESS', '', true, true, eventMeta);
+                        appendPipelineFeedEvent(data);
                     }
                 } catch (e) {
                     console.error("SSE Parse Error:", e);
@@ -16406,7 +17833,17 @@
         }
 
         // Initialize SSE when the page loads
-        document.addEventListener('DOMContentLoaded', initGemmaSSE);
+        document.addEventListener('DOMContentLoaded', () => {
+            initPipelineFeedToggle();
+            restorePipelineFeedCollapsedState();
+            syncPipelineFeedServerSessionBeforeRestore().then(serverChanged => {
+                if (!serverChanged) {
+                    restorePipelineFeedSnapshot();
+                    restoreDiscoveryReadyRevealFromStorage();
+                }
+            });
+            initGemmaSSE();
+        });
 
         // Click on backdrop to minimize panel
         document.addEventListener('DOMContentLoaded', () => {
@@ -17245,6 +18682,8 @@
                 const contentHtml = role === 'agent' ? gemmaRenderAgentContent(text || '') : (text || '');
                 const metaHtml = `<span>${now}</span>`;
                 setGemmaCell(turn, 'reply', contentHtml, metaHtml, animate);
+                const replyContent = getGemmaReplyContentElement(turn);
+                if (replyContent) replyContent.dataset.sourceText = String(text || '');
                 flushGemmaPendingReplyUpdates(turn, animate);
                 applyGemmaTurnState(turn, role, 'reply');
                 expandGemmaTurn(turn, 'reply');
@@ -17310,7 +18749,15 @@
                 if (!res.ok) return false;
                 const data = await res.json();
                 const busy = !!data.isBusy;
-                setBackendBusyUI(busy, { turnId });
+                if (busy) {
+                    gemmaWasBackendBusy = true;
+                    setBackendBusyUI(true, { turnId });
+                } else if (gemmaWasBackendBusy) {
+                    gemmaWasBackendBusy = false;
+                    await handleGemmaBackgroundCompletion(turnId);
+                } else {
+                    setBackendBusyUI(false, { turnId });
+                }
                 return busy;
             } catch (e) {
                 return false;
@@ -17458,11 +18905,6 @@
             const body = document.getElementById('gpBody');
             const activeTurn = getGemmaTurnById(turnId) || resolveGemmaTurn(turnId, { needsReply: true });
             updateGemmaTurnThinking(activeTurn, 'Thinking through the route network...', true);
-            if (currentImg) {
-                showGemmaTurnNotice(activeTurn, 'Image analysis can take up to 10 minutes.', 5000); // reduced fade time to 5000ms
-            } else {
-                showGemmaTurnNotice(activeTurn, 'This reply can take up to 1 minute.', 5000); // reduced fade time to 5000ms
-            }
             body.scrollTop = body.scrollHeight;
 
 
@@ -17483,6 +18925,7 @@
                 const data = await response.json();
 
                 gemmaAppendMsg('agent', data.reply, data.node, data.thought, true, true, { turnId: data.turnId || turnId });
+                await reconcileGemmaHistoryFromBackend({ animate: false, updateExisting: true });
 
                 // After immediate response, keep UI in sync with backend busy state
                 const busy = await syncBackendBusyOnce(turnId);
@@ -17643,11 +19086,13 @@
                 if (status && status.is_warming) {
                     if (statusText) statusText.textContent = `WARMING: ${status.progress_percent}% (${status.stage})`;
                     if (statusDot) statusDot.className = 'gp-status-dot pulse warning';
+                    updateFleetStartupNotice(status, Object.keys(busData || {}).length);
 
                     if (!gemmaWarmupPoll) {
                         gemmaWarmupPoll = setInterval(updateGemmaWarmupStatus, 3000);
                     }
                 } else {
+                    updateFleetStartupNotice(status, Object.keys(busData || {}).length);
                     if (statusText && statusText.textContent.startsWith('WARMING')) {
                         statusText.textContent = 'SYSTEM READY';
                         if (statusDot) statusDot.className = 'gp-status-dot';

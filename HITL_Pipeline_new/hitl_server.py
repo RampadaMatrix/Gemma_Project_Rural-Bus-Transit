@@ -37,7 +37,7 @@ def verify_token():
     if _is_loopback_request():
         return
     # Allow static files and health checks (if any)
-    if request.path in ["/route_verification_map.html", "/"] or request.path.startswith("/Background/"):
+    if request.path in ["/route_verification_map.html", "/"] or request.path.startswith("/Background/") or request.path.startswith("/backgrounds/"):
         return
     if request.method == "OPTIONS":
         return
@@ -98,6 +98,7 @@ _RAPTOR_METADATA_CACHE = {"sig": None, "payload": None}
 
 _GET_CACHE_DATA_CACHE = {"sig": None, "payload": None, "built_at": None}
 _GET_CACHE_DATA_LOCK = threading.Lock()
+_GET_CACHE_REFRESHING = False
 
 PRECOMPUTED_CACHE_FILE = BASE_DIR / "precomputed_cache.json"
 
@@ -108,6 +109,20 @@ WARMUP_STATE = {
     "progress": 0,
     "error": None
 }
+SERVER_STARTED_AT = datetime.now().isoformat()
+
+
+def warmup_status_payload():
+    ready = bool(WARMUP_STATE.get("ready"))
+    started = bool(WARMUP_STATE.get("started"))
+    phase = str(WARMUP_STATE.get("phase") or "idle")
+    progress = int(WARMUP_STATE.get("progress") or 0)
+    return {
+        **WARMUP_STATE,
+        "is_warming": started and not ready,
+        "progress_percent": progress,
+        "stage": phase,
+    }
 
 
 def load_json(path: Path, default):
@@ -1047,6 +1062,90 @@ def build_secure_registry(secured_data):
     return registry
 
 
+def build_cache_payload():
+    dataset, output_dataset, route_source = load_route_view_dataset()
+    tt_output = load_bus_dataset(TT_OUTPUT_FILE)
+
+    for tt_bus in tt_output.get("buses", []) or []:
+        if not isinstance(tt_bus, dict):
+            continue
+        _, view_bus, _ = find_bus(dataset, tt_bus.get("bus_name"), tt_bus.get("reg_no"))
+        if view_bus is None:
+            continue
+        _overlay_tt_times(view_bus, tt_bus)
+        enrich_bus_kinematics(view_bus)
+
+    routes = dataset_to_verified_routes(dataset)
+    output_routes = dataset_to_verified_routes(output_dataset)
+    secured_data = load_secured_data()
+    secure_registry = build_secure_registry(secured_data)
+    secure_ids = set(secure_registry.keys()) | set(secured_data.get("locked_ids") or [])
+    polyline_output = load_bus_dataset(OUTPUT_FILE)
+    polyline_ids = {
+        normalize_bus_identity(b.get("bus_name"), b.get("reg_no"))[2]
+        for b in (polyline_output.get("buses") or [])
+    }
+    tt_ids = {
+        normalize_bus_identity(b.get("bus_name"), b.get("reg_no"))[2]
+        for b in (tt_output.get("buses") or [])
+    }
+
+    hitl_status = {}
+    for b in dataset.get("buses") or []:
+        _, _, b_id = normalize_bus_identity(b.get("bus_name"), b.get("reg_no"))
+        if b_id in secure_ids:
+            hitl_status[b_id] = "SECURE"
+        elif b_id in tt_ids:
+            hitl_status[b_id] = "TTHITL"
+        elif b_id in polyline_ids:
+            hitl_status[b_id] = "PHITL"
+        else:
+            hitl_status[b_id] = "INPUT"
+
+    return {
+        "status": "success",
+        "hitl_status": hitl_status,
+        "warmup_ready": True,
+        "secure_bus_ids": sorted(list(secure_ids)),
+        "tt_hitl_ids": sorted(list(tt_ids)),
+        "polyline_hitl_ids": sorted(list(polyline_ids)),
+        "secure_registry": secure_registry,
+        "verified_routes": routes,
+        "secure_verified_routes": dataset_to_verified_routes(secured_data),
+        "route_source": route_source,
+        "metadata": dataset.get("metadata") if isinstance(dataset, dict) else {},
+        "hitl_storage": buses_to_hitl_storage(output_routes),
+    }
+
+
+def refresh_get_cache_background(expected_sig=None):
+    global _GET_CACHE_REFRESHING
+    try:
+        payload = build_cache_payload()
+        sig = expected_sig or _get_cache_signature()
+        with _GET_CACHE_DATA_LOCK:
+            _GET_CACHE_DATA_CACHE["sig"] = sig
+            _GET_CACHE_DATA_CACHE["payload"] = payload
+            _GET_CACHE_DATA_CACHE["built_at"] = datetime.now().isoformat(timespec="seconds")
+        save_precomputed_cache(payload, sig)
+    except Exception as exc:
+        print(f"[CACHE REFRESH ERROR] {exc}", flush=True)
+    finally:
+        _GET_CACHE_REFRESHING = False
+
+
+def request_get_cache_refresh(expected_sig=None):
+    global _GET_CACHE_REFRESHING
+    if _GET_CACHE_REFRESHING:
+        return
+    _GET_CACHE_REFRESHING = True
+    threading.Thread(
+        target=refresh_get_cache_background,
+        args=(expected_sig,),
+        daemon=True,
+    ).start()
+
+
 def is_locked_bus(bus_name, reg_no, locked_ids):
     return normalize_locked_id(bus_name, reg_no) in locked_ids
 
@@ -1882,27 +1981,48 @@ def api_config():
     return jsonify({"status": "success", "google_maps_api_key": key})
 
 
+@app.route("/api/discovery/villages_identified", methods=["GET"])
+def get_identified_villages():
+    village_file = BASE_DIR / "Villages_data" / "Villages_data_identified.json"
+    try:
+        if not village_file.exists():
+            return jsonify({"status": "error", "message": "Village dataset not found.", "villages": []}), 404
+        with village_file.open("r", encoding="utf-8") as fh:
+            villages = json.load(fh)
+        if not isinstance(villages, list):
+            villages = []
+        return jsonify({"status": "success", "villages": villages})
+    except Exception as exc:
+        return jsonify({"status": "error", "message": str(exc), "villages": []}), 500
+
+
 @app.route("/get_cache", methods=["GET"])
 def get_cache():
     sig = _get_cache_signature()
+    cached_payload = None
     with _GET_CACHE_DATA_LOCK:
         cached_sig = _GET_CACHE_DATA_CACHE.get("sig")
         cached_payload = _GET_CACHE_DATA_CACHE.get("payload")
-        
-        # If we have a payload (even if sig doesn't match perfectly), we return it
-        # to avoid blocking. The background warmup will update it eventually.
+
         if isinstance(cached_payload, dict):
-            # Inject warmup status into the payload
+            is_stale = cached_sig != sig
+            if is_stale:
+                request_get_cache_refresh(sig)
             response_payload = dict(cached_payload)
-            response_payload["warmup_status"] = WARMUP_STATE
-            response_payload["cache_is_stale"] = (cached_sig != sig)
+            response_payload["warmup_status"] = warmup_status_payload()
+            response_payload["cache_is_stale"] = is_stale
+            response_payload["cache_built_at"] = _GET_CACHE_DATA_CACHE.get("built_at")
+            response_payload["server_started_at"] = SERVER_STARTED_AT
             return jsonify(response_payload)
+
+    request_get_cache_refresh(sig)
 
     # Fallback if no cache at all (very first boot ever)
     return jsonify({
         "status": "warming",
         "message": "Server is warming up cache in background.",
-        "warmup_status": WARMUP_STATE,
+        "warmup_status": warmup_status_payload(),
+        "server_started_at": SERVER_STARTED_AT,
         "verified_routes": [],
         "secure_verified_routes": []
     })
@@ -2908,51 +3028,7 @@ def background_warmup():
 
         # Phase 3: Build Final Cache
         WARMUP_STATE["phase"] = "final_cache"
-        # We trigger a dummy get_cache internal logic build
-        # This will populate _GET_CACHE_DATA_CACHE
-        # (We basically need the logic from get_cache here without the Flask context)
-        dataset, output_dataset, route_source = load_route_view_dataset()
-        tt_output = load_bus_dataset(TT_OUTPUT_FILE)
-        
-        for tt_bus in tt_output.get("buses", []) or []:
-            if not isinstance(tt_bus, dict): continue
-            _, view_bus, _ = find_bus(dataset, tt_bus.get("bus_name"), tt_bus.get("reg_no"))
-            if view_bus is None: continue
-            _overlay_tt_times(view_bus, tt_bus)
-            enrich_bus_kinematics(view_bus)
-
-        routes = dataset_to_verified_routes(dataset)
-        output_routes = dataset_to_verified_routes(output_dataset)
-        secured_data = load_secured_data()
-        secure_registry = build_secure_registry(secured_data)
-        secure_ids = set(secure_registry.keys()) | set(secured_data.get("locked_ids") or [])
-        polyline_output = load_bus_dataset(OUTPUT_FILE)
-        polyline_ids = {normalize_bus_identity(b.get("bus_name"), b.get("reg_no"))[2] for b in (polyline_output.get("buses") or [])}
-        tt_ids = {normalize_bus_identity(b.get("bus_name"), b.get("reg_no"))[2] for b in (tt_output.get("buses") or [])}
-
-        hitl_status = {}
-        for b in dataset.get("buses") or []:
-            _, _, b_id = normalize_bus_identity(b.get("bus_name"), b.get("reg_no"))
-            if b_id in secure_ids: hitl_status[b_id] = "SECURE"
-            elif b_id in tt_ids: hitl_status[b_id] = "TTHITL"
-            elif b_id in polyline_ids: hitl_status[b_id] = "PHITL"
-            else: hitl_status[b_id] = "INPUT"
-
-        hitl_storage = buses_to_hitl_storage(output_routes)
-        payload = {
-            "status": "success",
-            "hitl_status": hitl_status,
-            "warmup_ready": True,
-            "secure_bus_ids": sorted(list(secure_ids)),
-            "tt_hitl_ids": sorted(list(tt_ids)),
-            "polyline_hitl_ids": sorted(list(polyline_ids)),
-            "secure_registry": secure_registry,
-            "verified_routes": routes,
-            "secure_verified_routes": dataset_to_verified_routes(secured_data),
-            "route_source": route_source,
-            "metadata": dataset.get("metadata") if isinstance(dataset, dict) else {},
-            "hitl_storage": hitl_storage,
-        }
+        payload = build_cache_payload()
 
         sig = _get_cache_signature()
         with _GET_CACHE_DATA_LOCK:

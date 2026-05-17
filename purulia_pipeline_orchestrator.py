@@ -6,6 +6,7 @@ import subprocess
 import sys
 import shutil
 import threading
+import atexit
 from datetime import datetime
 from fastapi import FastAPI, HTTPException, Header, Depends, Query, Request
 
@@ -14,7 +15,7 @@ from typing import List, Optional, Annotated
 
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import RedirectResponse, StreamingResponse
 import asyncio
 import sys
 from typing import Any, Dict
@@ -160,6 +161,17 @@ def format_extracted_data_handoff(extracted_json: str) -> str:
     )
 
 
+def is_recoverable_model_error_text(text: str) -> bool:
+    """Detect transient upstream model failures that should not enter the extraction pipeline."""
+    normalized = str(text or "").strip()
+    if not normalized:
+        return False
+    return (
+        "THOUGHT: Upstream model error" in normalized
+        or "[ALERT] The model endpoint returned an internal error" in normalized
+    )
+
+
 def parse_hybrid(content: str) -> tuple:
     """Parses HYBRID format: 'USER_QUERY: <q> [OBSERVED_DATA]: <json>' into (query, json)."""
     query_match = re.search(r'USER_QUERY:\s*(.*?)\s*\[OBSERVED_DATA\]:', content, re.DOTALL)
@@ -194,6 +206,10 @@ def update_master_bus_count():
 
 POLL_INTERVAL_SEC = 5
 _SERVER_LAUNCH_TIME = 0
+_HITL_SERVER_PROCESS = None
+_HITL_SERVER_LOG_HANDLE = None
+_HITL_SERVER_AUTOSTART_WARNED = False
+_HITL_SERVER_ONLINE_LOGGED = False
 
 # --- GEMMA AGENT SETUP ---
 gemma_agent = None
@@ -284,7 +300,7 @@ def log(msg):
     print(f"[{timestamp}] [ORCHESTRATOR] {msg}", flush=True)
 
 # --- SSE INFRASTRUCTURE (PHASE 0) ---
-alert_queue = asyncio.Queue()
+alert_subscribers = set()
 
 # We need the main event loop to put items in the queue from a background thread
 main_loop = None
@@ -302,10 +318,20 @@ def push_alert(alert_type: str, message: str, payload: dict = None):
         "payload": payload or {},
         "timestamp": datetime.now().isoformat()
     }
-    # Put in queue safely from sync threads
+    # Broadcast safely from sync threads to all connected SSE clients
     try:
         if main_loop and not main_loop.is_closed():
-            asyncio.run_coroutine_threadsafe(alert_queue.put(event), main_loop)
+            async def _broadcast():
+                stale = []
+                for subscriber in list(alert_subscribers):
+                    try:
+                        subscriber.put_nowait(event)
+                    except Exception:
+                        stale.append(subscriber)
+                for subscriber in stale:
+                    alert_subscribers.discard(subscriber)
+
+            asyncio.run_coroutine_threadsafe(_broadcast(), main_loop)
     except Exception as e:
         print(f"[SSE Error] Failed to push alert: {e}")
 
@@ -358,19 +384,33 @@ def push_activity(session_id: Optional[str], turn_id: Optional[str], kind: str, 
 async def sse_stream():
     """SSE Endpoint for pushing live alerts to the UI."""
     async def event_generator():
+        subscriber_queue = asyncio.Queue()
+        alert_subscribers.add(subscriber_queue)
         try:
             while True:
                 try:
                     # Wait for 15 seconds for an event, else send heartbeat
-                    event = await asyncio.wait_for(alert_queue.get(), timeout=15.0)
+                    event = await asyncio.wait_for(subscriber_queue.get(), timeout=15.0)
                     yield f"data: {json.dumps(event)}\n\n"
                 except asyncio.TimeoutError:
                     # Heartbeat to keep connection alive and reduce "reflection" lag
                     yield f"data: {json.dumps({'type': 'HEARTBEAT', 'timestamp': datetime.now().isoformat()})}\n\n"
         except asyncio.CancelledError:
             pass
+        finally:
+            alert_subscribers.discard(subscriber_queue)
     
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+
+@app.get("/")
+async def gateway_index():
+    return RedirectResponse("http://127.0.0.1:5000/")
+
+
+@app.get("/route_verification_map.html")
+async def gateway_route_verification_map():
+    return RedirectResponse("http://127.0.0.1:5000/route_verification_map.html")
 
 def load_state():
     with state_lock:
@@ -688,11 +728,27 @@ def check_hitl_completion():
             for reg, info in state["buses"].items():
                 if info["status"] == "DISCOVERY_PENDING":
                     info["status"] = "COMPLETED"
+                    push_session_alert(
+                        info.get("sessionId"),
+                        info.get("turnId"),
+                        "SYSTEM_ALERT",
+                        f"[{reg}] Discovery rebuild complete. Bus is now ready for discovery.",
+                        {"phase": "discovery_ready"}
+                    )
             save_state(state)
         else:
             log(f"CRITICAL ERROR in Discovery Build: {out}")
 
 import socket
+
+def _env_flag(name, default=True):
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() not in {"0", "false", "no", "off", "disabled"}
+
+def _hitl_visible_console_enabled():
+    return os.name == "nt" and _env_flag("HITL_SERVER_VISIBLE_CONSOLE", True)
 
 def is_server_alive(host="127.0.0.1", port=5000):
     try:
@@ -701,12 +757,46 @@ def is_server_alive(host="127.0.0.1", port=5000):
     except OSError:
         return False
 
+def cleanup_managed_hitl_server():
+    global _HITL_SERVER_PROCESS, _HITL_SERVER_LOG_HANDLE
+    process = _HITL_SERVER_PROCESS
+    _HITL_SERVER_PROCESS = None
+    if process is not None and process.poll() is None:
+        log(f"[HITL] Stopping managed HITL Server PID {process.pid}...")
+        process.terminate()
+        try:
+            process.wait(timeout=8)
+        except subprocess.TimeoutExpired:
+            process.kill()
+    if _HITL_SERVER_LOG_HANDLE is not None:
+        try:
+            _HITL_SERVER_LOG_HANDLE.close()
+        except OSError:
+            pass
+        _HITL_SERVER_LOG_HANDLE = None
+
+atexit.register(cleanup_managed_hitl_server)
+
 def ensure_hitl_server():
-    global _SERVER_LAUNCH_TIME
+    global _SERVER_LAUNCH_TIME, _HITL_SERVER_PROCESS, _HITL_SERVER_LOG_HANDLE, _HITL_SERVER_AUTOSTART_WARNED, _HITL_SERVER_ONLINE_LOGGED
+    if not _env_flag("HITL_SERVER_AUTOSTART", True):
+        if not _HITL_SERVER_AUTOSTART_WARNED:
+            log("[HITL] Autostart disabled by HITL_SERVER_AUTOSTART=0. Start HITL_Pipeline_new/hitl_server.py manually when needed.")
+            _HITL_SERVER_AUTOSTART_WARNED = True
+        return
+
+    if _HITL_SERVER_PROCESS is not None and _HITL_SERVER_PROCESS.poll() is not None:
+        log(f"[HITL] Managed HITL Server PID {_HITL_SERVER_PROCESS.pid} exited with code {_HITL_SERVER_PROCESS.returncode}.")
+        _HITL_SERVER_PROCESS = None
+
     if is_server_alive():
         if _SERVER_LAUNCH_TIME > 0:
             log("[SUCCESS] HITL Server is now ONLINE and responding.")
             _SERVER_LAUNCH_TIME = 0
+            _HITL_SERVER_ONLINE_LOGGED = True
+        elif _HITL_SERVER_PROCESS is not None and not _HITL_SERVER_ONLINE_LOGGED:
+            log(f"[HITL] Managed HITL Server is ONLINE at http://127.0.0.1:5000 (PID {_HITL_SERVER_PROCESS.pid}).")
+            _HITL_SERVER_ONLINE_LOGGED = True
         return
 
     # Cooldown check: give the server up to 90 seconds to warm up (proximity engine prewarm is slow)
@@ -719,11 +809,45 @@ def ensure_hitl_server():
 
     log("[CRITICAL] HITL Server is DOWN. Attempting to bring it online...")
     _SERVER_LAUNCH_TIME = time.time()
+    _HITL_SERVER_ONLINE_LOGGED = False
     server_path = os.path.join(BASE_DIR, "HITL_Pipeline_new", "hitl_server.py")
-    # Run server in a new process group so it stays up
-    subprocess.Popen(["python", server_path], 
-                     cwd=os.path.join(BASE_DIR, "HITL_Pipeline_new"),
-                     creationflags=subprocess.CREATE_NEW_CONSOLE if os.name == 'nt' else 0)
+    run_dir = os.path.join(BASE_DIR, "HITL_Pipeline_new")
+    visible_console = _hitl_visible_console_enabled()
+    log_dir = os.path.join(BASE_DIR, "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    log_path = os.path.join(log_dir, "hitl_server.log")
+    pid_path = os.path.join(log_dir, "hitl_server.pid")
+    if _HITL_SERVER_LOG_HANDLE is not None:
+        try:
+            _HITL_SERVER_LOG_HANDLE.close()
+        except OSError:
+            pass
+    stdout_target = None
+    stderr_target = None
+    creationflags = 0
+    if visible_console:
+        creationflags = subprocess.CREATE_NEW_CONSOLE
+    else:
+        _HITL_SERVER_LOG_HANDLE = open(log_path, "a", encoding="utf-8", buffering=1)
+        stdout_target = _HITL_SERVER_LOG_HANDLE
+        stderr_target = subprocess.STDOUT
+        creationflags = subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+    _HITL_SERVER_PROCESS = subprocess.Popen(
+        [sys.executable, server_path],
+        cwd=run_dir,
+        stdout=stdout_target,
+        stderr=stderr_target,
+        creationflags=creationflags,
+    )
+    with open(pid_path, "w", encoding="utf-8") as f:
+        f.write(str(_HITL_SERVER_PROCESS.pid))
+    log(f"[HITL] Started managed HITL Server PID {_HITL_SERVER_PROCESS.pid}.")
+    if visible_console:
+        log("[HITL] Visible terminal opened for HITL Server. Close that window or press Ctrl+C there to stop it.")
+        log("[HITL] Set HITL_SERVER_VISIBLE_CONSOLE=0 to run it hidden with file logging instead.")
+    else:
+        log(f"[HITL] Child log: {log_path}")
+    log(f"[HITL] PID file:  {pid_path}")
     log("           Waiting for server to initialize (this may take up to 90s)...")
 
 # --- FILE EXPLORER ENDPOINT ---
@@ -862,7 +986,6 @@ async def chat_endpoint(req: ChatRequest):
     SESSIONS_IN_FLIGHT.add(sid)
     
     try:
-        from uuid import uuid4
         sid = req.sessionId or "default"
         safe_session_id = re.sub(r"[^A-Za-z0-9_.:-]+", "_", sid)
         session_thread_id = f"session_{safe_session_id}"
@@ -879,256 +1002,74 @@ async def chat_endpoint(req: ChatRequest):
         })
         _save_session_history(sid, history)
         
-        # --- MULTIMODAL IMAGE ROUTER ---
-        is_query_from_image = False
-        pending_hybrid_data = None
+        result = None
         if req.image:
-            user_requested_extraction = is_generic_image_extraction_instruction(req.message)
-            worker_id_val = f"worker_{uuid4().hex[:8]}"
-            log(f"[MCC] Image detected. Spawning Worker: {worker_id_val}")
-            push_activity(sid, turn_id, "worker", "Vision worker started", "Analyzing uploaded image for route questions, schedules, or hybrid posts.", node="VISION_WORKER", status="pending", phase="image_analysis")
-            
-            img_data = req.image
-            if "," in img_data: img_data = img_data.split(",")[1]
-            
-            prompt_text = (
-                "Analyze this image for transit information. There are three possibilities:\n"
-                "1. **USER_QUERY**: Someone asking how to reach a destination or about journey timings. Output exactly: 'USER_QUERY: <transcription>'.\n"
-                "2. **DATA_EXTRACTION**: A structured schedule or timetable. Extract into strict V5.0.0 JSON schema.\n"
-                "3. **HYBRID**: BOTH a user question and actual bus data (e.g. a social media post with a question and comment replies). "
-                "Output exactly: 'HYBRID: USER_QUERY: <question> [OBSERVED_DATA]: <extracted_json>'.\n\n"
-                f"USER_REQUEST_CONTEXT: {req.message or '[none]'}\n"
-                "Important: generic user commands such as 'analyze image and extract data' or 'extract schedule' "
-                "are extraction instructions, not travel questions. Use them to prefer DATA_EXTRACTION, unless "
-                "the visible image itself clearly contains a real travel question that must be answered.\n"
-                "Prioritize HYBRID only when the visible image itself contains both elements."
+            log("[CHAT] Image request received; processing in the main Gemma session.")
+            push_activity(
+                sid,
+                turn_id,
+                "model",
+                "Image analysis started",
+                "Analyzing and processing the uploaded image in the current session.",
+                node="MODEL",
+                status="pending",
+                phase="image_analysis",
             )
-            
-            worker_payload = {
+
+            img_data = req.image
+            if "," in img_data:
+                img_data = img_data.split(",", 1)[1]
+
+            direct_prompt = (
+                "Analyze the uploaded image and handle the complete task in this same Gemma session.\n\n"
+                "If the image contains a user travel question, answer it directly using the available route/timetable tools.\n"
+                "If the image contains bus schedule/timetable data, extract the data into the strict V5.0.0 JSON schema, "
+                "check for duplicate or active-audit buses, and persist only truly new buses to Polyline_Drawing_Pipeline/Stage_1_data.json.\n"
+                "If the image contains both a user question and bus data, answer the question and process the bus data in this same turn.\n\n"
+                "Persistence rules:\n"
+                "1) Check secured + master registry by reg_no and/or bus_name before staging.\n"
+                "2) If the bus is already in Stage_1/HITL audit, report the active audit state instead of treating it as a failed duplicate.\n"
+                "3) If it is a completed registry duplicate, do not enqueue Stage_1 and return a clear `Pipeline Not updated: [Failed] ... duplicate` message.\n"
+                "4) If it is new, save it to Stage_1_data.json and return the actual pipeline result.\n\n"
+                "Reply requirements:\n"
+                "- Always show the generated/extracted JSON in the visible reply lane as a fenced ```json block.\n"
+                "- Keep the JSON in the final reply even if you also save it, reject it as duplicate, or answer a travel question.\n"
+                "- Do not put the generated JSON only in thought/internal reasoning.\n\n"
+                f"USER_REQUEST_CONTEXT: {req.message or '[none]'}"
+            )
+            image_payload = {
                 "messages": [HumanMessage(content=[
-                    {"type": "text", "text": prompt_text},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_data}"}}
+                    {"type": "text", "text": direct_prompt},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_data}"}},
                 ])]
             }
-            worker_config = {"configurable": {"thread_id": worker_id_val}}
-            
-            # NON-BLOCKING: Run in thread so SSE heartbeats keep flowing
-            log(f"[MCC] Vision Worker {worker_id_val} starting analysis (non-blocking)...")
-            worker_result = await asyncio.to_thread(_sync_invoke_graph, worker_payload, worker_config)
-            log(f"[MCC] Vision Worker {worker_id_val} analysis COMPLETE.")
-            
-            # Extract worker output
-            worker_msg_obj = worker_result["messages"][-1]
-            worker_content = getattr(worker_msg_obj, "content", worker_msg_obj)
-            worker_text = str(worker_content)
+            result = await asyncio.to_thread(_sync_invoke_graph, image_payload, config)
+            reply_probe, _ = _extract_reply(result)
 
-            if user_requested_extraction and "USER_QUERY:" in worker_text:
-                push_activity(sid, turn_id, "route", "Extraction retry", "User requested structured extraction, so the vision worker is retrying in extraction-only mode.", node="VISION_ROUTER", status="pending", phase="retry_extraction")
-                extraction_only_prompt = (
-                    "Extract only structured transit schedule data from this image into the strict V5.0.0 JSON schema.\n"
-                    "Do not classify this as USER_QUERY or HYBRID. Ignore generic user instructions outside the image.\n"
-                    "Return only JSON."
+            if is_recoverable_model_error_text(reply_probe):
+                push_activity(
+                    sid,
+                    turn_id,
+                    "model",
+                    "Transient model retry",
+                    "The image request hit a temporary upstream model issue. Retrying once in the same session.",
+                    node="MODEL",
+                    status="pending",
+                    phase="model_retry",
                 )
-                extraction_retry_payload = {
-                    "messages": [HumanMessage(content=[
-                        {"type": "text", "text": extraction_only_prompt},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_data}"}}
-                    ])]
-                }
-                worker_result = await asyncio.to_thread(_sync_invoke_graph, extraction_retry_payload, worker_config)
-                worker_msg_obj = worker_result["messages"][-1]
-                worker_content = getattr(worker_msg_obj, "content", worker_msg_obj)
-                worker_text = str(worker_content)
-                log(f"[MCC] Vision Worker {worker_id_val} extraction-only retry COMPLETE.")
-            
-            pending_hybrid_data = None
-            if "HYBRID:" in worker_text and not user_requested_extraction:
-                extracted_content = worker_text.split("HYBRID:")[-1].strip()
-                user_query, observed_json = parse_hybrid(extracted_content)
-                if not user_query:
-                    user_query = "I found both a question and bus data in this image. What would you like to do?"
-                log(f"[MCC] Image classified as HYBRID. Query: {user_query[:60]}... Data: {len(observed_json)} chars")
-                push_activity(sid, turn_id, "route", "Hybrid image detected", "Detected both a user query and extractable bus data in the uploaded image.", node="VISION_ROUTER", status="ok", phase="hybrid_detected")
-                req.message = user_query
-                pending_hybrid_data = observed_json
-                is_query_from_image = True
-                # Fall through to Brain with state injection
-            elif "USER_QUERY:" in worker_text and not user_requested_extraction:
-                extracted_query = worker_text.split("USER_QUERY:")[-1].strip()
-                log(f"[MCC] Image classified as User Query: {extracted_query}")
-                push_activity(sid, turn_id, "route", "Image routed to journey search", "Detected a route/timetable question rather than a schedule extraction task.", node="VISION_ROUTER", status="ok", phase="query_detected")
-                req.message = extracted_query
-                is_query_from_image = True
-                # Fall through to Brain
-            else:
-                push_activity(sid, turn_id, "worker", "Image extraction complete", "Structured bus schedule detected. Handing extracted data to the background validator.", node="VISION_WORKER", status="ok", phase="handoff")
-                extracted_json = extract_json_block(worker_text)
-                extraction_handoff_reply = format_extracted_data_handoff(extracted_json)
-                log(f"[MCC] Extracted JSON length: {len(extracted_json)} chars. Initiating Background Handoff...")
-                
-                # --- CONCURRENT HANDOFF (The Time Saver) ---
-                async def run_supervisor_background():
-                    validator_json = extracted_json
-                    try:
-                        extracted_payload = json.loads(extracted_json)
-                        incoming_buses = extract_buses_from_payload(extracted_payload)
-                        if incoming_buses:
-                            registry_buses = load_registry_buses([SECURED_FILE, BUSDATA_PHASE_1])
-                            active_audit_buses = []
-                            duplicate_buses = []
-                            new_buses = []
-                            for bus in incoming_buses:
-                                audit_state = resolve_active_audit_state(bus, BASE_DIR)
-                                if audit_state.get("action") == "audit_active":
-                                    active_audit_buses.append((bus, audit_state))
-                                    continue
-                                identity = resolve_bus_identity(bus, registry_buses)
-                                if identity.get("action") == "duplicate":
-                                    duplicate_buses.append(bus)
-                                else:
-                                    new_buses.append(bus)
+                await asyncio.sleep(1.2)
+                result = await asyncio.to_thread(_sync_invoke_graph, image_payload, config)
 
-                            if active_audit_buses and not duplicate_buses and not new_buses:
-                                messages = [active_audit_message(bus, audit_state) for bus, audit_state in active_audit_buses]
-                                reply = "Audit state unchanged: " + " ".join(messages)
-                                push_session_alert(sid, turn_id, "AGENT_ACTION", reply, {"phase": "audit_active", "appendToReply": True})
-                                h = _load_session_history(sid)
-                                h.append({
-                                    "role": "agent",
-                                    "text": reply,
-                                    "thought": "Deterministic resolver found this bus already in the active Stage-1/HITL audit lifecycle.",
-                                    "node": "VALIDATOR",
-                                    "turnId": turn_id,
-                                    "phase": "audit_active"
-                                })
-                                _save_session_history(sid, h)
-                                if sid in SESSIONS_IN_FLIGHT: SESSIONS_IN_FLIGHT.remove(sid)
-                                log(f"[MCC] Background Validator found active audit state; no duplicate failure emitted.")
-                                return
-
-                            if duplicate_buses and not new_buses:
-                                if len(duplicate_buses) == 1:
-                                    reply = (
-                                        f"Pipeline Not updated: [Failed] Bus {bus_label(duplicate_buses[0])} "
-                                        f"identified as duplicate. Trip data has not added."
-                                    )
-                                else:
-                                    reply = (
-                                        f"Pipeline Not updated: [Failed] {len(duplicate_buses)} bus(es) "
-                                        f"identified as duplicate. Trip data has not added."
-                                    )
-                                push_session_alert(sid, turn_id, "AGENT_ACTION", reply, {"phase": "duplicate_blocked", "appendToReply": True})
-                                h = _load_session_history(sid)
-                                h.append({
-                                    "role": "agent",
-                                    "text": reply,
-                                    "thought": "Deterministic registry resolver blocked duplicate Stage-1 enqueue.",
-                                    "node": "VALIDATOR",
-                                    "turnId": turn_id,
-                                    "phase": "duplicate_blocked"
-                                })
-                                _save_session_history(sid, h)
-                                if sid in SESSIONS_IN_FLIGHT: SESSIONS_IN_FLIGHT.remove(sid)
-                                log(f"[MCC] Background Validator skipped duplicate extraction before graph handoff.")
-                                return
-
-                            if (duplicate_buses or active_audit_buses) and new_buses:
-                                filtered_payload = dict(extracted_payload) if isinstance(extracted_payload, dict) else {}
-                                filtered_payload["buses"] = new_buses
-                                validator_json = json.dumps(filtered_payload, ensure_ascii=False, indent=2)
-                                remember_bus_session_context(new_buses, sid, turn_id)
-                                log(
-                                    f"[MCC] Deterministic validator filtered {len(duplicate_buses)} duplicate and "
-                                    f"{len(active_audit_buses)} active-audit "
-                                    f"bus(es); forwarding {len(new_buses)} new bus(es)."
-                                )
-                            elif new_buses:
-                                remember_bus_session_context(new_buses, sid, turn_id)
-                    except Exception as precheck_e:
-                        log(f"[MCC] Deterministic duplicate precheck failed; falling back to graph validator: {precheck_e}")
-
-                    handoff_prompt = (
-                        f"### MISSION: SILENT VALIDATION & SAVE ###\n"
-                        f"Validate and persist this extracted JSON into the correct datastore.\n"
-                        f"Step 1) Determine if this bus already exists by checking secured+master registry using `smart_registry_grep` with reg_no and/or bus_name.\n"
-                        f"Step 2) If it is already in Stage_1/HITL audit, report the audit state instead of a failed duplicate.\n"
-                        f"Step 3) If it exists as a completed registry duplicate, do NOT enqueue Stage_1 and do NOT merge trip data. Return a `Pipeline Not updated: [Failed] ... duplicate` message.\n"
-                        f"Step 4) If it is truly new, save to 'Polyline_Drawing_Pipeline/Stage_1_data.json'.\n"
-                        f"Do NOT narrate much, just execute tools.\n\n"
-                        f"DATA:\n{validator_json}"
-                    )
-                    
-                    push_activity(sid, turn_id, "tool", "Background validator active", "Running duplicate checks and Stage-1 persistence rules.", node="VALIDATOR", status="pending", phase="validating")
-                    supervisor_payload = {"messages": [HumanMessage(content=handoff_prompt)]}
-                    try:
-                        bg_result = await asyncio.to_thread(_sync_invoke_graph, supervisor_payload, config)
-                        reply, thought = _extract_reply(bg_result)
-                        trace = _build_trace_from_result(bg_result)
-                        for step in trace:
-                            push_activity(sid, turn_id, "trace", step.action, step.detail, node=step.node.upper(), status=step.status, phase="validation_trace")
-                        
-                        if str(reply or "").strip().startswith("Pipeline Not updated:"):
-                            push_session_alert(sid, turn_id, "AGENT_ACTION", f"Pipeline Update: {reply}", {"phase": "duplicate_blocked", "appendToReply": True})
-                        else:
-                            push_session_alert(sid, turn_id, "AGENT_ACTION", f"Pipeline Update: {reply}", {"phase": "validation_complete", "appendToReply": True})
-                        
-                        h = _load_session_history(sid)
-                        h.append({
-                            "role": "agent",
-                            "text": reply,
-                            "thought": thought,
-                            "node": "VALIDATOR",
-                            "turnId": turn_id,
-                            "phase": "validation_complete"
-                        })
-                        _save_session_history(sid, h)
-                        
-                        if sid in SESSIONS_IN_FLIGHT: SESSIONS_IN_FLIGHT.remove(sid)
-                        log(f"[MCC] Background Validator COMPLETE.")
-                    except Exception as bg_e:
-                        if sid in SESSIONS_IN_FLIGHT: SESSIONS_IN_FLIGHT.remove(sid)
-                        log(f"[MCC] Background Validator FAILED: {bg_e}")
-                        push_session_alert(sid, turn_id, "SYSTEM_ALERT", f"Validation Error: {bg_e}", {"phase": "error"})
-
-                asyncio.create_task(run_supervisor_background())
-
-                history = _load_session_history(sid)
-                history.append({
-                    "role": "agent",
-                    "text": extraction_handoff_reply,
-                    "thought": "Vision Worker successful. Handoff initiated.",
-                    "node": "VISION_WORKER",
-                    "turnId": turn_id,
-                    "phase": "extraction_handoff"
-                })
-                _save_session_history(sid, history)
-
-                return ChatResponse(
-                    reply=extraction_handoff_reply,
-                    thought="Vision Worker successful. Handoff initiated to Background Validator.",
-                    node="VISION_WORKER",
-                    turnId=turn_id,
-                    trace=[
-                        TraceStep(node="mcc_worker", action="Vision worker completed", detail="Detected structured schedule content in the uploaded image.", status="ok"),
-                        TraceStep(node="validator", action="Background validation started", detail="Running duplicate checks and Stage-1 persistence rules.", status="pending")
-                    ],
-                    mcc_used=True,
-                    worker_id=worker_id_val
-                )
-    
-        if not req.image or is_query_from_image:
+            log("[CHAT] Main-session image processing complete.")
+        else:
             # --- TEXT CHAT PATH ---
             log(f"[CHAT] Text query received/transcribed: '{req.message[:80]}...'")
             push_activity(sid, turn_id, "route", "Request accepted", _safe_snippet(req.message, 90), node="ROUTER", status="pending", phase="routing")
-            if pending_hybrid_data:
-                push_activity(sid, turn_id, "route", "Hybrid context attached", "Carrying forward extracted bus data while answering the user query.", node="ROUTER", status="ok", phase="routing")
             if "@" in (req.message or ""):
                 push_activity(sid, turn_id, "tool", "File-scope detection", "Detected @file-style references and prepared scoped dataset access.", node="FILE_SCOPE", status="pending", phase="routing")
             push_activity(sid, turn_id, "model", "Gemma reasoning pass", "Preparing intent classification, tool selection, and response synthesis.", node="MODEL", status="pending", phase="routing")
             
             text_payload = {"messages": [HumanMessage(content=req.message)]}
-            if pending_hybrid_data:
-                text_payload["pending_hybrid_data"] = pending_hybrid_data
             result = await asyncio.to_thread(_sync_invoke_graph, text_payload, config)
             log(f"[CHAT] Response generated.")
 

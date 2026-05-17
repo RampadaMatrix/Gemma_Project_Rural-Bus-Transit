@@ -20,3 +20,4 @@ BackUP/
 # Local runtime/session artifacts
 ZGemma_files/Sessions/
 *.log
+logs/

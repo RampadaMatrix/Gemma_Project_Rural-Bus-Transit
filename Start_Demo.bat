@@ -17,7 +17,7 @@ python -m pip install -r requirements.txt
 
 echo.
 echo Starting Master Orchestrator (Backend + Agent)...
-echo Please wait for the server to spin up, then open your browser.
+echo Please wait for the servers to spin up. A separate HITL Server terminal should open.
 echo UI:  http://localhost:5000
 echo API: http://localhost:8000
 echo.
