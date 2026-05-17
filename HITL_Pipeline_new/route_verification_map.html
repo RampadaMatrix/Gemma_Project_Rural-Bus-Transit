@@ -7143,7 +7143,7 @@
             background:
                 radial-gradient(circle at 16% 12%, rgba(99, 102, 241, 0.09), transparent 30%),
                 radial-gradient(circle at 87% 27%, rgba(249, 115, 22, 0.06), transparent 27%),
-                url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg') no-repeat center center;
+                url('backgrounds/BG_Image_Transportation_Struggle_Light_2.png') no-repeat center center;
             background-size: cover;
             box-shadow: 0 22px 54px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
         }
@@ -7323,7 +7323,7 @@
             min-width: 760px;
             min-height: 520px;
             border-radius: 18px;
-            background: #060a1a url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg') no-repeat center center;
+            background: #060a1a url('backgrounds/BG_Image_Transportation_Struggle_Light_2.png') no-repeat center center;
             background-size: cover;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -8061,7 +8061,7 @@
             background:
                 radial-gradient(circle at 16% 12%, rgba(99, 102, 241, 0.09), transparent 30%),
                 radial-gradient(circle at 87% 27%, rgba(249, 115, 22, 0.06), transparent 27%),
-                url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg') no-repeat center center;
+                url('backgrounds/BG_Image_Transportation_Struggle_Light_2.png') no-repeat center center;
             background-size: cover;
             border-color: rgba(71, 85, 105, 0.18);
             box-shadow:
@@ -10334,7 +10334,7 @@
             isolation: isolate;
             background:
                 linear-gradient(180deg, rgba(7, 11, 24, 0.16), rgba(7, 11, 24, 0.48)),
-                url('backgrounds/People_Bus_backgorund_by_Sagar_Sing_via_Purulia-Bus-Update_FB.jpg');
+                url('backgrounds/BG_Image_Transportation_Struggle_Light_2.png');
             background-size: cover;
             background-position: center;
             border: 1px solid rgba(148, 163, 184, 0.22);
@@ -10835,7 +10835,8 @@
 
             <div class="fleet-startup-notice" id="fleetStartupNotice">
                 <strong>Startup notice</strong>
-                First-time startup can take around 5 minutes to load bus data. If the registry stays empty, please refresh.
+                First-time startup can take around 5 minutes to load bus data. If the registry stays empty, please
+                refresh.
             </div>
 
             <div class="filter-tray">
@@ -11178,9 +11179,11 @@
                         <div class="pipeline-feed-title">Pipeline Feed</div>
                         <div class="pipeline-feed-sub">Controlled backend milestones</div>
                     </div>
-                    <button class="pipeline-feed-toggle" id="pipelineFeedToggle" type="button" aria-expanded="true" aria-controls="pipelineFeedBody" title="Collapse pipeline feed">
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M3.5 6.5 8 11l4.5-4.5"/>
+                    <button class="pipeline-feed-toggle" id="pipelineFeedToggle" type="button" aria-expanded="true"
+                        aria-controls="pipelineFeedBody" title="Collapse pipeline feed">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3.5 6.5 8 11l4.5-4.5" />
                         </svg>
                     </button>
                 </div>
@@ -13989,7 +13992,7 @@
             }
             try {
                 localStorage.removeItem(getDiscoveryRevealStorageKey());
-            } catch (_) {}
+            } catch (_) { }
             closeRaptorVillageCard();
         }
 
@@ -14010,7 +14013,7 @@
             if (!reg) return;
             try {
                 localStorage.setItem(getDiscoveryRevealStorageKey(), reg);
-            } catch (_) {}
+            } catch (_) { }
         }
 
         function showDiscoveryRevealStatus(regNo, villageCount, radiusKm = 5) {
@@ -17566,7 +17569,7 @@
                 applyPipelineFeedCollapsedState(collapsed);
                 try {
                     localStorage.setItem(getPipelineFeedCollapsedStorageKey(), collapsed ? '1' : '0');
-                } catch (_) {}
+                } catch (_) { }
             });
         }
 
@@ -17594,7 +17597,7 @@
             try {
                 localStorage.removeItem(getPipelineFeedStorageKey());
                 localStorage.removeItem(getDiscoveryRevealStorageKey());
-            } catch (_) {}
+            } catch (_) { }
             resetPipelineFeedUi();
             clearDiscoveryReadyReveal();
         }
@@ -17610,7 +17613,7 @@
                     clearPipelineFeedSnapshotForServerRestart();
                 }
                 localStorage.setItem(getPipelineFeedServerSessionStorageKey(), sessionId);
-            } catch (_) {}
+            } catch (_) { }
             return !!previous && previous !== sessionId;
         }
 
