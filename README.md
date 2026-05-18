@@ -441,3 +441,7 @@ Rural transit data is not clean enough for a single-pass AI system, and it is to
 - Secured records power discovery.
 
 The goal is not only to digitize bus data. The goal is to create an auditable path from informal local knowledge to usable public mobility infrastructure.
+
+## License
+
+This project is released under the MIT License. See `LICENSE` for details.
