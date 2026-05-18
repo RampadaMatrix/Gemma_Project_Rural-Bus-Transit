@@ -2716,6 +2716,13 @@
             return null; 
         }
 
+        function coordsFromObject(value) {
+            if (!value || typeof value !== 'object') return null;
+            const lat = Number(value.lat);
+            const lng = Number(value.lng ?? value.lon);
+            return (Number.isFinite(lat) && Number.isFinite(lng)) ? [lat, lng] : null;
+        }
+
         function drawVisualization(itinerary) {
             clearMapPolylines();
             let bounds = L.latLngBounds();
@@ -2730,17 +2737,21 @@
                 let coordsExtracted = [];
                 
                 if (step.type === 'WALK') {
-                    // Try to resolve 'to_stop' or use destination coords if it's the final leg
-                    let targetCoords = findStopCoords(step.to_stop);
-                    if (step.to === 'Destination' || !targetCoords) {
+                    // Use backend-provided coordinates for RAPTOR virtual stops; names alone
+                    // may not exist in the visible marker layers.
+                    let sourceCoords = coordsFromObject(step.from_coords) || lastCoords;
+                    let targetCoords = coordsFromObject(step.to_coords) || findStopCoords(step.to_stop);
+                    if (step.to === 'Destination') {
                         targetCoords = [routeState.destination.lat, routeState.destination.lng];
                     }
                     
-                    if (lastCoords && targetCoords) {
-                        let p = L.polyline([lastCoords, targetCoords], { 
+                    if (sourceCoords && targetCoords) {
+                        let p = L.polyline([sourceCoords, targetCoords], { 
                             color: '#e74c3c', weight: 4, dashArray: '5, 8', opacity: 0.8, lineCap: 'round'
                         }).addTo(map);
                         routeState.activePolylines.push(p);
+                        bounds.extend(sourceCoords);
+                        bounds.extend(targetCoords);
                         lastCoords = targetCoords;
                     }
                 } 
@@ -2755,8 +2766,8 @@
                             })
                             .filter(Boolean)
                         : [];
-                    let c1 = findStopCoords(step.from_stop);
-                    let c2 = findStopCoords(step.to_stop);
+                    let c1 = coordsFromObject(step.from_coords) || findStopCoords(step.from_stop);
+                    let c2 = coordsFromObject(step.to_coords) || findStopCoords(step.to_stop);
                     
                     if (!c1 && lastCoords) c1 = lastCoords;
                     if (busPath.length < 2) busPath = [c1, c2].filter(Boolean);

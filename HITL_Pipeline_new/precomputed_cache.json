@@ -1,5 +1,5 @@
 {
-  "sig": "1779005689460087600:4508849|1779005689969542300:5806626|1779028726933501500:1190057|1779005690388275300:5850490|bf:111",
+  "sig": "1779005689460087600:4508849|1779005689969542300:5806626|1779086973657703300:1190057|1779005690388275300:5850490|bf:111",
   "payload": {
     "status": "success",
     "hitl_status": {
@@ -2833,7 +2833,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:41"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -3371,7 +3371,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:42"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -3948,7 +3948,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:42"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -4105,7 +4105,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:42"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -7233,7 +7233,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:52"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -7646,7 +7646,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:53"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -8054,7 +8054,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:53"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -8222,7 +8222,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:53"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -9049,7 +9049,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:27"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -9916,7 +9916,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:28"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -25633,7 +25633,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:36"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -26162,7 +26162,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:36"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -26426,7 +26426,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:51"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -26718,7 +26718,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:51"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -26998,7 +26998,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:52"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -27290,7 +27290,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:52"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -29011,7 +29011,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:57"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -29216,7 +29216,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:57"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -29429,7 +29429,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:57"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -29860,7 +29860,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:57"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -32678,7 +32678,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:32"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -33777,7 +33777,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:33"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -35231,7 +35231,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:14"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -35750,7 +35750,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:15"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -36295,7 +36295,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:15"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -36546,7 +36546,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:15"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -44089,7 +44089,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:54"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -44891,7 +44891,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:56"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -56294,7 +56294,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:25"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -56571,7 +56571,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:25"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -56852,7 +56852,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:26"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -57009,7 +57009,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:26"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -75020,7 +75020,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:35"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -75391,7 +75391,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:36"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -75929,7 +75929,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:40"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -76480,7 +76480,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:41"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -89635,7 +89635,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:39"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -90114,7 +90114,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:39"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -95240,7 +95240,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:53"
         },
         "speed_anomaly_count": 2,
         "speed_has_anomaly": true,
@@ -95904,7 +95904,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:54"
         },
         "speed_anomaly_count": 4,
         "speed_has_anomaly": true,
@@ -96317,7 +96317,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:37"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -96733,7 +96733,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:38"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -100694,7 +100694,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:42"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -101031,7 +101031,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:43"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -103089,7 +103089,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:28"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -103430,7 +103430,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:16"
+          "generated_at": "2026-05-18T12:24:28"
         },
         "speed_anomaly_count": 1,
         "speed_has_anomaly": true,
@@ -108584,7 +108584,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:51"
         },
         "speed_anomaly_count": 2,
         "speed_has_anomaly": true,
@@ -109040,7 +109040,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:51"
         },
         "speed_anomaly_count": 2,
         "speed_has_anomaly": true,
@@ -114291,7 +114291,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:47"
         },
         "speed_anomaly_count": 18,
         "speed_has_anomaly": true,
@@ -115651,7 +115651,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:17"
+          "generated_at": "2026-05-18T12:24:51"
         },
         "speed_anomaly_count": 18,
         "speed_has_anomaly": true,
@@ -121576,7 +121576,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:24:58"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -122257,7 +122257,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:14"
         },
         "speed_anomaly_count": 2,
         "speed_has_anomaly": true,
@@ -122869,7 +122869,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:15"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -123500,7 +123500,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:16"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -126557,7 +126557,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:17"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -127284,7 +127284,7 @@
             "long_haul_max_kmph": 75,
             "long_haul_distance_km": 200
           },
-          "generated_at": "2026-05-17T20:11:18"
+          "generated_at": "2026-05-18T12:25:17"
         },
         "speed_anomaly_count": 0,
         "speed_has_anomaly": false,
@@ -261134,7 +261134,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KALYAN (WB55B9666)": {
@@ -262528,7 +262528,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "NILACHAL (WB11C3680)": {
@@ -263543,7 +263543,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SRT Travels (WB55B2345)": {
@@ -264430,7 +264430,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA CHINNAMASTA (WB55A2590)": {
@@ -265512,7 +265512,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "S TRAVELS (WB55E6130)": {
@@ -266657,7 +266657,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "ARMAN (WB33D4137)": {
@@ -268362,7 +268362,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SAHANA (WB55B7229)": {
@@ -269132,7 +269132,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "RUDRANI (WB33D3454)": {
@@ -270804,7 +270804,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SAHANA (WB554799)": {
@@ -271775,7 +271775,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (WB39B4712)": {
@@ -273078,7 +273078,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JOY GORAM (WB55A8004)": {
@@ -274454,7 +274454,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA MANASA (WB41H3201)": {
@@ -276020,7 +276020,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (SBSTC-TATANAGAR)": {
@@ -277375,7 +277375,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MALLIKA (WB67A6619)": {
@@ -278291,7 +278291,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "DEVI DURGA (WB55B6583)": {
@@ -279423,7 +279423,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KALYAN (WB55B8822)": {
@@ -280569,7 +280569,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KALIKA (WB55A1329)": {
@@ -281679,7 +281679,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (SBSTC-BAGHMUNDI---KOLKATA)": {
@@ -283646,7 +283646,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JOY BHARAT MATA (WB55B2460)": {
@@ -284691,7 +284691,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "RAJPUT (WB55B6747)": {
@@ -285821,7 +285821,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (SBSTC-ARAMBAGH---PURULIA)": {
@@ -287150,7 +287150,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SUBARNAREKHA (WB55E3663)": {
@@ -288383,7 +288383,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "TIRUPATI (WB55A5411)": {
@@ -289387,7 +289387,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BALAJI (WB55D2432)": {
@@ -290183,7 +290183,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BANERJEE (WB41J6203)": {
@@ -292354,7 +292354,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SITAL (WB55A5343)": {
@@ -293588,7 +293588,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SHIV SHAKTI (JH05BE0969)": {
@@ -295100,7 +295100,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SIXER (WB55B6112)": {
@@ -296262,7 +296262,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KANGSABATI (WB55A4296)": {
@@ -297942,7 +297942,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "UTSAV (WB55B7186)": {
@@ -298588,7 +298588,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MARUTI (WB55B7116)": {
@@ -299654,7 +299654,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "PUTUL (WB67A9040)": {
@@ -300986,7 +300986,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "GARIB NAWAZ (WB55A7755)": {
@@ -301900,7 +301900,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SITANATH (WB55A3154)": {
@@ -303469,7 +303469,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BULLET (WB55D8311)": {
@@ -304677,7 +304677,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SIXER (WB55B7112)": {
@@ -306102,7 +306102,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "NATIONAL (WB556188)": {
@@ -307168,7 +307168,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JOY MAA (WB15C0610)": {
@@ -308230,7 +308230,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KAILASH (WB553831)": {
@@ -309139,7 +309139,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (TBA)": {
@@ -310451,7 +310451,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BARTAMAN (WB55B6653)": {
@@ -311343,7 +311343,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JOYDEV (WB554321)": {
@@ -312139,7 +312139,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SIXER (WB37J5772)": {
@@ -313093,7 +313093,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAHAMAYA (WB55A6177)": {
@@ -313867,7 +313867,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KAILASH (WB55B2398)": {
@@ -314787,7 +314787,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "AHALYA BHUMI (WB55B6677)": {
@@ -315651,7 +315651,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (TBA_BARDHAMAN)": {
@@ -316797,7 +316797,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "ASOKE (WB55D1521)": {
@@ -317879,7 +317879,7 @@
             "redundant_of": "3rd trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SAHANA (WB555504)": {
@@ -318737,7 +318737,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "GARIB NAWAZ (WB55A2052)": {
@@ -319989,7 +319989,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BHAGYALAXMI (WB55A0454)": {
@@ -321161,7 +321161,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KANGSABATI (WB55A4949)": {
@@ -322841,7 +322841,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BULLET (JH05DC3022)": {
@@ -324020,7 +324020,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MONIKA (WB679660)": {
@@ -325144,7 +325144,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SOHAIL (WB67A1855)": {
@@ -326356,7 +326356,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (TBA_KOLKATA)": {
@@ -327852,7 +327852,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MARUTI (WB55A9819)": {
@@ -328852,7 +328852,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SHREE DURGA (WB555863)": {
@@ -329480,7 +329480,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (TBA_PALASH)": {
@@ -330334,7 +330334,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA PARBATI (WB552093)": {
@@ -331232,7 +331232,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SHIV SHAKTI (JH05DM0069)": {
@@ -331686,7 +331686,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MOUSUMI (WB67B5428)": {
@@ -332500,7 +332500,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA ANNAPURNA TRAVELS (WB67B7873)": {
@@ -333409,7 +333409,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "GANGA (WB37D9825)": {
@@ -334146,7 +334146,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KALYAN (WB55B9662)": {
@@ -335246,7 +335246,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "RAGHUNATH (WB55B2111)": {
@@ -336198,7 +336198,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "VIJAY (WB55A3324)": {
@@ -337529,7 +337529,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "PUSHPASHREE (WB55B7451)": {
@@ -338687,7 +338687,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SHIV DURGA (WB677214)": {
@@ -339377,7 +339377,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SUMAN (WB554682)": {
@@ -340067,7 +340067,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SAYAN (WB55A4103)": {
@@ -341133,7 +341133,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (NOT AVAILABLE)": {
@@ -342605,7 +342605,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA HARIMOTI (WB55A3159)": {
@@ -343171,7 +343171,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JINIA (WB39B8959)": {
@@ -344375,7 +344375,7 @@
             "redundant_of": null
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KALYAN (WB55B1459)": {
@@ -345201,7 +345201,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MUKTA BIHANGA (WB676918)": {
@@ -346267,7 +346267,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SARAJU (WB559561)": {
@@ -347092,7 +347092,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "HILLTOP SUPER (WB55B6775)": {
@@ -347984,7 +347984,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "KAKATUA (WB39B8008)": {
@@ -348977,7 +348977,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "PARAMA (WB67A3460)": {
@@ -349904,7 +349904,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "GANGA (WB37D3111)": {
@@ -350656,7 +350656,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SERMA EPIL (WB55A6535)": {
@@ -351738,7 +351738,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JUGAL CHAKRA (WB55A3959)": {
@@ -353085,7 +353085,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (SBSTC-AJODHYA)": {
@@ -353523,7 +353523,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (SBSTC-DURGAPUR)": {
@@ -354779,7 +354779,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JUGAL CHAKRA (WB33D3687)": {
@@ -355619,7 +355619,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "DOLPHIN (WB551712)": {
@@ -356477,7 +356477,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "NARAYANI (WB553855)": {
@@ -357543,7 +357543,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "WASIF (WB39B0782)": {
@@ -358591,7 +358591,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA KALYANI (WB55B0815)": {
@@ -359281,7 +359281,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA BASANTI (WB55B5653)": {
@@ -359937,7 +359937,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAHARAJA (WB55B8111)": {
@@ -360588,7 +360588,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SBSTC (SBSTC-PURULIA-LOCAL)": {
@@ -361695,7 +361695,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "BABA LOKNATH (WGW0341)": {
@@ -362329,7 +362329,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MONALISHA (WB55A6764)": {
@@ -363535,7 +363535,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "PARTHA SARATHI (WB55A5297)": {
@@ -364225,7 +364225,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "RAGHUNATH (WB55B2525)": {
@@ -365347,7 +365347,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "PUSHPASHREE (WB55A3110)": {
@@ -365975,7 +365975,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SAHANA (WB55B7228)": {
@@ -367075,7 +367075,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "PUTUL (WB67B9019)": {
@@ -367922,7 +367922,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SUBHODEEP (WB57C0696)": {
@@ -369804,7 +369804,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "TUMPA SONA (WB55B7838)": {
@@ -371877,7 +371877,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA SARADA (WB55B8329)": {
@@ -374065,7 +374065,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "CITY QUEEN (WB55D2765)": {
@@ -375885,7 +375885,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "DUMMY BUS 1 (WB00000001)": {
@@ -376815,7 +376815,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "DUMMY BUS 2 (WB00000002)": {
@@ -377437,7 +377437,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "DUMMY BUS 3 (WB00000003)": {
@@ -378367,7 +378367,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "JAI MAA DURGA (WB55B5471)": {
@@ -379619,7 +379619,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "TRIBENI (WB67B7484)": {
@@ -380784,7 +380784,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA MANASA DEBI (WB55B7174)": {
@@ -381872,7 +381872,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "RBN TRAVELS (WB55B8418)": {
@@ -383173,7 +383173,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "TRISUL (WB49C3008)": {
@@ -384457,7 +384457,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA SABITRI (WB29C5760)": {
@@ -385145,7 +385145,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "RAJARAM (WB41D0011)": {
@@ -386582,7 +386582,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "NILKANTHA (WB33C6656)": {
@@ -387588,7 +387588,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "GHARE BAIRE (WB67B1852)": {
@@ -388688,7 +388688,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "SADHANA (WB67H0674)": {
@@ -389858,7 +389858,7 @@
             "redundant_of": "1st trip"
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       },
       "MAA LAXMI (WB55B6782)": {
@@ -390188,10 +390188,10 @@
             "redundant_of": null
           }
         ],
-        "last_updated": "2026-05-17T20:11:18",
+        "last_updated": "2026-05-18T12:25:17",
         "hitl_verified": true
       }
     }
   },
-  "saved_at": "2026-05-17T20:11:18.914260"
+  "saved_at": "2026-05-18T12:25:17.651268"
 }

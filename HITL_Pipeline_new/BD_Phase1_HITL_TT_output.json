@@ -5,7 +5,7 @@
     "source": "HITL TT sync",
     "total_buses": 24,
     "analysis_engine": "hitl_embedded_kinematics_v1 + speed_physics_v1",
-    "analysis_embedded_at": "2026-05-17T21:38:32",
+    "analysis_embedded_at": "2026-05-18T12:19:33",
     "terminal_time_normalized_at": "2026-04-16T22:54:07",
     "terminal_time_rule": "origin_arrival_null_destination_departure_null"
   },

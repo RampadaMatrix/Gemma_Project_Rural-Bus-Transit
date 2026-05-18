@@ -212,6 +212,20 @@ class RaptorRouter:
                 })
         return path
 
+    def _stop_coords(self, stop_id):
+        stop = self.stops.get(stop_id) or {}
+        lat = stop.get('lat')
+        lng = stop.get('lng')
+        if isinstance(lat, (int, float)) and isinstance(lng, (int, float)):
+            return {"lat": lat, "lng": lng}
+        return None
+
+    def _with_stop_coords(self, payload, stop_id, key):
+        coords = self._stop_coords(stop_id)
+        if coords:
+            payload[key] = coords
+        return payload
+
     def enrich_options_geometry(self, options):
         for opt in options or []:
             for leg in opt.get("itinerary") or []:
@@ -225,6 +239,9 @@ class RaptorRouter:
                 if len(path) >= 2:
                     leg["path"] = path
                     leg["path_points"] = len(path)
+                if leg.get("path"):
+                    leg.setdefault("from_coords", {"lat": leg["path"][0]["lat"], "lng": leg["path"][0]["lng"]})
+                    leg.setdefault("to_coords", {"lat": leg["path"][-1]["lat"], "lng": leg["path"][-1]["lng"]})
         return options
 
     def solve(self, origin_lat, origin_lng, dest_lat, dest_lng, departure_time_mins, max_rounds=2):
@@ -465,22 +482,24 @@ class RaptorRouter:
                             "departure_time": self.format_min(home_dep),
                             "summary": f"Direct via {bname}, {round(dur)} mins",
                             "itinerary": [
-                                {"type": "WALK", "from": "Origin",
-                                 "to_stop": self.stops[o_sid]['name'],
-                                 "dist_km": round(orig_walk_d[o_sid] / 1000, 2),
-                                 "duration_mins": wt_o,
-                                 "arr": self.format_min(dep1)},
-                                {"type": "BUS", "bus_name": bname, "trip_id": tid,
-                                 "from_stop": self.stops[o_sid]['name'],
-                                 "to_stop": self.stops[d_sid]['name'],
-                                 "dep": self.format_min(dep1),
-                                 "arr": self.format_min(arr_d),
-                                 "duration_mins": round(arr_d - dep1)},
-                                {"type": "WALK", "from_stop": self.stops[d_sid]['name'],
-                                 "to": "Destination",
-                                 "dist_km": round(dest_walk_d[d_sid] / 1000, 2),
-                                 "duration_mins": dest_walk_t[d_sid],
-                                 "arr": self.format_min(final)}
+                                self._with_stop_coords({"type": "WALK", "from": "Origin",
+                                                        "to_stop": self.stops[o_sid]['name'],
+                                                        "dist_km": round(orig_walk_d[o_sid] / 1000, 2),
+                                                        "duration_mins": wt_o,
+                                                        "arr": self.format_min(dep1)}, o_sid, "to_coords"),
+                                self._with_stop_coords(
+                                    self._with_stop_coords({"type": "BUS", "bus_name": bname, "trip_id": tid,
+                                                            "from_stop": self.stops[o_sid]['name'],
+                                                            "to_stop": self.stops[d_sid]['name'],
+                                                            "dep": self.format_min(dep1),
+                                                            "arr": self.format_min(arr_d),
+                                                            "duration_mins": round(arr_d - dep1)}, o_sid, "from_coords"),
+                                    d_sid, "to_coords"),
+                                self._with_stop_coords({"type": "WALK", "from_stop": self.stops[d_sid]['name'],
+                                                        "to": "Destination",
+                                                        "dist_km": round(dest_walk_d[d_sid] / 1000, 2),
+                                                        "duration_mins": dest_walk_t[d_sid],
+                                                        "arr": self.format_min(final)}, d_sid, "from_coords")
                             ]
                         })
 
@@ -682,40 +701,46 @@ class RaptorRouter:
             xfer_name = self.stops[xfer_sid]['name'] if xfer_sid != mid_sid else mid_name
 
             itin = [
-                {"type": "WALK", "from": "Origin",
-                 "to_stop": self.stops[o_sid]['name'],
-                 "dist_km": round(o_dist / 1000, 2),
-                 "duration_mins": wt_o,
-                 "arr": self.format_min(dep1)},
-                {"type": "BUS", "bus_name": bname1, "trip_id": tid1,
-                 "from_stop": self.stops[o_sid]['name'],
-                 "to_stop": mid_name,
-                 "dep": self.format_min(dep1),
-                 "arr": self.format_min(arr_mid),
-                 "duration_mins": round(arr_mid - dep1)},
+                self._with_stop_coords({"type": "WALK", "from": "Origin",
+                                        "to_stop": self.stops[o_sid]['name'],
+                                        "dist_km": round(o_dist / 1000, 2),
+                                        "duration_mins": wt_o,
+                                        "arr": self.format_min(dep1)}, o_sid, "to_coords"),
+                self._with_stop_coords(
+                    self._with_stop_coords({"type": "BUS", "bus_name": bname1, "trip_id": tid1,
+                                            "from_stop": self.stops[o_sid]['name'],
+                                            "to_stop": mid_name,
+                                            "dep": self.format_min(dep1),
+                                            "arr": self.format_min(arr_mid),
+                                            "duration_mins": round(arr_mid - dep1)}, o_sid, "from_coords"),
+                    mid_sid, "to_coords"),
             ]
             if xfer_walk > 0 or xfer_sid != mid_sid:
                 xfer_dist = self.haversine(
                     self.stops[mid_sid]['lat'], self.stops[mid_sid]['lng'],
                     self.stops[xfer_sid]['lat'], self.stops[xfer_sid]['lng'])
                 itin.append(
-                    {"type": "WALK", "from": mid_name,
-                     "to_stop": xfer_name,
-                     "dist_km": round(xfer_dist / 1000, 2),
-                     "duration_mins": xfer_walk,
-                     "arr": self.format_min(arr_mid + xfer_walk)})
+                    self._with_stop_coords(
+                        self._with_stop_coords({"type": "WALK", "from": mid_name,
+                                                "to_stop": xfer_name,
+                                                "dist_km": round(xfer_dist / 1000, 2),
+                                                "duration_mins": xfer_walk,
+                                                "arr": self.format_min(arr_mid + xfer_walk)}, mid_sid, "from_coords"),
+                        xfer_sid, "to_coords"))
             itin.extend([
-                {"type": "BUS", "bus_name": bname2, "trip_id": tid2,
-                 "from_stop": xfer_name,
-                 "to_stop": self.stops[d_sid]['name'],
-                 "dep": self.format_min(dep2),
-                 "arr": self.format_min(arr2),
-                 "duration_mins": round(arr2 - dep2)},
-                {"type": "WALK", "from_stop": self.stops[d_sid]['name'],
-                 "to": "Destination",
-                 "dist_km": round(dest_walk_d.get(d_sid, 0) / 1000, 2),
-                 "duration_mins": dest_walk_t.get(d_sid, 0),
-                 "arr": self.format_min(final)}
+                self._with_stop_coords(
+                    self._with_stop_coords({"type": "BUS", "bus_name": bname2, "trip_id": tid2,
+                                            "from_stop": xfer_name,
+                                            "to_stop": self.stops[d_sid]['name'],
+                                            "dep": self.format_min(dep2),
+                                            "arr": self.format_min(arr2),
+                                            "duration_mins": round(arr2 - dep2)}, xfer_sid, "from_coords"),
+                    d_sid, "to_coords"),
+                self._with_stop_coords({"type": "WALK", "from_stop": self.stops[d_sid]['name'],
+                                        "to": "Destination",
+                                        "dist_km": round(dest_walk_d.get(d_sid, 0) / 1000, 2),
+                                        "duration_mins": dest_walk_t.get(d_sid, 0),
+                                        "arr": self.format_min(final)}, d_sid, "from_coords")
             ])
 
             results.append({
